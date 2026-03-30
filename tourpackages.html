@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tour Packages | BHARATHIYAR TOURS AND TRAVELS</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="tourpackage.css">
+  <link rel="icon" href="images/Logo.png" type="image/png">
+
+</head>
+<style>
+.mobile-menu-trigger{
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  text-align: left !important;
+  padding: 11px 12px !important;
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+.mobile-menu-trigger i{
+  transition: transform 0.25s ease !important;
+}
+.hotel-field{
+  display: none;
+}
+
+.hotel-field.show-hotel-field{
+  display: block;
+}
+
+#accommodationFields .form-select{
+  width: 100% !important;
+  min-width: 100% !important;
+}
+</style>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="images/Logo.png" alt="Bharathiyar Logo" class="logo-img">
+        <div>
+          <div class="brand-name">BHARATHIYAR TOURS AND TRAVELS</div>
+          <div class="brand-sub">Premium Cab & Tour Services</div>
+        </div>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+      </button>
+
+      <div class="collapse navbar-collapse desktop-navbar" id="mainNavbar">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="tariffs.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tariffs
+            </a>
+            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="hourlypackages.html">
+                  <i class="bi bi-clock me-2"></i>Local Hourly Packages
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="onewaydroptaxi.html">
+                  <i class="bi bi-sign-turn-right me-2"></i>One Way Drop Taxi
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="tourpackages.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tour Packages
+            </a>
+            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="tourpackages.html#isha-marudhamalai">
+                   One Day
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-2d">
+                   Two Days
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-3d">
+                   Three Days
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-4d">
+                   Four Days
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-5d">
+                   Five Days
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-kodaikanal-madurai-6d">
+                   Six Days
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-kodaikanal-munnar-7d">
+                   Seven Days
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+
+          <li class="nav-item ms-lg-2 mt-3 mt-lg-0">
+            <a class="btn btn-brand" href="index.html#bookingForm1">
+              <i class="bi bi-whatsapp me-1"></i>Book Now
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE OFFCANVAS -->
+  <div class="offcanvas offcanvas-start mobile-nav-offcanvas" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header border-bottom">
+      <div class="d-flex align-items-center gap-2">
+        <img src="images/Logo.png" alt="Bharathiyar Logo" class="logo-img">
+        <div>
+          <div class="brand-name">BHARATHIYAR TOURS AND TRAVELS</div>
+          <div class="brand-sub">Premium Cab & Tour Services</div>
+        </div>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <ul class="navbar-nav flex-column gap-1">
+
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+
+        <!-- MOBILE TARIFFS DROPDOWN -->
+        <li class="nav-item">
+          <button
+            class="nav-link mobile-parent-link mobile-menu-trigger"
+            type="button"
+            onclick="toggleTariffMenu()"
+          >
+            <span>Tariffs</span>
+            <i class="bi bi-chevron-down" id="tariffMenuIcon"></i>
+          </button>
+
+          <div class="mobile-submenu" id="mobileTariffsMenu" style="display: none;">
+            <a class="nav-link ps-4" href="hourlypackages.html">
+              <i class="bi bi-clock me-2"></i>Local Hourly Packages
+            </a>
+            <a class="nav-link ps-4" href="onewaydroptaxi.html">
+              <i class="bi bi-sign-turn-right me-2"></i>One Way Drop Taxi
+            </a>
+          </div>
+        </li>
+
+        <!-- MOBILE TOUR PACKAGES DROPDOWN -->
+        <li class="nav-item">
+          <button
+            class="nav-link mobile-parent-link mobile-menu-trigger"
+            type="button"
+            onclick="toggleTourMenu()"
+          >
+            <span>Tour Packages</span>
+            <i class="bi bi-chevron-down" id="tourMenuIcon"></i>
+          </button>
+
+          <div class="mobile-submenu" id="mobileTourPackagesMenu" style="display: none;">
+            <a class="nav-link ps-4" href="tourpackages.html#isha-marudhamalai" onclick="closeMobileMenu()">One Day</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-2d" onclick="closeMobileMenu()"> Two Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-3d" onclick="closeMobileMenu()"> Three Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-4d" onclick="closeMobileMenu()"> Four Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-5d" onclick="closeMobileMenu()"> Five Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-kodaikanal-madurai-6d" onclick="closeMobileMenu()"> Six Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-kodaikanal-munnar-7d" onclick="closeMobileMenu()"> Seven Days</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+      </ul>
+
+      <a href="index.html#bookingForm1" class="btn btn-brand w-100 mt-4">
+        <i class="bi bi-whatsapp me-2"></i>Book Now
+      </a>
+    </div>
+  </div>
+
+  <section class="tour-page-hero">
+    <div class="container text-center">
+      <div class="section-tag mx-auto mb-2">Tour Packages</div>
+      <h1 class="tour-page-title">Tour Package Tariffs</h1>
+      <p class="tour-page-sub">Choose your package, destination, hotel type and vehicle.</p>
+    </div>
+  </section>
+
+  <section class="tour-layout" id="tourPackagesSection">
+    <div class="container">
+      <div class="tour-shell">
+        <div class="row g-0">
+          <div class="col-lg-3">
+            <div class="tour-sidebar h-100">
+              <div class="tour-sidebar-title">Package Duration</div>
+
+              <button type="button" class="package-tab active" data-package="1D">One Day<small>Quick package</small></button>
+              <button type="button" class="package-tab" data-package="2D">Two Days<small>Weekend trip</small></button>
+              <button type="button" class="package-tab" data-package="3D">Three Days<small>Comfort plan</small></button>
+              <button type="button" class="package-tab" data-package="4D">Four Days<small>Longer tour</small></button>
+              <button type="button" class="package-tab" data-package="5D">Five Days<small>Holiday package</small></button>
+              <button type="button" class="package-tab" data-package="6D">Six Days<small>Extended trip</small></button>
+              <button type="button"  class="package-tab" data-package="7D">Seven Days<small>Full vacation</small></button>
+            </div>
+          </div>
+
+          <div class="col-lg-9" id="tariffSection">
+            <div class="tour-main">
+              <div class="tour-topbar">
+                <div>
+                  <h2 class="tour-current-title" id="packageHeading">One Day Tour Packages</h2>
+                  <p class="tour-current-sub" id="packageSubheading">Select your destination</p>
+                </div>
+              </div>
+
+              <div class="tour-filter-card">
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label class="form-label fw-semibold" for="destinationSelect">Destination</label>
+                  <select class="form-select" id="destinationSelect"></select>
+                </div>
+
+                <div id="accommodationFields" class="col-12">
+                <div class="row g-3">
+
+                  <div class="col-12 col-md-3">
+                    <label class="form-label fw-semibold" for="accommodationSelect">Accommodation</label>
+                    <select class="form-select" id="accommodationSelect">
+                      <option value="none">Without Hotel</option>
+                      <option value="hotel">With Hotel</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12 col-md-3 hotel-field" id="roomTypeField">
+                    <label class="form-label fw-semibold" for="roomTypeSelect">Room Type</label>
+                    <select class="form-select" id="roomTypeSelect">
+                      <option value="2star">2 Star</option>
+                      <option value="3star">3 Star</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12 col-md-3 hotel-field" id="occupancyField">
+                    <label class="form-label fw-semibold" for="occupancySelect">Occupancy</label>
+                    <select class="form-select" id="occupancySelect">
+                      <option value="double">Double</option>
+                      <option value="triple">Triple</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12 col-md-3 hotel-field" id="roomCountField">
+                    <label class="form-label fw-semibold" for="roomCountSelect">Room Count</label>
+                    <select class="form-select" id="roomCountSelect">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="13">13</option>
+                      <option value="14">14</option>
+                      <option value="15">15</option>
+                    </select>
+                  </div>
+
+                </div>
+              </div>
+              </div>
+            </div>
+
+              <div class="tour-note">
+      Select stay option to update tariff.
+    </div>
+            </div>
+
+              <div class="tariff-wrap" >
+                <div class="table-responsive">
+                  <table class="table tariff-table align-middle mb-0">
+                    <thead class="tariff-head">
+                      <tr>
+                        <th>Vehicle</th>
+                        <th>Tariff</th>
+                        <th>Book</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tariffTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="itinerary-table-wrap">
+                <div class="itinerary-title-bar" id="itineraryTitle">Itinerary</div>
+                <div class="table-responsive">
+                  <table class="table itinerary-table mb-0">
+                    <thead>
+                      <tr>
+                        <th style="width: 110px;">Day</th>
+                        <th>Plan</th>
+                      </tr>
+                    </thead>
+                    <tbody id="itineraryContent"></tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="includes-note">
+
+
+      <div style="margin-top:10px;">
+        <strong>Notes:</strong>
+        <ul style="margin:6px 0 0 18px; padding:0;">
+          <li>Car rent, fuel, driver allowance, parking & toll charges included.</li>
+          <li>Room tariffs are not valid during peak season (Apr–Jun), winter (Nov–Jan), and festival/holiday periods.</li>
+        </ul>
+      </div>
+    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal fade modal-tour" id="bookingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <h5 class="modal-title mb-1">Book Tour Package</h5>
+            <div style="font-size:.88rem; opacity:.92;">Fill details and continue to WhatsApp</div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body p-3 p-md-4">
+          <div class="summary-box" id="bookingSummary"></div>
+
+          <form id="bookingPopupForm" novalidate>
+            <div class="mb-3">
+              <label class="form-label" for="customerName">Full Name</label>
+              <input type="text" class="form-control" id="customerName" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="customerPhone">Phone Number</label>
+              <input type="tel" class="form-control" id="customerPhone" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="customerDateTime">Pickup Date & Time</label>
+              <input type="datetime-local" class="form-control" id="customerDateTime" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="customerPickup">Pickup Location</label>
+              <input type="text" class="form-control" id="customerPickup" placeholder="Enter pickup location" required>
+            </div>
+
+            <button type="submit" class="whatsapp-btn-full">
+              <i class="bi bi-whatsapp me-2"></i>Enquire Now on WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-5">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <img src="images/Logo.png" alt="Logo" class="footer-logo">
+            <div>
+              <div class="footer-brand">BHARATHIYAR TOURS AND TRAVELS</div>
+              <div class="footer-brand-sub">Premium Cab & Tour Services</div>
+            </div>
+          </div>
+
+          <p>Reliable and premium travel for local rides, family tours, pilgrim packages and outstation bookings across Tamil Nadu.</p>
+
+          <div class="d-flex gap-3 mt-3">
+    <a href="https://wa.me/919629808833" class="social-btn" target="_blank">
+      <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <a href="tel:+919629808833" class="social-btn">
+      <i class="bi bi-telephone-fill"></i>
+    </a>
+
+    <a href="mailto:bharathiyartravels.cbe@gmail.com" class="social-btn">
+      <i class="bi bi-envelope-fill"></i>
+    </a>
+
+    <a href="https://www.instagram.com/bharathiyartoursandtravels/" class="social-btn" target="_blank">
+      <i class="bi bi-instagram"></i>
+    </a>
+
+    <a href="https://www.facebook.com/p/Bharathiyar-Tours-Travels-100063803235318/" class="social-btn" target="_blank">
+      <i class="bi bi-facebook"></i>
+    </a>
+  </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="footer-heading">Quick Links</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="index.html">Home</a>
+            <a href="hourlypackages.html">Hourly Packages</a>
+            <a href="tourpackages.html">Tour Packages</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="footer-heading">Contact</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="mailto:bharathiyartravels.cbe@gmail.com" class="footer-contact-link">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <span>bharathiyartravels.cbe@gmail.com</span>
+            </a>
+            <a href="tel:+919629808833" class="footer-contact-link">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <span>+91 96298 08833</span>
+            </a>
+            <a href="tel:+919488331952" class="footer-contact-link">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <span>+91 94883 31952</span>
+            </a>
+            <div class="footer-contact-link">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <span>13/1, Divine Nagar, Church Road, Cheran Managar, Coimbatore – 641035.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 mt-5">
+        <span>© 2026 Bharathiyar Tours & Travels. All rights reserved.</span>
+        <p style="font-size: 14px; opacity: 0.7; color: #718096;">
+          Designed & curated by
+          <a href="https://marcinmind.in" target="_blank" style="text-decoration: none; color: #20b2aa;">Marc in Mind Technologies</a>
+        </p>
+      </div>
+    </div>
+    <br><br>
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+<div class="float-btns" id="floatingBtns">
+    <a href="tel:+919629808833" class="float-btn float-call" aria-label="Call us">
+      <i class="bi bi-telephone-fill"></i>
+      <span>Call Us</span>
+    </a>
+    <a href="https://wa.me/919629808833" target="_blank" class="float-btn float-wa" aria-label="WhatsApp us">
+      <i class="bi bi-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+  </div>
+
+  <button id="scrollTopBtn">
+  <i class="bi bi-arrow-up"></i>
+</button>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="tourpackage.js" charset="utf-8"></script>
+  <script src="route.js" charset="utf-8"></script>
+<script src="hotel-toggle.js"></script>
+
+  <script>
+  function toggleTariffMenu() {
+    const menu = document.getElementById("mobileTariffsMenu");
+    const icon = document.getElementById("tariffMenuIcon");
+
+    if (menu.style.display === "block") {
+      menu.style.display = "none";
+      if (icon) icon.style.transform = "rotate(0deg)";
+    } else {
+      menu.style.display = "block";
+      if (icon) icon.style.transform = "rotate(180deg)";
+    }
+  }
+
+  function toggleTourMenu() {
+    const menu = document.getElementById("mobileTourPackagesMenu");
+    const icon = document.getElementById("tourMenuIcon");
+
+    if (menu.style.display === "block") {
+      menu.style.display = "none";
+      if (icon) icon.style.transform = "rotate(0deg)";
+    } else {
+      menu.style.display = "block";
+      if (icon) icon.style.transform = "rotate(180deg)";
+    }
+  }
+  </script>
+  <script>
+function closeMobileMenu() {
+  // close submenu
+  const menu = document.getElementById("mobileTourPackagesMenu");
+  const icon = document.getElementById("tourMenuIcon");
+
+  if (menu) menu.style.display = "none";
+  if (icon) icon.style.transform = "rotate(0deg)";
+
+  // close offcanvas
+  const offcanvasEl = document.getElementById('mobileMenu');
+  const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
+
+  if (offcanvas) {
+    offcanvas.hide();
+  }
+}
+</script>
+<script>
+const scrollBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", function () {
+  if (window.scrollY > 300) {
+    scrollBtn.style.display = "block";
+  } else {
+    scrollBtn.style.display = "none";
+  }
+});
+
+scrollBtn.addEventListener("click", function () {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+</body>
+</html>

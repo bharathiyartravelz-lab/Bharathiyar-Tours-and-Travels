@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terms & Conditions | BHARATHIYAR TOURS AND TRAVELS</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/Logo.png" type="image/png">
+
+  <style>
+    .float-btns{
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 9999;
+      width: max-content;
+      max-width: calc(100vw - 24px);
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .float-btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 18px;
+      border-radius: 50px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .float-btn:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.24);
+    }
+
+    .float-btn i{
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .float-call{
+      background: #0d2b30;
+      color: #fff !important;
+    }
+
+    .float-call:hover{
+      background: #1a4a52;
+      color: #fff !important;
+    }
+
+    .float-wa{
+      background: #25D366;
+      color: #fff !important;
+    }
+
+    .float-wa:hover{
+      background: #1ebe5d;
+      color: #fff !important;
+    }
+
+    .mobile-menu-trigger{
+      width: 100% !important;
+      border: none !important;
+      background: transparent !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      text-align: left !important;
+      padding: 11px 12px !important;
+      color: #0f172a !important;
+      font-weight: 600 !important;
+    }
+
+    .mobile-menu-trigger i{
+      transition: transform 0.25s ease !important;
+    }
+
+    .terms-hero{
+      padding: 118px 0 38px;
+      background:
+        linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)),
+        url('images/bg.jpg') center/cover no-repeat,
+        linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+    }
+
+    .terms-hero .section-tag{
+      background: rgba(255,255,255,0.14) !important;
+      color: #fff !important;
+      border: 1px solid rgba(255,255,255,0.22) !important;
+    }
+
+    .terms-title{
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: #fff;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    }
+
+    .terms-sub{
+      max-width: 760px;
+      margin: 0 auto;
+      color: rgba(255,255,255,0.80);
+      font-size: 0.96rem;
+      line-height: 1.6;
+    }
+
+    .terms-page{
+      padding: 0 0 60px;
+    }
+
+    .terms-shell{
+      background: #fff;
+      border: 1px solid rgba(26,159,170,0.14);
+      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+    }
+
+    .terms-intro{
+      padding: 22px 22px 10px;
+      border-bottom: 1px solid #e6edf2;
+      background: #fff;
+    }
+
+    .terms-intro h2{
+      margin: 0 0 8px;
+      color: #b91c1c;
+      font-size: 1.9rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .terms-intro p{
+      margin: 0;
+      color: #475569;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .terms-content{
+      padding: 22px;
+    }
+
+    .terms-card{
+      background: #ffffff;
+      border: 1px solid rgba(26,159,170,0.14);
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+    }
+
+    .terms-card:last-child{
+      margin-bottom: 0;
+    }
+
+    .terms-card h3{
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      color: #0d2b30;
+    }
+
+    .terms-card p{
+      color: #64748b;
+      font-size: 0.92rem;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    .terms-list{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .terms-list li{
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #334155;
+      font-size: 0.92rem;
+      line-height: 1.75;
+    }
+
+    .terms-list li i{
+      color: #1a9faa;
+      margin-top: 4px;
+      flex-shrink: 0;
+      font-size: 0.95rem;
+    }
+
+    .terms-highlight{
+      margin-top: 18px;
+      padding: 14px 16px;
+      border: 1px solid #d9ecf8;
+      background: #eef8ff;
+      color: #486273;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .terms-highlight strong{
+      color: #243746;
+    }
+
+    .terms-shell,
+    .terms-card,
+    .terms-highlight{
+      border-radius: 0 !important;
+    }
+
+    @media (max-width: 768px){
+      .terms-hero{
+        padding: 100px 0 30px;
+      }
+
+      .terms-intro,
+      .terms-content,
+      .terms-card{
+        padding: 18px;
+      }
+
+      .float-btn{
+        padding: 10px 16px;
+        font-size: 0.82rem;
+      }
+    }
+
+    @media (max-width: 480px){
+      .float-btns{
+        bottom: 16px;
+        gap: 8px;
+      }
+
+      .float-btn{
+        padding: 9px 14px;
+        font-size: 0.78rem;
+        gap: 5px;
+      }
+
+      .float-btn i{
+        font-size: 0.92rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="images/Logo.png" alt="Bharathiyar Logo" class="logo-img">
+        <div>
+          <div class="brand-name">BHARATHIYAR TOURS AND TRAVELS</div>
+          <div class="brand-sub">Premium Cab & Tour Services</div>
+        </div>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+      </button>
+
+      <div class="collapse navbar-collapse desktop-navbar" id="mainNavbar">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="tariffs.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tariffs
+            </a>
+            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="hourlypackages.html">
+                  <i class="bi bi-clock me-2"></i>Local Hourly Packages
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="onewaydroptaxi.html">
+                  <i class="bi bi-sign-turn-right me-2"></i>One Way Drop Taxi
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="tourpackages.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tour Packages
+            </a>
+            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#isha-marudhamalai">One Day</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-2d">Two Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-3d">Three Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-4d">Four Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-5d">Five Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-kodaikanal-madurai-6d">Six Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-kodaikanal-munnar-7d">Seven Days</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" href="termsandconditions.html">Terms</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+
+          <li class="nav-item ms-lg-2 mt-3 mt-lg-0">
+            <a class="btn btn-brand" href="index.html#bookingForm1">
+              <i class="bi bi-whatsapp me-1"></i>Book Now
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE OFFCANVAS -->
+  <div class="offcanvas offcanvas-start mobile-nav-offcanvas" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header border-bottom">
+      <div class="d-flex align-items-center gap-2">
+        <img src="images/Logo.png" alt="Bharathiyar Logo" class="logo-img">
+        <div>
+          <div class="brand-name">BHARATHIYAR TOURS AND TRAVELS</div>
+          <div class="brand-sub">Premium Cab & Tour Services</div>
+        </div>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <ul class="navbar-nav flex-column gap-1">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <button class="nav-link mobile-parent-link mobile-menu-trigger" type="button" onclick="toggleTariffMenu()">
+            <span>Tariffs</span>
+            <i class="bi bi-chevron-down" id="tariffMenuIcon"></i>
+          </button>
+          <div class="mobile-submenu" id="mobileTariffsMenu" style="display: none;">
+            <a class="nav-link ps-4" href="hourlypackages.html">
+              <i class="bi bi-clock me-2"></i>Local Hourly Packages
+            </a>
+            <a class="nav-link ps-4" href="onewaydroptaxi.html">
+              <i class="bi bi-sign-turn-right me-2"></i>One Way Drop Taxi
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <button class="nav-link mobile-parent-link mobile-menu-trigger" type="button" onclick="toggleTourMenu()">
+            <span>Tour Packages</span>
+            <i class="bi bi-chevron-down" id="tourMenuIcon"></i>
+          </button>
+          <div class="mobile-submenu" id="mobileTourPackagesMenu" style="display: none;">
+            <a class="nav-link ps-4" href="tourpackages.html#isha-marudhamalai" onclick="closeMobileMenu()">One Day</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-2d" onclick="closeMobileMenu()">Two Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-3d" onclick="closeMobileMenu()">Three Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-4d" onclick="closeMobileMenu()">Four Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-5d" onclick="closeMobileMenu()">Five Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-kodaikanal-madurai-6d" onclick="closeMobileMenu()">Six Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-kodaikanal-munnar-7d" onclick="closeMobileMenu()">Seven Days</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" href="termsandconditions.html">Terms</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+      </ul>
+
+      <a href="index.html#bookingForm1" class="btn btn-brand w-100 mt-4">
+        <i class="bi bi-whatsapp me-2"></i>Book Now
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="terms-hero">
+    <div class="container text-center">
+      <div class="section-tag mx-auto mb-2">Terms & Conditions</div>
+      <h1 class="terms-title">Terms, Booking Policy & Travel Conditions</h1>
+      <p class="terms-sub">
+        Please read these terms carefully before confirming your booking with Bharathiyar Tours & Travels.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="terms-page">
+    <div class="container">
+      <div class="terms-shell">
+        <div class="terms-intro">
+          <h2>Terms & Conditions</h2>
+          <p>
+            Welcome to our website. By continuing to browse and use this website, you agree to comply with and be bound by the following terms and conditions of use, which together with our privacy practices govern Bharathiyar Tours & Travels’ relationship with you in relation to this website. The term “Bharathiyar Tours & Travels”, “us”, or “we” refers to the owner of the website, and the term “you” refers to the user, customer, or viewer of the website. :contentReference[oaicite:1]{index=1}
+          </p>
+        </div>
+
+        <div class="terms-content">
+
+          <div class="terms-card">
+            <h3>Company Information</h3>
+            <ul class="terms-list">
+              <li><i class="bi bi-check-circle-fill"></i><span>Registered Office: ________________________, Coimbatore – 641004, Tamil Nadu, India.</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>GST Registration Number: ________________________</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>The above company details may be updated by Bharathiyar Tours & Travels from time to time.</span></li>
+            </ul>
+          </div>
+
+          <div class="terms-card">
+            <h3>Booking, Cancellation & Refund Policy</h3>
+            <ul class="terms-list">
+              <li><i class="bi bi-check-circle-fill"></i><span>A photocopy or soft copy of valid government ID proof such as Aadhaar Card, Voter ID, Driving Licence or Passport must be submitted before the trip start time. :contentReference[oaicite:2]{index=2}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Payment for the trip may be collected in stages: 20% advance to block the vehicle, 40% at boarding, and the remaining 40% at drop completion, unless otherwise agreed. :contentReference[oaicite:3]{index=3}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Advance payments may be collected through bank transfer, UPI, cash, or Razorpay payment links / Razorpay online payment modes. A booking will be considered confirmed only after successful payment authorization and receipt confirmation from our side.</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>In the event of Razorpay transaction failure, timeout, duplicate debit, reversal delay, or bank-side processing issues, Bharathiyar Tours & Travels will consider the booking confirmed only after actual payment receipt is reflected and verified. Refund timelines for failed or duplicate online transactions are subject to Razorpay, banking partners, and payment gateway processing timelines.</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>If the trip is cancelled 48 hours or more before the trip start time, the amount paid so far may be refunded. If the trip is cancelled within 48 hours before trip start time, the amount paid may not be refunded. However, subject to approval, the paid amount may be transferred to a future booking with Bharathiyar Tours & Travels. :contentReference[oaicite:4]{index=4}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Refunds, where applicable, will be processed through the original payment mode where possible. Gateway charges, convenience fees, or third-party processing deductions may be non-refundable where applicable.</span></li>
+            </ul>
+          </div>
+
+          <div class="terms-card">
+            <h3>Vehicle, Chauffeur & Operational Terms</h3>
+            <ul class="terms-list">
+              <li><i class="bi bi-check-circle-fill"></i><span>Chauffeur and cab details are generally shared up to 12 hours prior to departure. If the previously assigned vehicle or driver becomes unavailable, an alternative cab or chauffeur may be assigned and communicated. Guests should not board any unverified vehicle and must contact us for assistance if there is any mismatch. :contentReference[oaicite:5]{index=5}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>In emergency situations where the chauffeur cannot continue, Bharathiyar Tours & Travels may assign a replacement chauffeur to continue the trip. :contentReference[oaicite:6]{index=6}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>The assigned vehicle may be changed during the trip due to technical issues, unfitness for driving, or operational necessity. We reserve the right to provide an equivalent or higher-segment vehicle if the booked model is unavailable. :contentReference[oaicite:7]{index=7}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Driver allowance may be charged extra for driving after 10:00 P.M. and before 6:00 A.M. :contentReference[oaicite:8]{index=8}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Night driving for tour packages may be restricted. Guests are expected to follow timing norms shared by the company during itinerary execution. :contentReference[oaicite:9]{index=9}</span></li>
+            </ul>
+          </div>
+
+          <div class="terms-card">
+            <h3>Luggage, Seating & Vehicle Usage</h3>
+            <ul class="terms-list">
+              <li><i class="bi bi-check-circle-fill"></i><span>Sedan vehicles generally have space for 2 luggage bags. Luggage space in SUV, Premium SUV and Tempo Traveller categories may vary, and guests are requested to confirm luggage suitability at the time of booking. In CNG vehicles, luggage space may be lower. :contentReference[oaicite:10]{index=10}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Guests must clearly provide luggage count and approximate size at the time of booking. If luggage exceeds vehicle capacity, the guest may need to upgrade the vehicle or accept an operationally suitable alternative. :contentReference[oaicite:11]{index=11}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>All children above 5 years are treated as adults for seat allocation and passenger count purposes. Vehicles can only carry passengers within legal seating capacity as per Government of India norms. :contentReference[oaicite:12]{index=12}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Cabs booked for outstation trips should not be used as local tour vehicles and vice versa unless clearly disclosed and re-priced accordingly. :contentReference[oaicite:13]{index=13}</span></li>
+            </ul>
+          </div>
+
+          <div class="terms-card">
+            <h3>Tariff, Distance, Timing & GST</h3>
+            <ul class="terms-list">
+              <li><i class="bi bi-check-circle-fill"></i><span>All tariffs and tour package prices displayed on the website or quoted earlier may be exclusive of GST unless otherwise stated. :contentReference[oaicite:14]{index=14}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>The total service price may be calculated based on actual distance travelled, actual time used, actual days travelled, special route conditions, extra driver allowance, additional waiting, tolls, parking, permits, taxes, and any additional usage beyond the original quotation. :contentReference[oaicite:15]{index=15}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>One day is treated as one calendar day, and kilometre / time calculation may be considered office-to-office unless a different written booking basis is explicitly agreed. Guests are encouraged to verify trip sheet details including start KM, end KM, start time and end time. :contentReference[oaicite:16]{index=16}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Tariffs are subject to revision due to fuel price increase, taxation change, government regulations, route changes, seasonal demand, or force majeure conditions. :contentReference[oaicite:17]{index=17}</span></li>
+            </ul>
+          </div>
+
+          <div class="terms-card">
+            <h3>Air Conditioning, Hill Routes & Travel Conditions</h3>
+            <ul class="terms-list">
+              <li><i class="bi bi-check-circle-fill"></i><span>Air conditioning may not be used during hill climbs, downhill stretches, steep terrain, stopped or parked conditions, or in situations where vehicle performance and safety require AC restriction. :contentReference[oaicite:18]{index=18}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Tour package sightseeing schedules are intended to be covered during practical daytime hours. Delays due to weather, traffic, strikes, road closures, guest-side delay, government restrictions, crowd congestion, or destination closures may lead to changes in execution.</span></li>
+            </ul>
+          </div>
+
+          <div class="terms-card">
+            <h3>Hotel Booking, Partner Hotels & Private Tie-Up Hotels</h3>
+            <ul class="terms-list">
+              <li><i class="bi bi-check-circle-fill"></i><span>For packages that include accommodation, hotels may be arranged through Bharathiyar Tours & Travels’ partner hotels, private hotel tie-ups, aggregator platforms, or direct reservation channels depending on destination, season and availability.</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Room category, room size, check-in timing, check-out timing, extra bed availability, child policy, breakfast inclusion, cancellation policy, early check-in, late check-out and seasonal surcharge are governed by the respective hotel’s own policy.</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Hotels shown in quotation or discussion are subject to availability at the time of confirmation. In case a selected hotel becomes unavailable, we may provide a similar category property or equivalent alternate arrangement.</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Peak season, long weekends, festival periods, government restrictions, weather conditions or destination-specific demand may affect room tariffs. Additional charges imposed by hotels during such periods shall be borne by the guest if applicable.</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Guests must carry valid original ID proof as required by hotel rules. Hotel refusal due to invalid ID, guest conduct issues, occupancy mismatch, or violation of hotel policy shall remain the guest’s responsibility.</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Bharathiyar Tours & Travels acts as a travel facilitator for hotel arrangements and shall not be directly liable for service deficiency, room quality variation, hotel staff behavior, hotel overbooking, hotel cancellation, power failure, maintenance issue, food quality issue, Wi-Fi availability, or any third-party hotel operational matter. However, reasonable support will be provided wherever possible.</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Any damage caused by the guest to hotel property, delayed checkout penalties, mini-bar usage, room service bills, security deposit deductions, laundry expenses, or incidental hotel charges must be settled directly by the guest with the hotel.</span></li>
+            </ul>
+          </div>
+
+          <div class="terms-card">
+            <h3>Conduct, Safety & Liability</h3>
+            <ul class="terms-list">
+              <li><i class="bi bi-check-circle-fill"></i><span>Pets are strictly not allowed inside the vehicle, even if they are inside cages, unless specifically approved in writing. :contentReference[oaicite:19]{index=19}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Guest belongings and valuables are the sole responsibility of the guest. Bharathiyar Tours & Travels is not responsible for loss, theft or misplacement of belongings. :contentReference[oaicite:20]{index=20}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Drinking alcohol, smoking cigarettes, and use of electronic cigarettes inside the vehicle are strictly prohibited. :contentReference[oaicite:21]{index=21}</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>All vehicles are insured as per applicable law. In the event of unforeseen accidents, breakdown, technical failure, third-party incidents, natural calamity, strike, public disorder, road closure or force majeure, Bharathiyar Tours & Travels shall make reasonable efforts to assist but shall not be held liable for indirect or consequential losses beyond applicable legal limits. :contentReference[oaicite:22]{index=22}</span></li>
+            </ul>
+          </div>
+
+          <div class="terms-card">
+            <h3>Jurisdiction</h3>
+            <ul class="terms-list">
+              <li><i class="bi bi-check-circle-fill"></i><span>All disputes shall be subject to Coimbatore jurisdiction only. :contentReference[oaicite:23]{index=23}</span></li>
+            </ul>
+
+            <div class="terms-highlight">
+              <strong>Important Note:</strong> By making a booking, paying an advance, accepting a quote, using a payment link, or availing any travel or hotel arrangement through Bharathiyar Tours & Travels, you acknowledge that you have read, understood and agreed to these terms and conditions.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-5">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <img src="images/Logo.png" alt="Logo" class="footer-logo">
+            <div>
+              <div class="footer-brand">BHARATHIYAR TOURS AND TRAVELS</div>
+              <div class="footer-brand-sub">Premium Cab & Tour Services</div>
+            </div>
+          </div>
+
+          <p>Reliable and premium travel for local rides, family tours, pilgrim packages and outstation bookings across Tamil Nadu.</p>
+
+          <div class="d-flex gap-3 mt-3">
+    <a href="https://wa.me/919629808833" class="social-btn" target="_blank">
+      <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <a href="tel:+919629808833" class="social-btn">
+      <i class="bi bi-telephone-fill"></i>
+    </a>
+
+    <a href="mailto:bharathiyartravels.cbe@gmail.com" class="social-btn">
+      <i class="bi bi-envelope-fill"></i>
+    </a>
+
+    <a href="https://www.instagram.com/bharathiyartoursandtravels/" class="social-btn" target="_blank">
+      <i class="bi bi-instagram"></i>
+    </a>
+
+    <a href="https://www.facebook.com/p/Bharathiyar-Tours-Travels-100063803235318/" class="social-btn" target="_blank">
+      <i class="bi bi-facebook"></i>
+    </a>
+  </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="footer-heading">Quick Links</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="index.html">Home</a>
+            <a href="hourlypackages.html">Hourly Packages</a>
+            <a href="tourpackages.html">Tour Packages</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="footer-heading">Contact</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="mailto:bharathiyartravels.cbe@gmail.com" class="footer-contact-link">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <span>bharathiyartravels.cbe@gmail.com</span>
+            </a>
+            <a href="tel:+919629808833" class="footer-contact-link">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <span>+91 96298 08833</span>
+            </a>
+            <a href="tel:+919488331952" class="footer-contact-link">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <span>+91 94883 31952</span>
+            </a>
+            <div class="footer-contact-link">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <span>13/1, Divine Nagar, Church Road, Cheran Managar, Coimbatore – 641035.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 mt-5">
+        <span>© 2026 Bharathiyar Tours & Travels. All rights reserved.</span>
+        <p style="font-size: 14px; opacity: 0.7; color: #718096;">
+          Designed & curated by
+          <a href="https://marcinmind.in" target="_blank" style="text-decoration: none; color: #20b2aa;">Marc in Mind Technologies</a>
+        </p>
+      </div>
+    </div>
+    <br><br>
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+  <div class="float-btns" id="floatingContactBtns">
+    <a href="tel:+919629808833" class="float-btn float-call">
+      <i class="bi bi-telephone-fill"></i>
+      <span>Call</span>
+    </a>
+
+    <a href="https://wa.me/919629808833" class="float-btn float-wa" target="_blank">
+      <i class="bi bi-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    window.addEventListener('scroll', function () {
+      const nav = document.getElementById('mainNav');
+      if (window.scrollY > 20) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    function toggleTariffMenu() {
+      const menu = document.getElementById('mobileTariffsMenu');
+      const icon = document.getElementById('tariffMenuIcon');
+      const isOpen = menu.style.display === 'block';
+      menu.style.display = isOpen ? 'none' : 'block';
+      icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
+
+    function toggleTourMenu() {
+      const menu = document.getElementById('mobileTourPackagesMenu');
+      const icon = document.getElementById('tourMenuIcon');
+      const isOpen = menu.style.display === 'block';
+      menu.style.display = isOpen ? 'none' : 'block';
+      icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
+
+    function closeMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const bsOffcanvas = bootstrap.Offcanvas.getInstance(mobileMenu);
+      if (bsOffcanvas) {
+        bsOffcanvas.hide();
+      }
+    }
+  </script>
+</body>
+</html>

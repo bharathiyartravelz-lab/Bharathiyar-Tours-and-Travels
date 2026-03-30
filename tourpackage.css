@@ -1,0 +1,668 @@
+/* =========================
+   TOUR PACKAGE PAGE
+   Cleaned + optimized
+   For current HTML structure
+   ========================= */
+
+:root{
+  --tour-border: #dbe2ea;
+  --tour-border-light: #e6edf2;
+  --tour-bg-soft: #f8fbfd;
+  --tour-bg-head: #f3f7fa;
+  --tour-text: #0f172a;
+  --tour-text-soft: #64748b;
+  --tour-title: #b91c1c;
+  --tour-primary: #0f87c8;
+  --tour-primary-dark: #0b6ea2;
+  --tour-success: #16a34a;
+  --tour-success-dark: #15803d;
+  --tour-note-bg: #eef8ff;
+  --tour-note-border: #d9ecf8;
+  --tour-note-text: #486273;
+}
+
+/* =========================
+   HERO
+   ========================= */
+   .tour-page-hero {
+     padding: 120px 0 36px;
+     background:
+       linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), /* overlay */
+       url('images/bg.jpg') center/cover no-repeat,
+       radial-gradient(circle at top left, rgba(32,178,170,.08), transparent 35%),
+       linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+   }
+
+   .tour-page-title {
+     font-family: 'Playfair Display', serif;
+     font-size: clamp(1.7rem, 4vw, 2.6rem);
+     font-weight: 800;
+     color: #ffffff; /* primary = white */
+     margin-bottom: 8px;
+     line-height: 1.2;
+     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+   }
+
+   .tour-page-sub {
+     max-width: 760px;
+     margin: 0 auto;
+     color: rgba(255, 255, 255, 0.7); /* light grey */
+     font-size: .95rem;
+     line-height: 1.5;
+     text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+   }
+
+
+
+/* =========================
+   LAYOUT
+   ========================= */
+.tour-layout{
+  padding: 0 0 50px;
+}
+
+.tour-shell{
+  background: #fff;
+  border: 1px solid var(--tour-border-light);
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+.tour-sidebar{
+  background: #fff;
+  padding: 14px;
+  height: 100%;
+}
+
+.tour-sidebar-title{
+  color: #1a9faa;
+  font-size: .88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 12px;
+}
+
+.package-tab{
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 11px 12px;
+  border: 0;
+  background: #f3f2f1;
+  color: #3c3d41;
+  text-align: left;
+  font-size: .92rem;
+  font-weight: 700;
+  line-height: 1.2;
+  transition: .2s ease;
+}
+
+.package-tab:hover,
+.package-tab.active{
+  background: #696969;
+  color: #fff;
+}
+
+.package-tab small{
+  display: block;
+  margin-top: 3px;
+  font-size: .75rem;
+  font-weight: 500;
+  opacity: .9;
+}
+
+.tour-main{
+  padding: 14px;
+  background: #fff;
+}
+
+.tour-topbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.tour-current-title{
+  margin: 0 0 4px;
+  color: var(--tour-title);
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.tour-current-sub{
+  margin: 0;
+  color: #475569;
+  font-size: .98rem;
+  line-height: 1.4;
+}
+
+.tour-badge-line{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid #a5f3fc;
+  background: #ecfeff;
+  color: #0f766e;
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+/* =========================
+   FILTER CARD
+   ========================= */
+.tour-filter-card{
+  padding: 12px;
+  margin-bottom: 12px;
+  background: var(--tour-bg-soft);
+  border: 1px solid var(--tour-border);
+}
+
+.tour-filter-card .row{
+  --bs-gutter-x: 12px;
+  --bs-gutter-y: 12px;
+}
+
+.tour-filter-card .form-label{
+  display: block;
+  margin-bottom: 6px;
+  color: #1e293b;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+
+}
+
+.tour-filter-card .form-select{
+  min-height: 40px;
+  height: 40px;
+  padding: 4px 28px 4px 10px;
+  border: 1px solid var(--tour-border);
+  background-color: #fff;
+  color: #334155;
+  font-size: 13px;
+  box-shadow: none;
+}
+
+.tour-filter-card .form-select:focus{
+  border-color: #b9d0de;
+  box-shadow: none;
+}
+.tour-filter-card .form-select,
+.tour-filter-card .form-control {
+  border-radius: 0 !important;
+  border: 1px solid #d1d5db !important;
+}
+
+/* Keep current HTML, but make desktop alignment better */
+#accommodationFields > .row{
+  --bs-gutter-x: 12px;
+  --bs-gutter-y: 12px;
+}
+
+.tour-note{
+  margin-top: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--tour-note-border);
+  background: var(--tour-note-bg);
+  color: var(--tour-note-text);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* =========================
+   TARIFF TABLE
+   ========================= */
+.tariff-wrap{
+  margin-bottom: 14px;
+  border: 1px solid var(--tour-border);
+  background: #fff;
+  overflow: hidden;
+}
+
+.tariff-table{
+  width: 100%;
+  margin: 0;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.tariff-table thead th,
+.tariff-table tbody td{
+  border: 1px solid var(--tour-border);
+}
+
+.tariff-head{
+  background: var(--tour-bg-head);
+}
+
+.tariff-head th{
+  padding: 10px 8px;
+  color: #1e293b;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.tariff-table td{
+  padding: 10px 8px;
+  font-size: 12px;
+  line-height: 1.25;
+  vertical-align: middle;
+  background: #fff;
+}
+
+.tariff-table tbody tr:hover td{
+  background: #fafcff;
+}
+
+/* 3-column layout from current HTML */
+.tariff-table th:nth-child(1),
+.tariff-table td:nth-child(1){
+  width: 50%;
+  text-align: left;
+}
+
+.tariff-table th:nth-child(2),
+.tariff-table td:nth-child(2){
+  width: 28%;
+  text-align: center;
+}
+
+.tariff-table th:nth-child(3),
+.tariff-table td:nth-child(3){
+  width: 22%;
+  text-align: center;
+}
+
+.tariff-table tbody tr:hover td {
+  background-color: #FAE88F !important;
+  transition: background 0.2s ease;
+}
+
+.vehicle-name{
+  margin: 0;
+  color: var(--tour-text);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.vehicle-type{
+  margin-top: 3px;
+  color: var(--tour-text-soft);
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.room-meta{
+  margin-top: 3px;
+  color: var(--tour-text-soft);
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.price-main,
+.price-add,
+.price-total,
+.dynamic-tariff{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.price-main,
+.dynamic-tariff.base-rate{
+  color: var(--tour-text);
+}
+
+.price-add{
+  color: #ea580c;
+}
+
+.price-total,
+.dynamic-tariff.updated-rate{
+  color: var(--tour-success);
+}
+
+.fare-mini{
+  display: none;
+}
+
+.btn-book-table{
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 0;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn-book-table:hover{
+  background: linear-gradient(135deg, #1fb157, #15803d);
+  color: #fff;
+}
+
+.btn-book-table:disabled{
+  background: #adb5bd;
+  cursor: not-allowed;
+}
+
+/* =========================
+   ITINERARY TABLE
+   ========================= */
+.itinerary-table-wrap{
+  border: 1px solid var(--tour-border);
+  background: #fff;
+  overflow: hidden;
+}
+
+.itinerary-title-bar{
+  padding: 12px 14px;
+  background: var(--tour-bg-soft);
+  border-bottom: 1px solid var(--tour-border);
+  color: #1d3142;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.itinerary-table{
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+}
+
+.itinerary-table thead th,
+.itinerary-table tbody td{
+  border: 1px solid var(--tour-border);
+}
+
+.itinerary-table thead th{
+  background: #fbfdff;
+  color: #3c5263;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 10px 12px;
+}
+
+.itinerary-table td{
+  padding: 10px 12px;
+  vertical-align: top;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================
+   MODAL
+   ========================= */
+.modal-tour .modal-content{
+  border: 0;
+  box-shadow: 0 25px 60px rgba(0,0,0,.18);
+}
+
+.modal-tour .modal-header{
+  padding: 14px 18px;
+  border: 0;
+  background: var(--primary);
+  color: #fff;
+}
+
+.modal-tour .btn-close{
+  filter: brightness(0) invert(1);
+}
+
+.summary-box{
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.summary-box > div{
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: .92rem;
+}
+
+.summary-box > div span:first-child{
+  color: #64748b;
+}
+
+.summary-box > div span:last-child{
+  color: var(--tour-text);
+  font-weight: 700;
+  text-align: right;
+}
+
+.modal-tour .form-label{
+  margin-bottom: 6px;
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.modal-tour .form-control{
+  min-height: 42px;
+  border: 1px solid var(--tour-border);
+  box-shadow: none;
+}
+
+.modal-tour .form-control:focus{
+  border-color: #b9d0de;
+  box-shadow: none;
+}
+
+.whatsapp-btn-full{
+  width: 100%;
+  padding: 12px 14px;
+  border: 0;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  font-weight: 800;
+}
+
+/* =========================
+   DESKTOP FILTER FIX
+   Keeps your current HTML
+   ========================= */
+@media (min-width: 992px){
+  .tour-filter-card > .row{
+    align-items: end;
+  }
+
+  .tour-filter-card > .row > .col-md-4{
+    width: 34%;
+  }
+
+  .tour-filter-card > .row > #accommodationFields{
+    width: 66%;
+  }
+
+  #accommodationFields > .row{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0;
+  }
+
+  #accommodationFields > .row > [class*="col-"]{
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* =========================
+   TABLE / CARD SHARP EDGES
+   ========================= */
+.tour-shell,
+.tour-filter-card,
+.tour-note,
+.tariff-wrap,
+.itinerary-table-wrap,
+.modal-tour .modal-content,
+.summary-box,
+.package-tab,
+.tour-filter-card .form-select,
+.modal-tour .form-control,
+.btn-book-table,
+.whatsapp-btn-full{
+  border-radius: 1 !important;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 991.98px){
+  .tour-main{
+    padding: 12px;
+  }
+
+  .tour-topbar{
+    flex-direction: column;
+  }
+
+  .tour-current-title{
+    font-size: 1.45rem;
+  }
+
+  .tour-current-sub{
+    font-size: .9rem;
+  }
+}
+
+@media (max-width: 767.98px){
+  .tour-page-hero{
+    padding: 108px 0 24px;
+  }
+
+  .tour-main{
+    padding: 10px;
+  }
+
+  .tour-sidebar{
+    padding: 10px;
+  }
+
+  .tour-filter-card{
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .tour-filter-card .form-label{
+    font-size: 11px;
+    white-space: normal;
+  }
+
+  .tour-filter-card .form-select{
+    min-height: 38px;
+    height: 38px;
+    font-size: 12px;
+    padding-right: 24px;
+  }
+
+  .tour-note{
+    font-size: 11px;
+    padding: 7px 8px;
+  }
+
+  .tariff-head th{
+    font-size: 10px;
+    padding: 8px 6px;
+  }
+
+  .tariff-table td{
+    padding: 8px 6px;
+    font-size: 11px;
+  }
+
+  .vehicle-name{
+    font-size: 13px;
+  }
+
+  .vehicle-type{
+    font-size: 10px;
+  }
+
+  .price-main,
+  .price-add,
+  .price-total,
+  .dynamic-tariff{
+    font-size: 12px;
+  }
+
+  .btn-book-table{
+    padding: 7px 8px;
+    font-size: 11px;
+  }
+
+  .package-tab{
+    padding: 9px 10px;
+    font-size: .85rem;
+  }
+
+  .package-tab small{
+    font-size: .7rem;
+  }
+
+  .itinerary-table thead th{
+    font-size: 11px;
+    padding: 8px 10px;
+  }
+
+  .itinerary-table td{
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .summary-box > div{
+    font-size: .84rem;
+  }
+}
+.includes-note {
+  margin-top: 12px !important;
+  padding: 10px 12px !important;
+  border-radius: 0 !important; /* 👈 changed */
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  background: #f0f9ff !important;
+  border: 1px solid #bae6fd !important;
+  color: #075985 !important;
+}
+
+
+/* dropdown */
+/* Apply to all your select dropdowns */
+.tour-filter-card .form-select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+
+  background-color: #fff !important;
+
+  /* Custom dropdown arrow */
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%230f172a' height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M5 7l5 5 5-5z'/></svg>");
+
+  background-repeat: no-repeat !important;
+  background-position: right 10px center !important;
+  background-size: 18px !important;
+
+  padding-right: 35px !important; /* space for arrow */
+}

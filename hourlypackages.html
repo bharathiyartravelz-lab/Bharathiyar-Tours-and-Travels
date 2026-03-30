@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Local Hourly Packages | BHARATHIYAR TOURS AND TRAVELS</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/Logo.png" type="image/png">
+
+  <style>
+    .float-btns{
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 9999;
+      width: max-content;
+      max-width: calc(100vw - 24px);
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .float-btns.hide{
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
+    .float-btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 18px;
+      border-radius: 50px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .float-btn:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.24);
+    }
+
+    .float-btn i{
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .float-call{
+      background: #0d2b30;
+      color: #fff !important;
+    }
+
+    .float-call:hover{
+      background: #1a4a52;
+      color: #fff !important;
+    }
+
+    .float-wa{
+      background: #25D366;
+      color: #fff !important;
+    }
+
+    .float-wa:hover{
+      background: #1ebe5d;
+      color: #fff !important;
+    }
+
+    @media (max-width: 768px){
+      .float-btn{
+        padding: 10px 16px;
+        font-size: 0.82rem;
+      }
+    }
+
+    @media (max-width: 480px){
+      .float-btns{
+        bottom: 16px;
+        gap: 8px;
+      }
+
+      .float-btn{
+        padding: 9px 14px;
+        font-size: 0.78rem;
+        gap: 5px;
+      }
+
+      .float-btn i{
+        font-size: 0.92rem;
+      }
+    }
+
+    .mobile-menu-trigger{
+      width: 100% !important;
+      border: none !important;
+      background: transparent !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      text-align: left !important;
+      padding: 11px 12px !important;
+      color: #0f172a !important;
+      font-weight: 600 !important;
+    }
+
+    .mobile-menu-trigger i{
+      transition: transform 0.25s ease !important;
+    }
+
+    .hourly-hero{
+      padding: 118px 0 38px;
+      background:
+        linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)),
+        url('images/bg.jpg') center/cover no-repeat,
+        linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+    }
+
+    .hourly-hero .section-tag{
+      background: rgba(255,255,255,0.14) !important;
+      color: #fff !important;
+      border: 1px solid rgba(255,255,255,0.22) !important;
+    }
+
+    .hourly-title{
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: #fff;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    }
+
+    .hourly-sub{
+      max-width: 760px;
+      margin: 0 auto;
+      color: rgba(255,255,255,0.80);
+      font-size: 0.96rem;
+      line-height: 1.6;
+    }
+
+    .hourly-layout{
+      padding: 0 0 56px;
+    }
+
+    .hourly-shell{
+      background: #fff;
+      border: 1px solid #e6edf2;
+      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+    }
+
+    .hourly-top{
+      padding: 18px;
+      border-bottom: 1px solid #e6edf2;
+      background: #ffffff;
+    }
+
+    .hourly-top h2{
+      margin: 0 0 6px;
+      color: #b91c1c;
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .hourly-top p{
+      margin: 0;
+      color: #475569;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .hourly-badge-line{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .hourly-badge{
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border: 1px solid #d9ecf8;
+      background: #eef8ff;
+      color: #486273;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .hourly-table-wrap{
+      padding: 0;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .hourly-table{
+      width: 100%;
+      margin: 0;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .hourly-table thead th,
+    .hourly-table tbody td{
+      border: 1px solid #dbe2ea;
+    }
+
+    .hourly-table thead th{
+      background: #f3f7fa;
+      color: #1e293b;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      padding: 11px 8px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .hourly-table tbody td{
+      padding: 12px 10px;
+      vertical-align: middle;
+      background: #fff;
+      font-size: 12px;
+    }
+
+    .hourly-table tbody tr:hover td{
+      background: #fafcff;
+    }
+
+    .hourly-table th:nth-child(1),
+    .hourly-table td:nth-child(1){
+      width: 48%;
+      text-align: left;
+    }
+
+    .hourly-table th:nth-child(2),
+    .hourly-table td:nth-child(2){
+      width: 22%;
+      text-align: center;
+    }
+
+    .hourly-table th:nth-child(3),
+    .hourly-table td:nth-child(3){
+      width: 30%;
+      text-align: center;
+    }
+
+    .vehicle-name{
+      margin: 0;
+      color: #0f172a;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .vehicle-type{
+      margin-top: 4px;
+      color: #64748b;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .price-main{
+      margin: 0;
+      color: #0f172a;
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .price-sub{
+      margin-top: 4px;
+      color: #64748b;
+      font-size: 10px;
+      line-height: 1.35;
+    }
+
+    .btn-book-table{
+      display: inline-block;
+      width: 100%;
+      min-width: 0;
+      padding: 9px 10px;
+      border: 0;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-book-table:hover{
+      background: linear-gradient(135deg, #1fb157, #15803d);
+      color: #fff;
+    }
+
+    .btn-call-table{
+      display: inline-block;
+      width: 100%;
+      min-width: 0;
+      padding: 9px 10px;
+      border: 0;
+      background: linear-gradient(135deg, #1a9faa, #126d76);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-call-table:hover{
+      background: linear-gradient(135deg, #126d76, #0d5560);
+      color: #fff;
+    }
+
+    .hourly-note{
+      margin: 16px 18px 18px;
+      padding: 12px 14px;
+      border: 1px solid #d9ecf8;
+      background: #eef8ff;
+      color: #486273;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .hourly-note strong{
+      color: #243746;
+    }
+
+    .content-card{
+      background: #ffffff;
+      border: 1px solid rgba(26,159,170,0.15);
+      box-shadow: 0 8px 30px rgba(26,159,170,0.08);
+      padding: 24px;
+      height: 100%;
+    }
+
+    .content-card h3{
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .content-card p{
+      margin-bottom: 0;
+      color: #64748b;
+      font-size: 0.92rem;
+      line-height: 1.8;
+    }
+
+    .feature-mini-list{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 18px;
+    }
+
+    .feature-mini-list li{
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #334155;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .feature-mini-list li i{
+      color: #1a9faa;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .faq-wrap{
+      background: #fff;
+      border: 1px solid rgba(26,159,170,0.15);
+      box-shadow: 0 8px 30px rgba(26,159,170,0.08);
+      padding: 24px;
+    }
+
+    .faq-item{
+      border: 1px solid #e6edf2;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-item:last-child{
+      margin-bottom: 0;
+    }
+
+    .faq-btn{
+      width: 100%;
+      border: 0;
+      background: #f8fbfd;
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .faq-btn i{
+      transition: transform 0.25s ease;
+      color: #1a9faa;
+      flex-shrink: 0;
+    }
+
+    .faq-btn[aria-expanded="true"] i{
+      transform: rotate(180deg);
+    }
+
+    .faq-body{
+      padding: 0 16px 16px;
+      color: #64748b;
+      font-size: 0.92rem;
+      line-height: 1.75;
+      background: #fff;
+    }
+
+    .modal-hourly .modal-content{
+      border: 0;
+      box-shadow: 0 25px 60px rgba(0,0,0,.18);
+    }
+
+    .modal-hourly .modal-header{
+      padding: 14px 18px;
+      border: 0;
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .modal-hourly .btn-close{
+      filter: brightness(0) invert(1);
+    }
+
+    .summary-box{
+      display: grid;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 12px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+    }
+
+    .summary-box > div{
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: .92rem;
+    }
+
+    .summary-box > div span:first-child{
+      color: #64748b;
+    }
+
+    .summary-box > div span:last-child{
+      color: #0f172a;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .modal-hourly .form-label{
+      margin-bottom: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .modal-hourly .form-control,
+    .modal-hourly .form-select{
+      min-height: 42px;
+      border: 1px solid #dbe2ea;
+      box-shadow: none;
+      border-radius: 0 !important;
+    }
+
+    .modal-hourly .form-control:focus,
+    .modal-hourly .form-select:focus{
+      border-color: #b9d0de;
+      box-shadow: none;
+    }
+
+    .whatsapp-btn-full{
+      width: 100%;
+      padding: 12px 14px;
+      border: 0;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .whatsapp-btn-full:hover{
+      background: linear-gradient(135deg, #1fb157, #15803d);
+      color: #fff;
+    }
+
+    .hourly-shell,
+    .content-card,
+    .faq-wrap,
+    .faq-item,
+    .hourly-note,
+    .modal-hourly .modal-content,
+    .summary-box,
+    .hourly-badge,
+    .btn-book-table,
+    .btn-call-table,
+    .whatsapp-btn-full{
+      border-radius: 0 !important;
+    }
+
+    @media (max-width: 991.98px){
+      .hourly-top h2{
+        font-size: 1.45rem;
+      }
+
+      .feature-mini-list{
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 767.98px){
+      .hourly-hero{
+        padding: 100px 0 30px;
+      }
+
+      .hourly-top,
+      .content-card,
+      .faq-wrap{
+        padding: 18px;
+      }
+
+      .hourly-note{
+        margin: 14px;
+      }
+
+      .hourly-table{
+        table-layout: auto;
+      }
+
+      .hourly-table th:nth-child(1),
+      .hourly-table td:nth-child(1),
+      .hourly-table th:nth-child(2),
+      .hourly-table td:nth-child(2),
+      .hourly-table th:nth-child(3),
+      .hourly-table td:nth-child(3){
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="images/Logo.png" alt="Bharathiyar Logo" class="logo-img">
+        <div>
+          <div class="brand-name">BHARATHIYAR TOURS AND TRAVELS</div>
+          <div class="brand-sub">Premium Cab & Tour Services</div>
+        </div>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+      </button>
+
+      <div class="collapse navbar-collapse desktop-navbar" id="mainNavbar">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="tariffs.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tariffs
+            </a>
+            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="hourlypackages.html">
+                  <i class="bi bi-clock me-2"></i>Local Hourly Packages
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="onewaydroptaxi.html">
+                  <i class="bi bi-sign-turn-right me-2"></i>One Way Drop Taxi
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="tourpackages.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tour Packages
+            </a>
+            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#isha-marudhamalai">One Day</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-2d">Two Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-3d">Three Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-4d">Four Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-5d">Five Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-kodaikanal-madurai-6d">Six Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-kodaikanal-munnar-7d">Seven Days</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+
+          <li class="nav-item ms-lg-2 mt-3 mt-lg-0">
+            <a class="btn btn-brand" href="index.html#bookingForm1">
+              <i class="bi bi-whatsapp me-1"></i>Book Now
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE OFFCANVAS -->
+  <div class="offcanvas offcanvas-start mobile-nav-offcanvas" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header border-bottom">
+      <div class="d-flex align-items-center gap-2">
+        <img src="images/Logo.png" alt="Bharathiyar Logo" class="logo-img">
+        <div>
+          <div class="brand-name">BHARATHIYAR TOURS AND TRAVELS</div>
+          <div class="brand-sub">Premium Cab & Tour Services</div>
+        </div>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <ul class="navbar-nav flex-column gap-1">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <button class="nav-link mobile-parent-link mobile-menu-trigger" type="button" onclick="toggleTariffMenu()">
+            <span>Tariffs</span>
+            <i class="bi bi-chevron-down" id="tariffMenuIcon"></i>
+          </button>
+
+          <div class="mobile-submenu" id="mobileTariffsMenu" style="display: none;">
+            <a class="nav-link ps-4" href="hourlypackages.html">
+              <i class="bi bi-clock me-2"></i>Local Hourly Packages
+            </a>
+            <a class="nav-link ps-4" href="onewaydroptaxi.html">
+              <i class="bi bi-sign-turn-right me-2"></i>One Way Drop Taxi
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <button class="nav-link mobile-parent-link mobile-menu-trigger" type="button" onclick="toggleTourMenu()">
+            <span>Tour Packages</span>
+            <i class="bi bi-chevron-down" id="tourMenuIcon"></i>
+          </button>
+
+          <div class="mobile-submenu" id="mobileTourPackagesMenu" style="display: none;">
+            <a class="nav-link ps-4" href="tourpackages.html#isha-marudhamalai" onclick="closeMobileMenu()">One Day</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-2d" onclick="closeMobileMenu()">Two Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-3d" onclick="closeMobileMenu()">Three Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-4d" onclick="closeMobileMenu()">Four Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-5d" onclick="closeMobileMenu()">Five Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-kodaikanal-madurai-6d" onclick="closeMobileMenu()">Six Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-kodaikanal-munnar-7d" onclick="closeMobileMenu()">Seven Days</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+      </ul>
+
+      <a href="index.html#bookingForm1" class="btn btn-brand w-100 mt-4">
+        <i class="bi bi-whatsapp me-2"></i>Book Now
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hourly-hero">
+    <div class="container text-center">
+      <div class="section-tag mx-auto mb-2">Local Tariff</div>
+      <h1 class="hourly-title">Local Hourly Packages</h1>
+      <p class="hourly-sub">
+        Simple day-basis packages for local travel in and around Coimbatore.
+        Ideal for family trips, temple visits, business travel, city rides and local sightseeing.
+      </p>
+    </div>
+  </section>
+
+  <!-- TABLE -->
+  <section class="hourly-layout">
+    <div class="container">
+      <div class="hourly-shell">
+        <div class="hourly-top">
+          <h2>Day Basis Local Tariff</h2>
+          <p>Limit: <strong>100 Kms / 12 Hours</strong>. Choose your vehicle and continue to booking.</p>
+
+          <div class="hourly-badge-line">
+            <div class="hourly-badge"><i class="bi bi-check-circle-fill"></i> 100 Kms Included</div>
+            <div class="hourly-badge"><i class="bi bi-clock-fill"></i> 12 Hours Included</div>
+            <div class="hourly-badge"><i class="bi bi-shield-check"></i> Safe & Professional Service</div>
+          </div>
+        </div>
+
+        <div class="hourly-table-wrap">
+          <div class="table-responsive">
+            <table class="table hourly-table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Vehicle</th>
+                  <th>Package Price</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="vehicle-name">SEDAN</div>
+                    <div class="vehicle-type">Etios, Dzire, Xcent</div>
+                  </td>
+                  <td>
+                    <div class="price-main">₹ 2,600</div>
+                    <div class="price-sub">100 Kms / 12 Hrs</div>
+                  </td>
+                  <td>
+                    <button class="btn-book-table open-booking-modal"
+                      data-vehicle="SEDAN"
+                      data-type="Etios, Dzire, Xcent"
+                      data-price="₹ 2,600">
+                      Book Now
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="vehicle-name">SUV</div>
+                    <div class="vehicle-type">Innova, Xylo, Tavera</div>
+                  </td>
+                  <td>
+                    <div class="price-main">₹ 3,800</div>
+                    <div class="price-sub">100 Kms / 12 Hrs</div>
+                  </td>
+                  <td>
+                    <button class="btn-book-table open-booking-modal"
+                      data-vehicle="SUV"
+                      data-type="Innova, Xylo, Tavera"
+                      data-price="₹ 3,800">
+                      Book Now
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="vehicle-name">PREMIUM SUV</div>
+                    <div class="vehicle-type">Innova Crysta</div>
+                  </td>
+                  <td>
+                    <div class="price-main">₹ 4,800</div>
+                    <div class="price-sub">100 Kms / 12 Hrs</div>
+                  </td>
+                  <td>
+                    <button class="btn-book-table open-booking-modal"
+                      data-vehicle="PREMIUM SUV"
+                      data-type="Innova Crysta"
+                      data-price="₹ 4,800">
+                      Book Now
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="vehicle-name">TEMPO TRAVELLER</div>
+                    <div class="vehicle-type">12 - 14 Seater</div>
+                  </td>
+                  <td>
+                    <div class="price-main">₹ 5,100</div>
+                    <div class="price-sub">100 Kms / 12 Hrs</div>
+                  </td>
+                  <td>
+                    <button class="btn-book-table open-booking-modal"
+                      data-vehicle="TEMPO TRAVELLER"
+                      data-type="12 - 14 Seater"
+                      data-price="₹ 5,100">
+                      Book Now
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="vehicle-name">TEMPO TRAVELLER - A/C</div>
+                    <div class="vehicle-type">16 - 18 Seater</div>
+                  </td>
+                  <td>
+                    <div class="price-main">Call Us</div>
+                    <div class="price-sub">Custom pricing available</div>
+                  </td>
+                  <td>
+                    <a class="btn-call-table" href="tel:+919629808833">Call Us</a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="vehicle-name">URBANIA</div>
+                    <div class="vehicle-type">12 - 17 Seater</div>
+                  </td>
+                  <td>
+                    <div class="price-main">Call Us</div>
+                    <div class="price-sub">Custom pricing available</div>
+                  </td>
+                  <td>
+                    <a class="btn-call-table" href="tel:+919629808833">Call Us</a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="vehicle-name">COACH</div>
+                    <div class="vehicle-type">21 Seater</div>
+                  </td>
+                  <td>
+                    <div class="price-main">Call Us</div>
+                    <div class="price-sub">Custom pricing available</div>
+                  </td>
+                  <td>
+                    <a class="btn-call-table" href="tel:+919629808833">Call Us</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="hourly-note">
+          <strong>Notes:</strong><br>
+          Local tariff is applicable for <strong>100 Kms / 12 Hours</strong> on day-basis usage.
+          Extra kilometres, extra hours, toll, parking and other additional charges, if any, will be charged separately.
+          For bigger vehicles and special requirements, please call us directly for the best price.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="section-wrap pt-0">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="content-card">
+            <div class="section-tag">Why Choose Us</div>
+            <h3>Comfortable local travel made simple</h3>
+            <p>
+              Our local hourly packages are perfect for city rides, family functions, temple visits,
+              shopping trips, office travel, airport pickups, and multiple-stop local movement.
+              With clean vehicles, polite chauffeurs and transparent service, we make every local ride
+              smooth and stress-free.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="content-card">
+            <div class="section-tag">Package Benefits</div>
+            <ul class="feature-mini-list">
+              <li><i class="bi bi-check-circle-fill"></i><span>Compact local packages for daily travel needs.</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Professional and well-mannered chauffeurs.</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Clean, sanitized and comfortable vehicles.</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Suitable for personal, family and business use.</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Quick WhatsApp booking support.</span></li>
+              <li><i class="bi bi-check-circle-fill"></i><span>Call support for large group vehicles.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-wrap pt-0">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-tag">FAQ</div>
+        <h2>Frequently Asked Questions</h2>
+        <p>Quick answers about our local hourly packages and booking process.</p>
+      </div>
+
+      <div class="faq-wrap">
+        <div class="faq-item">
+          <button class="faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">
+            <span>What is included in the local hourly package?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div id="faq1" class="collapse show">
+            <div class="faq-body">
+              The local hourly package covers <strong>100 Kms or 12 Hours</strong>, whichever comes first.
+              It is designed for local city usage and nearby travel needs.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false">
+            <span>What happens if I exceed 100 Kms or 12 hours?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div id="faq2" class="collapse">
+            <div class="faq-body">
+              Extra kilometre and extra hour charges may apply beyond the package limit.
+              Final extra charges will be informed clearly based on the actual usage.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false">
+            <span>Are toll, parking and other charges included?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div id="faq3" class="collapse">
+            <div class="faq-body">
+              Toll, parking, permit and any special additional usage charges are generally extra unless specifically mentioned at the time of confirmation.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false">
+            <span>How do I book a vehicle?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div id="faq4" class="collapse">
+            <div class="faq-body">
+              Click the <strong>Book Now</strong> button for available vehicles, fill in your details in the popup form,
+              and your enquiry will be sent directly through WhatsApp.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false">
+            <span>Why do some vehicles show “Call Us” instead of a price?</span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <div id="faq5" class="collapse">
+            <div class="faq-body">
+              Larger vehicles like 16–18 seater Tempo Traveller, Urbania and Coach may have custom pricing depending on travel plan,
+              date, route and availability, so direct call support is better for accurate quotation.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING MODAL -->
+  <div class="modal fade modal-hourly" id="bookingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <h5 class="modal-title mb-1">Book Local Hourly Package</h5>
+            <div style="font-size:.88rem; opacity:.92;">Fill your details and continue to WhatsApp</div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body p-3 p-md-4">
+          <div class="summary-box" id="bookingSummary">
+            <div><span>Vehicle</span><span id="summaryVehicle">-</span></div>
+            <div><span>Type</span><span id="summaryType">-</span></div>
+            <div><span>Package</span><span id="summaryPrice">-</span></div>
+            <div><span>Tariff</span><span>100 Kms / 12 Hours</span></div>
+          </div>
+
+          <form id="bookingPopupForm" novalidate>
+            <div class="mb-3">
+              <label class="form-label" for="customerName">Full Name</label>
+              <input type="text" class="form-control" id="customerName" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="customerPhone">Phone Number</label>
+              <input type="tel" class="form-control" id="customerPhone" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="travelDate">Travel Date</label>
+              <input type="date" class="form-control" id="travelDate" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Pickup Time</label>
+              <div class="d-flex gap-2">
+                <select class="form-select" id="pickupHour" required>
+                  <option value="">HH</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                  <option>11</option>
+                  <option>12</option>
+                </select>
+
+                <select class="form-select" id="pickupMinute" required>
+                  <option value="">MM</option>
+                  <option>00</option>
+                  <option>15</option>
+                  <option>30</option>
+                  <option>45</option>
+                </select>
+
+                <select class="form-select" id="pickupPeriod" required>
+                  <option value="">AM/PM</option>
+                  <option>AM</option>
+                  <option>PM</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="pickupLocation">Pickup Location</label>
+              <input type="text" class="form-control" id="pickupLocation" placeholder="Enter pickup location" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="dropLocation">Drop Location / Plan</label>
+              <input type="text" class="form-control" id="dropLocation" placeholder="Enter local trip plan or drop location" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="notes">Additional Notes <span style="color:#64748b;font-weight:500;">(Optional)</span></label>
+              <input type="text" class="form-control" id="notes" placeholder="Temple visit, waiting time, multiple stops, etc.">
+            </div>
+
+            <button type="submit" class="whatsapp-btn-full">
+              <i class="bi bi-whatsapp me-2"></i>Continue to WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-5">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <img src="images/Logo.png" alt="Logo" class="footer-logo">
+            <div>
+              <div class="footer-brand">BHARATHIYAR TOURS AND TRAVELS</div>
+              <div class="footer-brand-sub">Premium Cab & Tour Services</div>
+            </div>
+          </div>
+
+          <p>Reliable and premium travel for local rides, family tours, pilgrim packages and outstation bookings across Tamil Nadu.</p>
+
+          <div class="d-flex gap-3 mt-3">
+    <a href="https://wa.me/919629808833" class="social-btn" target="_blank">
+      <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <a href="tel:+919629808833" class="social-btn">
+      <i class="bi bi-telephone-fill"></i>
+    </a>
+
+    <a href="mailto:bharathiyartravels.cbe@gmail.com" class="social-btn">
+      <i class="bi bi-envelope-fill"></i>
+    </a>
+
+    <a href="https://www.instagram.com/bharathiyartoursandtravels/" class="social-btn" target="_blank">
+      <i class="bi bi-instagram"></i>
+    </a>
+
+    <a href="https://www.facebook.com/p/Bharathiyar-Tours-Travels-100063803235318/" class="social-btn" target="_blank">
+      <i class="bi bi-facebook"></i>
+    </a>
+  </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="footer-heading">Quick Links</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="index.html">Home</a>
+            <a href="hourlypackages.html">Hourly Packages</a>
+            <a href="tourpackages.html">Tour Packages</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="footer-heading">Contact</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="mailto:bharathiyartravels.cbe@gmail.com" class="footer-contact-link">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <span>bharathiyartravels.cbe@gmail.com</span>
+            </a>
+            <a href="tel:+919629808833" class="footer-contact-link">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <span>+91 96298 08833</span>
+            </a>
+            <a href="tel:+919488331952" class="footer-contact-link">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <span>+91 94883 31952</span>
+            </a>
+            <div class="footer-contact-link">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <span>13/1, Divine Nagar, Church Road, Cheran Managar, Coimbatore – 641035.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 mt-5">
+        <span>© 2026 Bharathiyar Tours & Travels. All rights reserved.</span>
+        <p style="font-size: 14px; opacity: 0.7; color: #718096;">
+          Designed & curated by
+          <a href="https://marcinmind.in" target="_blank" style="text-decoration: none; color: #20b2aa;">Marc in Mind Technologies</a>
+        </p>
+      </div>
+    </div>
+    <br><br>
+  </footer>
+  <!-- FLOATING BUTTONS -->
+  <div class="float-btns" id="floatingContactBtns">
+    <a href="tel:+919629808833" class="float-btn float-call">
+      <i class="bi bi-telephone-fill"></i>
+      <span>Call</span>
+    </a>
+
+    <a href="https://wa.me/919629808833" class="float-btn float-wa" target="_blank">
+      <i class="bi bi-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const WHATSAPP_NUMBER = "919629808833";
+
+    let selectedVehicle = "";
+    let selectedType = "";
+    let selectedPrice = "";
+
+    window.addEventListener('scroll', function () {
+      const nav = document.getElementById('mainNav');
+      if (window.scrollY > 20) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    function toggleTariffMenu() {
+      const menu = document.getElementById('mobileTariffsMenu');
+      const icon = document.getElementById('tariffMenuIcon');
+      const isOpen = menu.style.display === 'block';
+      menu.style.display = isOpen ? 'none' : 'block';
+      icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
+
+    function toggleTourMenu() {
+      const menu = document.getElementById('mobileTourPackagesMenu');
+      const icon = document.getElementById('tourMenuIcon');
+      const isOpen = menu.style.display === 'block';
+      menu.style.display = isOpen ? 'none' : 'block';
+      icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
+
+    function closeMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const bsOffcanvas = bootstrap.Offcanvas.getInstance(mobileMenu);
+      if (bsOffcanvas) {
+        bsOffcanvas.hide();
+      }
+    }
+
+    const bookingModalEl = document.getElementById('bookingModal');
+    const bookingModal = new bootstrap.Modal(bookingModalEl);
+    const floatingBtns = document.getElementById('floatingContactBtns');
+
+    bookingModalEl.addEventListener('show.bs.modal', function () {
+      if (floatingBtns) {
+        floatingBtns.classList.add('hide');
+      }
+    });
+
+    bookingModalEl.addEventListener('hidden.bs.modal', function () {
+      if (floatingBtns) {
+        floatingBtns.classList.remove('hide');
+      }
+    });
+
+    document.querySelectorAll('.open-booking-modal').forEach(button => {
+      button.addEventListener('click', function () {
+        selectedVehicle = this.dataset.vehicle || '';
+        selectedType = this.dataset.type || '';
+        selectedPrice = this.dataset.price || '';
+
+        document.getElementById('summaryVehicle').textContent = selectedVehicle;
+        document.getElementById('summaryType').textContent = selectedType;
+        document.getElementById('summaryPrice').textContent = selectedPrice;
+
+        bookingModal.show();
+      });
+    });
+
+    document.getElementById('customerPhone').addEventListener('input', function () {
+      this.value = this.value.replace(/\D/g, '').slice(0, 10);
+    });
+
+    document.getElementById('bookingPopupForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('customerName').value.trim();
+      const phone = document.getElementById('customerPhone').value.trim();
+      const travelDate = document.getElementById('travelDate').value;
+
+      const hour = document.getElementById('pickupHour').value;
+      const minute = document.getElementById('pickupMinute').value;
+      const period = document.getElementById('pickupPeriod').value;
+
+      if (!hour || !minute || !period) {
+        alert('Please select pickup time properly.');
+        return;
+      }
+
+      const pickupTime = `${hour}:${minute} ${period}`;
+      const pickupLocation = document.getElementById('pickupLocation').value.trim();
+      const dropLocation = document.getElementById('dropLocation').value.trim();
+      const notes = document.getElementById('notes').value.trim();
+
+      if (!name || !phone || phone.length !== 10 || !travelDate || !pickupLocation || !dropLocation) {
+        alert('Please fill all required fields correctly.');
+        return;
+      }
+
+      const message =
+`Hello Bharathiyar Tours and Travels,
+
+I would like to book a Local Hourly Package.
+
+Vehicle: ${selectedVehicle}
+Vehicle Type: ${selectedType}
+Package Price: ${selectedPrice}
+Tariff Limit: 100 Kms / 12 Hours
+
+Name: ${name}
+Phone: ${phone}
+Travel Date: ${travelDate}
+Pickup Time: ${pickupTime}
+Pickup Location: ${pickupLocation}
+Drop Location / Plan: ${dropLocation}
+Additional Notes: ${notes || 'Nil'}
+
+Please share confirmation details.`;
+
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    });
+
+    (function setMinDate() {
+      const dateInput = document.getElementById('travelDate');
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      dateInput.min = `${yyyy}-${mm}-${dd}`;
+    })();
+  </script>
+</body>
+</html>

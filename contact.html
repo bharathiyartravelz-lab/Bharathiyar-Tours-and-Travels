@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us | BHARATHIYAR TOURS AND TRAVELS</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/Logo.png" type="image/png">
+
+  <style>
+    .float-btns{
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 9999;
+      width: max-content;
+      max-width: calc(100vw - 24px);
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .float-btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 18px;
+      border-radius: 50px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .float-btn:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.24);
+    }
+
+    .float-btn i{
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .float-call{
+      background: #0d2b30;
+      color: #fff !important;
+    }
+
+    .float-call:hover{
+      background: #1a4a52;
+      color: #fff !important;
+    }
+
+    .float-wa{
+      background: #25D366;
+      color: #fff !important;
+    }
+
+    .float-wa:hover{
+      background: #1ebe5d;
+      color: #fff !important;
+    }
+
+    .mobile-menu-trigger{
+      width: 100% !important;
+      border: none !important;
+      background: transparent !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      text-align: left !important;
+      padding: 11px 12px !important;
+      color: #0f172a !important;
+      font-weight: 600 !important;
+    }
+
+    .mobile-menu-trigger i{
+      transition: transform 0.25s ease !important;
+    }
+
+    .contact-hero{
+      padding: 118px 0 38px;
+      background:
+        linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)),
+        url('images/bg.jpg') center/cover no-repeat,
+        linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+    }
+
+    .contact-hero .section-tag{
+      background: rgba(255,255,255,0.14) !important;
+      color: #fff !important;
+      border: 1px solid rgba(255,255,255,0.22) !important;
+    }
+
+    .contact-title{
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: #fff;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    }
+
+    .contact-sub{
+      max-width: 760px;
+      margin: 0 auto;
+      color: rgba(255,255,255,0.80);
+      font-size: 0.96rem;
+      line-height: 1.6;
+    }
+
+    .contact-page{
+      padding: 0 0 60px;
+    }
+
+    .contact-card{
+      background: #ffffff;
+      border: 1px solid rgba(26,159,170,0.15);
+      box-shadow: 0 8px 30px rgba(26,159,170,0.08);
+      padding: 24px;
+      height: 100%;
+      border-radius: 0 !important;
+    }
+
+    .contact-card h3{
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-card p{
+      color: #64748b;
+      font-size: 0.92rem;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    .contact-list{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-list li{
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #334155;
+      font-size: 0.92rem;
+      line-height: 1.75;
+    }
+
+    .contact-list li i{
+      color: #1a9faa;
+      margin-top: 4px;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .contact-list a{
+      color: #334155;
+      text-decoration: none;
+    }
+
+    .contact-list a:hover{
+      color: #1a9faa;
+    }
+
+    .contact-form-card{
+      background: #ffffff;
+      border: 1px solid rgba(26,159,170,0.15);
+      box-shadow: 0 8px 30px rgba(26,159,170,0.08);
+      padding: 24px;
+      border-radius: 0 !important;
+    }
+
+    .contact-form-card h3{
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .contact-form-card p{
+      color: #64748b;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .contact-form-card .form-label{
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .contact-form-card .form-control,
+    .contact-form-card .form-select,
+    .contact-form-card textarea{
+      min-height: 44px;
+      border: 1px solid #dbe2ea;
+      box-shadow: none;
+      border-radius: 0 !important;
+      font-size: 0.9rem;
+    }
+
+    .contact-form-card textarea{
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .contact-form-card .form-control:focus,
+    .contact-form-card .form-select:focus,
+    .contact-form-card textarea:focus{
+      border-color: #b9d0de;
+      box-shadow: none;
+    }
+
+    .whatsapp-btn-full{
+      width: 100%;
+      padding: 12px 14px;
+      border: 0;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      font-weight: 800;
+      border-radius: 0 !important;
+    }
+
+    .whatsapp-btn-full:hover{
+      background: linear-gradient(135deg, #1fb157, #15803d);
+      color: #fff;
+    }
+
+    .mini-info-grid{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .mini-info-box{
+      background: #eef8ff;
+      border: 1px solid #d9ecf8;
+      padding: 16px;
+      border-radius: 0 !important;
+    }
+
+    .mini-info-box h4{
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .mini-info-box p{
+      margin: 0;
+      color: #486273;
+      font-size: 0.86rem;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 991.98px){
+      .mini-info-grid{
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px){
+      .contact-hero{
+        padding: 100px 0 30px;
+      }
+
+      .contact-card,
+      .contact-form-card{
+        padding: 18px;
+      }
+
+      .float-btn{
+        padding: 10px 16px;
+        font-size: 0.82rem;
+      }
+    }
+
+    @media (max-width: 480px){
+      .float-btns{
+        bottom: 16px;
+        gap: 8px;
+      }
+
+      .float-btn{
+        padding: 9px 14px;
+        font-size: 0.78rem;
+        gap: 5px;
+      }
+
+      .float-btn i{
+        font-size: 0.92rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="images/Logo.png" alt="Bharathiyar Logo" class="logo-img">
+        <div>
+          <div class="brand-name">BHARATHIYAR TOURS AND TRAVELS</div>
+          <div class="brand-sub">Premium Cab & Tour Services</div>
+        </div>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Toggle navigation">
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+        <span class="toggler-bar"></span>
+      </button>
+
+      <div class="collapse navbar-collapse desktop-navbar" id="mainNavbar">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="tariffs.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tariffs
+            </a>
+            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="hourlypackages.html">
+                  <i class="bi bi-clock me-2"></i>Local Hourly Packages
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item rounded-3 py-2" href="onewaydroptaxi.html">
+                  <i class="bi bi-sign-turn-right me-2"></i>One Way Drop Taxi
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="tourpackages.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tour Packages
+            </a>
+            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#isha-marudhamalai">One Day</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-2d">Two Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-3d">Three Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-4d">Four Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-5d">Five Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-kodaikanal-madurai-6d">Six Days</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-kodaikanal-munnar-7d">Seven Days</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" href="contact.html">Contact</a>
+          </li>
+
+          <li class="nav-item ms-lg-2 mt-3 mt-lg-0">
+            <a class="btn btn-brand" href="index.html#bookingForm1">
+              <i class="bi bi-whatsapp me-1"></i>Book Now
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE OFFCANVAS -->
+  <div class="offcanvas offcanvas-start mobile-nav-offcanvas" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header border-bottom">
+      <div class="d-flex align-items-center gap-2">
+        <img src="images/Logo.png" alt="Bharathiyar Logo" class="logo-img">
+        <div>
+          <div class="brand-name">BHARATHIYAR TOURS AND TRAVELS</div>
+          <div class="brand-sub">Premium Cab & Tour Services</div>
+        </div>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <ul class="navbar-nav flex-column gap-1">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <button class="nav-link mobile-parent-link mobile-menu-trigger" type="button" onclick="toggleTariffMenu()">
+            <span>Tariffs</span>
+            <i class="bi bi-chevron-down" id="tariffMenuIcon"></i>
+          </button>
+          <div class="mobile-submenu" id="mobileTariffsMenu" style="display: none;">
+            <a class="nav-link ps-4" href="hourlypackages.html">
+              <i class="bi bi-clock me-2"></i>Local Hourly Packages
+            </a>
+            <a class="nav-link ps-4" href="onewaydroptaxi.html">
+              <i class="bi bi-sign-turn-right me-2"></i>One Way Drop Taxi
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <button class="nav-link mobile-parent-link mobile-menu-trigger" type="button" onclick="toggleTourMenu()">
+            <span>Tour Packages</span>
+            <i class="bi bi-chevron-down" id="tourMenuIcon"></i>
+          </button>
+          <div class="mobile-submenu" id="mobileTourPackagesMenu" style="display: none;">
+            <a class="nav-link ps-4" href="tourpackages.html#isha-marudhamalai" onclick="closeMobileMenu()">One Day</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-2d" onclick="closeMobileMenu()">Two Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-3d" onclick="closeMobileMenu()">Three Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-4d" onclick="closeMobileMenu()">Four Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-5d" onclick="closeMobileMenu()">Five Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-kodaikanal-madurai-6d" onclick="closeMobileMenu()">Six Days</a>
+            <a class="nav-link ps-4" href="tourpackages.html#ooty-kodaikanal-munnar-7d" onclick="closeMobileMenu()">Seven Days</a>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" href="contact.html">Contact</a>
+        </li>
+      </ul>
+
+      <a href="index.html#bookingForm1" class="btn btn-brand w-100 mt-4">
+        <i class="bi bi-whatsapp me-2"></i>Book Now
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="contact-hero">
+    <div class="container text-center">
+      <div class="section-tag mx-auto mb-2">Contact Us</div>
+      <h1 class="contact-title">Let’s Plan Your Journey</h1>
+      <p class="contact-sub">
+        Reach Bharathiyar Tours & Travels for bookings, enquiries, package details, one-way drops, hourly packages and travel support.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT CONTENT -->
+  <section class="contact-page">
+    <div class="container">
+
+      <div class="row g-4 mb-4">
+        <div class="col-lg-7">
+          <div class="contact-card">
+            <div class="section-tag">Contact Details</div>
+            <h3>Get in touch with us</h3>
+
+            <ul class="contact-list">
+              <li>
+                <i class="bi bi-geo-alt-fill"></i>
+                <span>
+                  13/1, Divine Nagar,<br>
+                  Church Road, Cheran Managar,<br>
+                  Coimbatore – 641035,<br>
+                  Tamil Nadu, India.
+                </span>
+              </li>
+
+              <li>
+                <i class="bi bi-telephone-fill"></i>
+                <span>
+                  <a href="tel:+919629808833">+91 96298 08833</a><br>
+                  <a href="tel:+919488331952">+91 94883 31952</a>
+                </span>
+              </li>
+
+              <li>
+                <i class="bi bi-envelope-fill"></i>
+                <span>
+                  <a href="mailto:bharathiyartravels.cbe@gmail.com">bharathiyartravels.cbe@gmail.com</a>
+                </span>
+              </li>
+
+              <li>
+                <i class="bi bi-patch-check-fill"></i>
+                <span>MSME: UDYAM-TN-03-0123313</span>
+              </li>
+
+              <li>
+                <i class="bi bi-receipt-cutoff"></i>
+                <span>GSTIN: 33ATXPN2173P1ZU</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="contact-card">
+            <div class="section-tag">Bank Details</div>
+            <h3>Payment Information</h3>
+
+            <ul class="contact-list">
+              <li><i class="bi bi-bank"></i><span><strong>Bank Name:</strong> CANARA BANK</span></li>
+              <li><i class="bi bi-building"></i><span><strong>Branch:</strong> VILANKURICHI</span></li>
+              <li><i class="bi bi-person-badge-fill"></i><span><strong>A/c Name:</strong> BHARATHIYAR TOURS & TRAVELS</span></li>
+              <li><i class="bi bi-credit-card-2-front-fill"></i><span><strong>A/c No:</strong> 120014121090</span></li>
+              <li><i class="bi bi-diagram-3-fill"></i><span><strong>IFSC Code:</strong> CNRB0003128</span></li>
+              <li><i class="bi bi-wallet2"></i><span><strong>Account Type:</strong> CURRENT ACCOUNT</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mini-info-grid mb-4">
+        <div class="mini-info-box">
+          <h4>Booking Support</h4>
+          <p>Contact us for hourly packages, one-way drop taxi, local rides, tour packages and customized travel plans.</p>
+        </div>
+        <div class="mini-info-box">
+          <h4>Quick Response</h4>
+          <p>For the fastest support, use the WhatsApp form below or call us directly for instant assistance.</p>
+        </div>
+        <div class="mini-info-box">
+          <h4>Trusted Service</h4>
+          <p>We focus on safe, comfortable and reliable travel with professional chauffeurs and transparent pricing.</p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="contact-form-card">
+            <div class="section-tag">WhatsApp Enquiry</div>
+            <h3>Send us a quick message</h3>
+            <p>Fill this small form and continue directly to WhatsApp.</p>
+
+            <form id="contactWhatsAppForm" novalidate>
+              <div class="mb-3">
+                <label class="form-label" for="customerName">Full Name</label>
+                <input type="text" class="form-control" id="customerName" placeholder="Enter your full name" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="customerPhone">Phone Number</label>
+                <input type="tel" class="form-control" id="customerPhone" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="enquiryType">Enquiry Type</label>
+                <select class="form-select" id="enquiryType" required>
+                  <option value="">Select enquiry type</option>
+                  <option>Tour Package</option>
+                  <option>Local Hourly Package</option>
+                  <option>One Way Drop Taxi</option>
+                  <option>Outstation Trip</option>
+                  <option>General Enquiry</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="customerMessage">Message</label>
+                <textarea class="form-control" id="customerMessage" placeholder="Tell us your travel plan, destination, vehicle need or enquiry..." required></textarea>
+              </div>
+
+              <button type="submit" class="whatsapp-btn-full">
+                <i class="bi bi-whatsapp me-2"></i>Continue to WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="contact-card h-100">
+            <div class="section-tag">Why Contact Us</div>
+            <h3>We’re here to help you travel better</h3>
+            <p>
+              Whether you need a local cab, one-way drop, family tour, temple trip, airport transfer, or a fully customized package,
+              our team is ready to assist you with the right vehicle, the right route and the right support. We aim to make every trip
+              comfortable, safe and memorable from the first call to the final drop.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-5">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <img src="images/Logo.png" alt="Logo" class="footer-logo">
+            <div>
+              <div class="footer-brand">BHARATHIYAR TOURS AND TRAVELS</div>
+              <div class="footer-brand-sub">Premium Cab & Tour Services</div>
+            </div>
+          </div>
+
+          <p>Reliable and premium travel for local rides, family tours, pilgrim packages and outstation bookings across Tamil Nadu.</p>
+
+          <div class="d-flex gap-3 mt-3">
+    <a href="https://wa.me/919629808833" class="social-btn" target="_blank">
+      <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <a href="tel:+919629808833" class="social-btn">
+      <i class="bi bi-telephone-fill"></i>
+    </a>
+
+    <a href="mailto:bharathiyartravels.cbe@gmail.com" class="social-btn">
+      <i class="bi bi-envelope-fill"></i>
+    </a>
+
+    <a href="https://www.instagram.com/bharathiyartoursandtravels/" class="social-btn" target="_blank">
+      <i class="bi bi-instagram"></i>
+    </a>
+
+    <a href="https://www.facebook.com/p/Bharathiyar-Tours-Travels-100063803235318/" class="social-btn" target="_blank">
+      <i class="bi bi-facebook"></i>
+    </a>
+  </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="footer-heading">Quick Links</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="index.html">Home</a>
+            <a href="hourlypackages.html">Hourly Packages</a>
+            <a href="tourpackages.html">Tour Packages</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="footer-heading">Contact</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="mailto:bharathiyartravels.cbe@gmail.com" class="footer-contact-link">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <span>bharathiyartravels.cbe@gmail.com</span>
+            </a>
+            <a href="tel:+919629808833" class="footer-contact-link">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <span>+91 96298 08833</span>
+            </a>
+            <a href="tel:+919488331952" class="footer-contact-link">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <span>+91 94883 31952</span>
+            </a>
+            <div class="footer-contact-link">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <span>13/1, Divine Nagar, Church Road, Cheran Managar, Coimbatore – 641035.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 mt-5">
+        <span>© 2026 Bharathiyar Tours & Travels. All rights reserved.</span>
+        <p style="font-size: 14px; opacity: 0.7; color: #718096;">
+          Designed & curated by
+          <a href="https://marcinmind.in" target="_blank" style="text-decoration: none; color: #20b2aa;">Marc in Mind Technologies</a>
+        </p>
+      </div>
+    </div>
+    <br><br>
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+  <div class="float-btns" id="floatingContactBtns">
+    <a href="tel:+919629808833" class="float-btn float-call">
+      <i class="bi bi-telephone-fill"></i>
+      <span>Call</span>
+    </a>
+
+    <a href="https://wa.me/919629808833" class="float-btn float-wa" target="_blank">
+      <i class="bi bi-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const WHATSAPP_NUMBER = "919629808833";
+
+    window.addEventListener('scroll', function () {
+      const nav = document.getElementById('mainNav');
+      if (window.scrollY > 20) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    function toggleTariffMenu() {
+      const menu = document.getElementById('mobileTariffsMenu');
+      const icon = document.getElementById('tariffMenuIcon');
+      const isOpen = menu.style.display === 'block';
+      menu.style.display = isOpen ? 'none' : 'block';
+      icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
+
+    function toggleTourMenu() {
+      const menu = document.getElementById('mobileTourPackagesMenu');
+      const icon = document.getElementById('tourMenuIcon');
+      const isOpen = menu.style.display === 'block';
+      menu.style.display = isOpen ? 'none' : 'block';
+      icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
+
+    function closeMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const bsOffcanvas = bootstrap.Offcanvas.getInstance(mobileMenu);
+      if (bsOffcanvas) {
+        bsOffcanvas.hide();
+      }
+    }
+
+    document.getElementById('customerPhone').addEventListener('input', function () {
+      this.value = this.value.replace(/\D/g, '').slice(0, 10);
+    });
+
+    document.getElementById('contactWhatsAppForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('customerName').value.trim();
+      const phone = document.getElementById('customerPhone').value.trim();
+      const enquiryType = document.getElementById('enquiryType').value;
+      const messageText = document.getElementById('customerMessage').value.trim();
+
+      if (!name || !phone || phone.length !== 10 || !enquiryType || !messageText) {
+        alert('Please fill all required fields correctly.');
+        return;
+      }
+
+      const message =
+`Hello Bharathiyar Tours & Travels,
+
+I would like to make an enquiry.
+
+Name: ${name}
+Phone: ${phone}
+Enquiry Type: ${enquiryType}
+Message: ${messageText}
+
+Please get back to me.`;
+
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    });
+  </script>
+</body>
+</html>
