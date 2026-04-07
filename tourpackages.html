@@ -240,138 +240,180 @@
 
   <section class="tour-layout" id="tourPackagesSection">
     <div class="container">
+
+      <div class="package-tabs-container">
+        <div class="package-tabs-header">
+          <div class="package-tabs-title">Package Duration</div>
+          <div class="package-tabs-arrows">
+            <button type="button" id="scrollLeftBtn" aria-label="Scroll left">
+              <i class="bi bi-chevron-left"></i>
+            </button>
+            <button type="button" id="scrollRightBtn" aria-label="Scroll right">
+              <i class="bi bi-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="package-tabs-strip">
+          <div class="package-tabs-scroll" id="packageTabsRow">
+            <button type="button" class="package-tab active" data-package="1D">
+              One Day
+              <small>Quick package</small>
+            </button>
+            <button type="button" class="package-tab" data-package="2D">
+              Two Days
+              <small>Weekend trip</small>
+            </button>
+            <button type="button" class="package-tab" data-package="3D">
+              Three Days
+              <small>Comfort trip</small>
+            </button>
+            <button type="button" class="package-tab" data-package="4D">
+              Four Days
+              <small>Longer tour</small>
+            </button>
+            <button type="button" class="package-tab" data-package="5D">
+              Five Days
+              <small>Holiday plan</small>
+            </button>
+            <button type="button" class="package-tab" data-package="6D">
+              Six Days
+              <small>Extended trip</small>
+            </button>
+            <button type="button" class="package-tab" data-package="7D">
+              Seven Days
+              <small>Full vacation</small>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div class="tour-shell">
         <div class="row g-0">
+
+          <!-- LEFT SIDEBAR: DESTINATIONS -->
           <div class="col-lg-3">
             <div class="tour-sidebar h-100">
-              <div class="tour-sidebar-title">Package Duration</div>
-
-              <button type="button" class="package-tab active" data-package="1D">One Day<small>Quick package</small></button>
-              <button type="button" class="package-tab" data-package="2D">Two Days<small>Weekend trip</small></button>
-              <button type="button" class="package-tab" data-package="3D">Three Days<small>Comfort plan</small></button>
-              <button type="button" class="package-tab" data-package="4D">Four Days<small>Longer tour</small></button>
-              <button type="button" class="package-tab" data-package="5D">Five Days<small>Holiday package</small></button>
-              <button type="button" class="package-tab" data-package="6D">Six Days<small>Extended trip</small></button>
-              <button type="button"  class="package-tab" data-package="7D">Seven Days<small>Full vacation</small></button>
+              <div class="tour-sidebar-title">Destinations</div>
+              <div id="destinationSidebar"></div>
             </div>
           </div>
 
+          <!-- RIGHT CONTENT -->
           <div class="col-lg-9" id="tariffSection">
             <div class="tour-main">
               <div class="tour-topbar">
                 <div>
                   <h2 class="tour-current-title" id="packageHeading">One Day Tour Packages</h2>
+                  <p id="routeLine">Coimbatore - Ooty - Coimbatore</p>
                   <p class="tour-current-sub" id="packageSubheading">Select your destination</p>
                 </div>
               </div>
 
               <div class="tour-filter-card">
-              <div class="row g-3">
-                <div class="col-md-4">
-                  <label class="form-label fw-semibold" for="destinationSelect">Destination</label>
-                  <select class="form-select" id="destinationSelect"></select>
-                </div>
-
-                <div id="accommodationFields" class="col-12">
                 <div class="row g-3">
 
-                  <div class="col-12 col-md-3">
-                    <label class="form-label fw-semibold" for="accommodationSelect">Accommodation</label>
-                    <select class="form-select" id="accommodationSelect">
-                      <option value="none">Without Hotel</option>
-                      <option value="hotel">With Hotel</option>
-                    </select>
-                  </div>
 
-                  <div class="col-12 col-md-3 hotel-field" id="roomTypeField">
-                    <label class="form-label fw-semibold" for="roomTypeSelect">Room Type</label>
-                    <select class="form-select" id="roomTypeSelect">
-                      <option value="2star">2 Star</option>
-                      <option value="3star">3 Star</option>
-                    </select>
-                  </div>
+                  <div id="accommodationFields" class="col-12">
+                    <div class="row g-3">
 
-                  <div class="col-12 col-md-3 hotel-field" id="occupancyField">
-                    <label class="form-label fw-semibold" for="occupancySelect">Occupancy</label>
-                    <select class="form-select" id="occupancySelect">
-                      <option value="double">Double</option>
-                      <option value="triple">Triple</option>
-                    </select>
-                  </div>
+                      <div class="col-12 col-md-3">
+                        <label class="form-label fw-semibold" for="accommodationSelect">Accommodation</label>
+                        <select class="form-select" id="accommodationSelect">
+                          <option value="none">Without Hotel</option>
+                          <option value="hotel">With Hotel</option>
+                        </select>
+                      </div>
 
-                  <div class="col-12 col-md-3 hotel-field" id="roomCountField">
-                    <label class="form-label fw-semibold" for="roomCountSelect">Room Count</label>
-                    <select class="form-select" id="roomCountSelect">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                      <option value="11">11</option>
-                      <option value="12">12</option>
-                      <option value="13">13</option>
-                      <option value="14">14</option>
-                      <option value="15">15</option>
-                    </select>
-                  </div>
+                      <div class="col-12 col-md-3 hotel-field" id="roomTypeField">
+                        <label class="form-label fw-semibold" for="roomTypeSelect">Room Type</label>
+                        <select class="form-select" id="roomTypeSelect">
+                          <option value="2star">2 Star</option>
+                          <option value="3star">3 Star</option>
+                        </select>
+                      </div>
 
+                      <div class="col-12 col-md-3 hotel-field" id="occupancyField">
+                        <label class="form-label fw-semibold" for="occupancySelect">Occupancy</label>
+                        <select class="form-select" id="occupancySelect">
+                          <option value="double">Double</option>
+                          <option value="triple">Triple</option>
+                        </select>
+                      </div>
+
+                      <div class="col-12 col-md-3 hotel-field" id="roomCountField">
+                        <label class="form-label fw-semibold" for="roomCountSelect">Room Count</label>
+                        <select class="form-select" id="roomCountSelect">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                          <option value="13">13</option>
+                          <option value="14">14</option>
+                          <option value="15">15</option>
+                        </select>
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
-              </div>
-              </div>
-            </div>
 
-              <div class="tour-note">
-      Select stay option to update tariff.
-    </div>
-            </div>
-
-              <div class="tariff-wrap" >
-                <div class="table-responsive">
-                  <table class="table tariff-table align-middle mb-0">
-                    <thead class="tariff-head">
-                      <tr>
-                        <th>Vehicle</th>
-                        <th>Tariff</th>
-                        <th>Book</th>
-                      </tr>
-                    </thead>
-                    <tbody id="tariffTableBody"></tbody>
-                  </table>
+                <div class="tour-note">
+                  Tariff includes vehicle fare only. Toll, parking, permit, entry tickets and accommodation extras may apply where applicable.
                 </div>
               </div>
 
+              <!-- TARIFF TABLE -->
+              <div class="tariff-wrap">
+                <table class="tariff-table">
+                  <thead class="tariff-head">
+                    <tr>
+                      <th>Vehicle</th>
+                      <th>Tariff</th>
+                      <th>Book</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tariffTableBody">
+                    <tr>
+                      <td colspan="3" class="text-center py-4">Loading tariffs...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- ITINERARY -->
               <div class="itinerary-table-wrap">
                 <div class="itinerary-title-bar" id="itineraryTitle">Itinerary</div>
-                <div class="table-responsive">
-                  <table class="table itinerary-table mb-0">
-                    <thead>
-                      <tr>
-                        <th style="width: 110px;">Day</th>
-                        <th>Plan</th>
-                      </tr>
-                    </thead>
-                    <tbody id="itineraryContent"></tbody>
-                  </table>
-                </div>
+                <table class="itinerary-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 140px;">Day</th>
+                      <th>Plan</th>
+                    </tr>
+                  </thead>
+                  <tbody id="itineraryContent">
+                    <tr>
+                      <td colspan="2">Loading itinerary...</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <div class="includes-note">
 
+              <div class="tour-note mt-3">
+                Tariff includes vehicle fare only. Toll, parking, permit, entry tickets and accommodation extras may apply where applicable.
+              </div>
 
-      <div style="margin-top:10px;">
-        <strong>Notes:</strong>
-        <ul style="margin:6px 0 0 18px; padding:0;">
-          <li>Car rent, fuel, driver allowance, parking & toll charges included.</li>
-          <li>Room tariffs are not valid during peak season (Apr–Jun), winter (Nov–Jan), and festival/holiday periods.</li>
-        </ul>
-      </div>
-    </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -383,7 +425,7 @@
         <div class="modal-header">
           <div>
             <h5 class="modal-title mb-1">Book Tour Package</h5>
-            <div style="font-size:.88rem; opacity:.92;">Fill details and continue to WhatsApp</div>
+            <div style="font-size:.88rem; opacity:.92;">Fill details and continue</div>
           </div>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -412,14 +454,50 @@
               <input type="text" class="form-control" id="customerPickup" placeholder="Enter pickup location" required>
             </div>
 
-            <button type="submit" class="whatsapp-btn-full">
-              <i class="bi bi-whatsapp me-2"></i>Enquire Now on WhatsApp
-            </button>
+            <div class="booking-action-row">
+              <button type="submit" class="whatsapp-btn-full" id="whatsappBookBtn">
+                <i class="bi bi-whatsapp me-2"></i>Book Now @ ₹0
+              </button>
+
+              <button type="button" class="pay-online-btn-full" id="payOnlineBtn">
+                <i class="bi bi-credit-card me-2"></i>Pay Online
+              </button>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
+
+
+  <div class="modal fade modal-tour" id="paymentModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title mb-1">Payment Summary</h5>
+          <div style="font-size:.88rem; opacity:.92;">Review and choose payment option</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-3 p-md-4">
+        <div class="summary-box" id="paymentSummaryBox"></div>
+
+        <div class="summary-box mb-3" id="paymentOptionNote"></div>
+
+        <div class="booking-action-stack">
+          <button type="button" class="pay-split-btn" id="advancePaymentBtn"></button>
+          <button type="button" class="pay-full-btn" id="fullPaymentBtn"></button>
+          <button type="button" class="pay-back-btn" id="backToBookingBtn">
+            <i class="bi bi-arrow-left me-2"></i>Back
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <!-- FOOTER -->
   <footer>
@@ -520,6 +598,7 @@
   <i class="bi bi-arrow-up"></i>
 </button>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="tourpackage.js" charset="utf-8"></script>
   <script src="route.js" charset="utf-8"></script>
 <script src="hotel-toggle.js"></script>

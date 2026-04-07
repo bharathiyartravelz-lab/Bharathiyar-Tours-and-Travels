@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Payment Successful | Bharathiyar Tours and Travels</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root{
+      --brand-dark:#0f172a;
+      --brand-primary:#111827;
+      --brand-accent:#16a34a;
+      --brand-soft:#f8fafc;
+      --brand-border:#e5e7eb;
+    }
+
+    body{
+      font-family:"DM Sans",sans-serif;
+      background:#f5f7fb;
+      color:#0f172a;
+    }
+
+    .navbar{
+      background:#fff;
+      box-shadow:0 8px 24px rgba(15,23,42,.06);
+    }
+
+    .logo-img,.footer-logo{
+      width:52px;
+      height:52px;
+      object-fit:contain;
+    }
+
+    .brand-name,.footer-brand{
+      font-weight:800;
+      letter-spacing:.2px;
+      font-size:1rem;
+    }
+
+    .brand-sub,.footer-brand-sub{
+      font-size:.82rem;
+      color:#64748b;
+    }
+
+    .success-hero{
+      padding:120px 0 30px;
+    }
+
+    .success-card, .receipt-card{
+      background:#fff;
+      border:1px solid var(--brand-border);
+      border-radius:22px;
+      box-shadow:0 10px 30px rgba(15,23,42,.06);
+    }
+
+    .success-icon{
+      width:78px;
+      height:78px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#dcfce7;
+      color:#16a34a;
+      font-size:2rem;
+      margin:0 auto 18px;
+    }
+
+    .section-title{
+      font-weight:800;
+      font-size:1.8rem;
+      margin-bottom:8px;
+    }
+
+    .muted{
+      color:#64748b;
+    }
+
+    .action-btn{
+      border:none;
+      border-radius:14px;
+      padding:13px 18px;
+      font-weight:700;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+
+    .btn-dark-custom{
+      background:#111827;
+      color:#fff;
+    }
+
+    .btn-outline-custom{
+      background:#fff;
+      color:#111827;
+      border:1px solid #cbd5e1;
+    }
+
+    .receipt-header{
+      border-bottom:1px dashed #d1d5db;
+      padding-bottom:18px;
+      margin-bottom:18px;
+    }
+
+    .receipt-title{
+      font-size:1.4rem;
+      font-weight:800;
+      margin-bottom:6px;
+    }
+
+    .receipt-table td{
+      padding:10px 8px;
+      border-bottom:1px solid #eef2f7;
+      vertical-align:top;
+    }
+
+    .badge-status{
+      display:inline-block;
+      background:#dcfce7;
+      color:#166534;
+      font-weight:800;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.9rem;
+    }
+
+    .amount-box{
+      border:1px solid #e5e7eb;
+      border-radius:16px;
+      padding:16px;
+      background:#f8fafc;
+      height:100%;
+    }
+
+    .amount-box .label{
+      color:#64748b;
+      font-size:.92rem;
+    }
+
+    .amount-box .value{
+      font-size:1.35rem;
+      font-weight:800;
+      margin-top:6px;
+    }
+
+    .terms-box{
+      background:#fff;
+      border:1px solid var(--brand-border);
+      border-radius:18px;
+      padding:18px;
+    }
+
+    footer{
+      background:#0f172a;
+      color:#e5e7eb;
+      margin-top:50px;
+      padding:42px 0 20px;
+    }
+
+    footer a{
+      color:#e5e7eb;
+      text-decoration:none;
+    }
+
+    .footer-heading{
+      font-weight:700;
+      margin-bottom:14px;
+    }
+
+    @media print{
+      .no-print, .navbar, footer{
+        display:none !important;
+      }
+
+      body{
+        background:#fff;
+      }
+
+      .success-hero{
+        padding:0;
+      }
+
+      .receipt-card{
+        box-shadow:none;
+        border:none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="images/Logo.png" alt="Bharathiyar Logo" class="logo-img">
+        <div>
+          <div class="brand-name">BHARATHIYAR TOURS AND TRAVELS</div>
+          <div class="brand-sub">Premium Cab & Tour Services</div>
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <section class="success-hero">
+    <div class="container">
+      <div class="success-card p-4 p-md-5 text-center mb-4">
+        <div class="success-icon">
+          <i class="bi bi-check2-circle"></i>
+        </div>
+        <h1 class="section-title">Thank You for Choosing Bharathiyar Tours and Travels</h1>
+        <p class="muted mb-3">
+          Your payment was successful. Your receipt is ready below.
+        </p>
+        <p class="muted mb-4">
+          For support, call <strong>+91 96298 08833</strong> or email <strong>bharathiyartravels.cbe@gmail.com</strong>
+        </p>
+
+        <div class="d-flex flex-wrap justify-content-center gap-3 no-print">
+          <button class="action-btn btn-dark-custom" id="downloadReceiptBtn">
+            <i class="bi bi-download"></i> Download Receipt
+          </button>
+          <button class="action-btn btn-outline-custom" id="printReceiptBtn">
+            <i class="bi bi-printer"></i> Print
+          </button>
+          <a class="action-btn btn-outline-custom" href="tourpackages.html">
+            <i class="bi bi-arrow-left"></i> Back to Packages
+          </a>
+        </div>
+      </div>
+
+      <div class="receipt-card p-4 p-md-5" id="receiptArea">
+        <div class="receipt-header">
+          <div class="d-flex flex-column flex-md-row justify-content-between gap-3">
+            <div>
+              <div class="receipt-title" id="receiptTitle">PAYMENT RECEIPT</div>
+              <div class="fw-bold">BHARATHIYAR TOURS AND TRAVELS</div>
+              <div class="muted">Coimbatore · Tamil Nadu</div>
+              <div class="muted" id="companyContactLine"></div>
+            </div>
+            <div class="text-md-end">
+              <div><strong>Quote No:</strong> <span id="quoteNo"></span></div>
+              <div><strong>Date:</strong> <span id="receiptDate"></span></div>
+              <div class="mt-2">
+                <span class="badge-status" id="paymentStatus"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+          <div class="col-lg-7">
+            <table class="table receipt-table mb-0">
+              <tbody>
+                <tr><td><strong>Customer</strong></td><td id="customerName"></td></tr>
+                <tr><td><strong>Phone</strong></td><td id="customerPhone"></td></tr>
+                <tr><td><strong>Pickup</strong></td><td id="pickup"></td></tr>
+                <tr><td><strong>Drop / Destination</strong></td><td id="drop"></td></tr>
+                <tr><td><strong>Vehicle</strong></td><td id="vehicle"></td></tr>
+                <tr><td><strong>Travel Date</strong></td><td id="travelDate"></td></tr>
+                <tr><td><strong>Package</strong></td><td id="packageTitle"></td></tr>
+                <tr><td><strong>Package Code</strong></td><td id="packageCode"></td></tr>
+                <tr><td><strong>KM Limit</strong></td><td id="kmLimit"></td></tr>
+                <tr><td><strong>Payment Type</strong></td><td id="paymentType"></td></tr>
+                <tr><td><strong>Payment ID</strong></td><td id="paymentId"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="row g-3">
+              <div class="col-12">
+                <div class="amount-box">
+                  <div class="label">Total Tariff</div>
+                  <div class="value" id="totalTariff"></div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="amount-box">
+                  <div class="label">Paid</div>
+                  <div class="value" id="paidAmount"></div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="amount-box">
+                  <div class="label">Pending</div>
+                  <div class="value" id="pendingAmount"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="terms-box">
+          <h5 class="fw-bold mb-3">Terms & Conditions</h5>
+          <ul class="mb-0" id="termsList"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <img src="images/Logo.png" alt="Logo" class="footer-logo">
+            <div>
+              <div class="footer-brand">BHARATHIYAR TOURS AND TRAVELS</div>
+              <div class="footer-brand-sub">Premium Cab & Tour Services</div>
+            </div>
+          </div>
+          <p>Reliable and premium travel for local rides, family tours, pilgrim packages and outstation bookings across Tamil Nadu.</p>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="footer-heading">Quick Links</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="index.html">Home</a>
+            <a href="tourpackages.html">Tour Packages</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="footer-heading">Contact Support</div>
+          <div class="d-flex flex-column gap-2">
+            <a href="mailto:bharathiyartravels.cbe@gmail.com">bharathiyartravels.cbe@gmail.com</a>
+            <a href="tel:+919629808833">+91 96298 08833</a>
+            <a href="tel:+919488331952">+91 94883 31952</a>
+            <div>13/1, Divine Nagar, Church Road, Cheran Managar, Coimbatore – 641035.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-3 border-top border-secondary-subtle text-center">
+        © 2026 Bharathiyar Tours & Travels. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function formatCurrency(amount) {
+      return new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "INR",
+        maximumFractionDigits: 0
+      }).format(Number(amount || 0));
+    }
+
+    function setText(id, value) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value || "-";
+    }
+
+    function downloadReceiptFile(filename, content) {
+      const blob = new Blob([content], { type: "text/html;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function buildStandaloneReceiptHTML(receiptAreaHtml, title) {
+      return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>${title}</title>
+<style>
+body{font-family:Arial,sans-serif;padding:20px;color:#111;}
+table{width:100%;border-collapse:collapse;}
+td{padding:8px;border-bottom:1px solid #ddd;vertical-align:top;}
+.amount-box{border:1px solid #ddd;padding:12px;margin-bottom:12px;border-radius:10px;}
+.badge-status{display:inline-block;background:#dcfce7;color:#166534;padding:8px 12px;border-radius:999px;font-weight:bold;}
+</style>
+</head>
+<body>
+${receiptAreaHtml}
+</body>
+</html>`;
+    }
+
+    (function initReceiptPage() {
+      const raw = sessionStorage.getItem("btt_receipt_data");
+
+      if (!raw) {
+        alert("Receipt data not found.");
+        window.location.href = "tourpackages.html";
+        return;
+      }
+
+      const data = JSON.parse(raw);
+
+      setText("receiptTitle", data.receiptTitle);
+      setText("quoteNo", data.quoteNo);
+      setText("receiptDate", data.date);
+      setText("paymentStatus", data.paymentStatus);
+      setText("customerName", data.customerName);
+      setText("customerPhone", data.customerPhone);
+      setText("pickup", data.pickup);
+      setText("drop", data.drop);
+      setText("vehicle", data.vehicle);
+      setText("travelDate", data.travelDate);
+      setText("packageTitle", data.packageTitle);
+      setText("packageCode", data.packageCode);
+      setText("kmLimit", data.kmLimit ? data.kmLimit + " KM" : "-");
+      setText("paymentType", data.paymentType === "FULL" ? "Full Payment" : "Advance Payment");
+      setText("paymentId", data.paymentId);
+      setText("companyContactLine", `${data.companyPhonePrimary} · ${data.companyEmail}`);
+
+      setText("totalTariff", formatCurrency(data.totalTariff));
+      setText("paidAmount", formatCurrency(data.paidAmount));
+      setText("pendingAmount", formatCurrency(data.pendingAmount));
+
+      const termsList = document.getElementById("termsList");
+      termsList.innerHTML = (data.terms || []).map(item => `<li>${item}</li>`).join("");
+
+      document.getElementById("printReceiptBtn").addEventListener("click", function() {
+        window.print();
+      });
+
+      document.getElementById("downloadReceiptBtn").addEventListener("click", function() {
+        const receiptHtml = document.getElementById("receiptArea").outerHTML;
+        const fileName = `${(data.quoteNo || "receipt").replace(/[^a-zA-Z0-9_-]/g, "_")}.html`;
+        const fullHtml = buildStandaloneReceiptHTML(receiptHtml, data.receiptTitle || "Receipt");
+        downloadReceiptFile(fileName, fullHtml);
+      });
+    })();
+  </script>
+</body>
+</html>
