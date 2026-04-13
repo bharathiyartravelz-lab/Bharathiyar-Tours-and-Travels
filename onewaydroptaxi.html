@@ -11,1201 +11,269 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="tourpackage.css">
   <link rel="icon" href="images/Logo.png" type="image/png">
-
-  <style>
-
-  /* DESKTOP TABLE / MOBILE CARD SWITCH */
-.mobile-drop-cards{
-  display: none !important;
-}
-
-@media (max-width: 767.98px){
-  .drop-table-wrap{
-    display: none !important;
-  }
-
-  .mobile-drop-cards{
-    display: grid !important;
-    gap: 14px !important;
-    padding: 14px !important;
-    background: #ffffff !important;
-  }
-
-  .drop-mobile-card{
-    border: 1px solid #dbe2ea !important;
-    background: #fff !important;
-    padding: 14px !important;
-    border-radius: 0 !important;
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05) !important;
-  }
-
-  .drop-mobile-head{
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 10px !important;
-    margin-bottom: 12px !important;
-    padding-bottom: 10px !important;
-    border-bottom: 1px solid #e8eef3 !important;
-  }
-
-  .drop-mobile-destination{
-    margin: 0 !important;
-    font-size: 16px !important;
-    font-weight: 800 !important;
-    color: #0f172a !important;
-    line-height: 1.2 !important;
-  }
-
-  .drop-mobile-tag{
-    font-size: 11px !important;
-    font-weight: 700 !important;
-    color: #b91c1c !important;
-    background: #fff1f2 !important;
-    border: 1px solid #fecdd3 !important;
-    padding: 4px 8px !important;
-    border-radius: 0 !important;
-    white-space: nowrap !important;
-  }
-
-  .drop-mobile-prices{
-    display: grid !important;
-    gap: 10px !important;
-    margin-bottom: 12px !important;
-  }
-
-  .drop-mobile-price-row{
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 12px !important;
-    padding: 10px 0 !important;
-    border-bottom: 1px dashed #dbe2ea !important;
-  }
-
-  .drop-mobile-price-row:last-child{
-    border-bottom: none !important;
-  }
-
-  .drop-mobile-price-row span{
-    font-size: 13px !important;
-    color: #475569 !important;
-    font-weight: 600 !important;
-  }
-
-  .drop-mobile-price-row strong{
-    font-size: 15px !important;
-    color: #0f172a !important;
-    font-weight: 800 !important;
-  }
-
-  .drop-mobile-actions{
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 8px !important;
-    margin-top: 10px !important;
-  }
-
-  .drop-mobile-actions .btn-book-mini{
-    width: 100% !important;
-    min-width: 100% !important;
-    text-align: center !important;
-    padding: 11px 12px !important;
-    font-size: 12px !important;
-  }
-}
-
-    .float-btns{
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-      z-index: 9999;
-      width: max-content;
-      max-width: calc(100vw - 24px);
-      transition: opacity 0.25s ease, visibility 0.25s ease;
-    }
-
-    .float-btns.hide{
-      opacity: 0 !important;
-      visibility: hidden !important;
-      pointer-events: none !important;
-    }
-
-    .float-btn{
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 11px 18px;
-      border-radius: 50px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      text-decoration: none;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-      transition: all 0.25s ease;
-      white-space: nowrap;
-    }
-
-    .float-btn:hover{
-      transform: translateY(-3px);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.24);
-    }
-
-    .float-btn i{
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-
-    .float-call{
-      background: #0d2b30;
-      color: #fff !important;
-    }
-
-    .float-call:hover{
-      background: #1a4a52;
-      color: #fff !important;
-    }
-
-    .float-wa{
-      background: #25D366;
-      color: #fff !important;
-    }
-
-    .float-wa:hover{
-      background: #1ebe5d;
-      color: #fff !important;
-    }
-
-    @media (max-width: 768px){
-      .float-btn{
-        padding: 10px 16px;
-        font-size: 0.82rem;
-      }
-    }
-
-    @media (max-width: 480px){
-      .float-btns{
-        bottom: 16px;
-        gap: 8px;
-      }
-
-      .float-btn{
-        padding: 9px 14px;
-        font-size: 0.78rem;
-        gap: 5px;
-      }
-
-      .float-btn i{
-        font-size: 0.92rem;
-      }
-    }
-
-    .mobile-menu-trigger{
-      width: 100% !important;
-      border: none !important;
-      background: transparent !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      text-align: left !important;
-      padding: 11px 12px !important;
-      color: #0f172a !important;
-      font-weight: 600 !important;
-    }
-
-    .mobile-menu-trigger i{
-      transition: transform 0.25s ease !important;
-    }
-
-    .drop-hero{
-      padding: 118px 0 38px;
-      background:
-        linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)),
-        url('images/bg.jpg') center/cover no-repeat,
-        linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
-    }
-
-    .drop-hero .section-tag{
-      background: rgba(255,255,255,0.14) !important;
-      color: #fff !important;
-      border: 1px solid rgba(255,255,255,0.22) !important;
-    }
-
-    .drop-title{
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      color: #fff;
-      margin-bottom: 8px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.25);
-    }
-
-    .drop-sub{
-      max-width: 760px;
-      margin: 0 auto;
-      color: rgba(255,255,255,0.80);
-      font-size: 0.96rem;
-      line-height: 1.6;
-    }
-
-    .drop-layout{
-      padding: 0 0 56px;
-    }
-
-    .drop-shell{
-      background: #fff;
-      border: 1px solid #e6edf2;
-      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
-      overflow: hidden;
-    }
-
-    .drop-top{
-      padding: 18px;
-      border-bottom: 1px solid #e6edf2;
-      background: #ffffff;
-    }
-
-    .drop-top h2{
-      margin: 0 0 6px;
-      color: #b91c1c;
-      font-size: 1.85rem;
-      font-weight: 800;
-      line-height: 1.2;
-    }
-
-    .drop-top p{
-      margin: 0;
-      color: #475569;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    .drop-badge-line{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .drop-badge{
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 12px;
-      border: 1px solid #d9ecf8;
-      background: #eef8ff;
-      color: #486273;
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-
-    .drop-table-wrap{
-      padding: 0;
-      overflow: hidden;
-      background: #fff;
-    }
-
-    .drop-table{
-      width: 100%;
-      margin: 0;
-      border-collapse: collapse;
-      table-layout: fixed;
-    }
-
-    .drop-table thead th,
-    .drop-table tbody td{
-      border: 1px solid #dbe2ea;
-    }
-
-    .drop-table thead th{
-      background: #f3f7fa;
-      color: #1e293b;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .02em;
-      padding: 11px 8px;
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    .drop-table tbody td{
-      padding: 12px 10px;
-      vertical-align: middle;
-      background: #fff;
-      font-size: 12px;
-    }
-
-    .drop-table tbody tr:hover td{
-      background: #fafcff;
-    }
-
-    .drop-table th:nth-child(1),
-    .drop-table td:nth-child(1){
-      width: 22%;
-      text-align: left;
-    }
-
-    .drop-table th:nth-child(2),
-    .drop-table td:nth-child(2),
-    .drop-table th:nth-child(3),
-    .drop-table td:nth-child(3),
-    .drop-table th:nth-child(4),
-    .drop-table td:nth-child(4){
-      width: 16%;
-      text-align: center;
-    }
-
-    .drop-table th:nth-child(5),
-    .drop-table td:nth-child(5){
-      width: 30%;
-      text-align: center;
-    }
-
-    .dest-name{
-      margin: 0;
-      color: #0f172a;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.2;
-    }
-
-    .price-main{
-      margin: 0;
-      color: #0f172a;
-      font-size: 15px;
-      font-weight: 800;
-      line-height: 1.2;
-    }
-
-    .price-sub{
-      margin-top: 4px;
-      color: #64748b;
-      font-size: 10px;
-      line-height: 1.35;
-    }
-
-    .vehicle-picker{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-    }
-
-    .btn-book-mini{
-      border: 0;
-      padding: 8px 10px;
-      font-size: 11px;
-      font-weight: 700;
-      color: #fff;
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      text-decoration: none;
-      min-width: 88px;
-      transition: all 0.2s ease;
-    }
-
-    .btn-book-mini:hover{
-      background: linear-gradient(135deg, #1fb157, #15803d);
-      color: #fff;
-    }
-
-    .drop-note{
-      margin: 16px 18px 18px;
-      padding: 12px 14px;
-      border: 1px solid #d9ecf8;
-      background: #eef8ff;
-      color: #486273;
-      font-size: 12px;
-      line-height: 1.55;
-    }
-
-    .drop-note strong{
-      color: #243746;
-    }
-
-    .content-card{
-      background: #ffffff;
-      border: 1px solid rgba(26,159,170,0.15);
-      box-shadow: 0 8px 30px rgba(26,159,170,0.08);
-      padding: 24px;
-      height: 100%;
-    }
-
-    .content-card h3{
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-
-    .content-card p{
-      margin-bottom: 0;
-      color: #64748b;
-      font-size: 0.92rem;
-      line-height: 1.8;
-    }
-
-    .feature-mini-list{
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px 18px;
-    }
-
-    .feature-mini-list li{
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      color: #334155;
-      font-size: 0.92rem;
-      line-height: 1.6;
-    }
-
-    .feature-mini-list li i{
-      color: #1a9faa;
-      margin-top: 3px;
-      flex-shrink: 0;
-    }
-
-    .faq-wrap{
-      background: #fff;
-      border: 1px solid rgba(26,159,170,0.15);
-      box-shadow: 0 8px 30px rgba(26,159,170,0.08);
-      padding: 24px;
-    }
-
-    .faq-item{
-      border: 1px solid #e6edf2;
-      margin-bottom: 12px;
-      overflow: hidden;
-    }
-
-    .faq-item:last-child{
-      margin-bottom: 0;
-    }
-
-    .faq-btn{
-      width: 100%;
-      border: 0;
-      background: #f8fbfd;
-      padding: 14px 16px;
-      text-align: left;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #0f172a;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .faq-btn i{
-      transition: transform 0.25s ease;
-      color: #1a9faa;
-      flex-shrink: 0;
-    }
-
-    .faq-btn[aria-expanded="true"] i{
-      transform: rotate(180deg);
-    }
-
-    .faq-body{
-      padding: 0 16px 16px;
-      color: #64748b;
-      font-size: 0.92rem;
-      line-height: 1.75;
-      background: #fff;
-    }
-
-    .modal-drop .modal-content{
-      border: 0;
-      box-shadow: 0 25px 60px rgba(0,0,0,.18);
-    }
-
-    .modal-drop .modal-header{
-      padding: 14px 18px;
-      border: 0;
-      background: var(--primary);
-      color: #fff;
-    }
-
-    .modal-drop .btn-close{
-      filter: brightness(0) invert(1);
-    }
-
-    .summary-box{
-      display: grid;
-      gap: 8px;
-      margin-bottom: 14px;
-      padding: 12px;
-      border: 1px solid #e2e8f0;
-      background: #f8fafc;
-    }
-
-    .summary-box > div{
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      font-size: .92rem;
-    }
-
-    .summary-box > div span:first-child{
-      color: #64748b;
-    }
-
-    .summary-box > div span:last-child{
-      color: #0f172a;
-      font-weight: 700;
-      text-align: right;
-    }
-
-    .modal-drop .form-label{
-      margin-bottom: 6px;
-      font-size: 0.78rem;
-      font-weight: 700;
-    }
-
-    .modal-drop .form-control,
-    .modal-drop .form-select{
-      min-height: 42px;
-      border: 1px solid #dbe2ea;
-      box-shadow: none;
-      border-radius: 0 !important;
-    }
-
-    .modal-drop .form-control:focus,
-    .modal-drop .form-select:focus{
-      border-color: #b9d0de;
-      box-shadow: none;
-    }
-
-    .whatsapp-btn-full{
-      width: 100%;
-      padding: 12px 14px;
-      border: 0;
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: #fff;
-      font-weight: 800;
-    }
-
-    .whatsapp-btn-full:hover{
-      background: linear-gradient(135deg, #1fb157, #15803d);
-      color: #fff;
-    }
-
-    .drop-shell,
-    .content-card,
-    .faq-wrap,
-    .faq-item,
-    .drop-note,
-    .modal-drop .modal-content,
-    .summary-box,
-    .drop-badge,
-    .btn-book-mini,
-    .whatsapp-btn-full{
-      border-radius: 0 !important;
-    }
-
-    @media (max-width: 991.98px){
-      .drop-top h2{
-        font-size: 1.45rem;
-      }
-
-      .feature-mini-list{
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 767.98px){
-      .drop-hero{
-        padding: 100px 0 30px;
-      }
-
-      .drop-top,
-      .content-card,
-      .faq-wrap{
-        padding: 18px;
-      }
-
-      .drop-note{
-        margin: 14px;
-      }
-
-      .drop-table{
-        table-layout: auto;
-      }
-
-      .vehicle-picker{
-        flex-direction: column;
-      }
-    }
-  </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-        <img src="images/Logo.png" alt="Bharathiyar Logo" class="logo-img">
-        <div>
-          <div class="brand-name">BHARATHIYAR TOURS AND TRAVELS</div>
-          <div class="brand-sub">Premium Cab & Tour Services</div>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <img src="images/Logo.png" alt="Bharathiyar Logo" class="logo-img">
+          <div>
+            <div class="brand-name">BHARATHIYAR TOURS AND TRAVELS</div>
+            <div class="brand-sub">Premium Cab & Tour Services</div>
+          </div>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Toggle navigation">
+          <span class="toggler-bar"></span>
+          <span class="toggler-bar"></span>
+          <span class="toggler-bar"></span>
+        </button>
+
+        <div class="collapse navbar-collapse desktop-navbar" id="mainNavbar">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="tariffs.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tariffs
+              </a>
+              <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
+                <li>
+                  <a class="dropdown-item rounded-3 py-2" href="hourlypackages.html">
+                    <i class="bi bi-clock me-2"></i>Local Hourly Packages
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item rounded-3 py-2" href="onewaydroptaxi.html">
+                    <i class="bi bi-sign-turn-right me-2"></i>One Way Drop Taxi
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="tourpackages.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tour Packages
+              </a>
+              <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
+                <li>
+                  <a class="dropdown-item rounded-3 py-2" href="tourpackages.html#isha-marudhamalai">
+                     One Day
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-2d">
+                     Two Days
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-3d">
+                     Three Days
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-4d">
+                     Four Days
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-5d">
+                     Five Days
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-kodaikanal-madurai-6d">
+                     Six Days
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-kodaikanal-munnar-7d">
+                     Seven Days
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+
+
+
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+
+            <li class="nav-item ms-lg-2 mt-3 mt-lg-0">
+              <a class="btn btn-brand" href="index.html#bookingForm1">
+                <i class="bi bi-whatsapp me-1"></i>Book Now
+              </a>
+            </li>
+          </ul>
         </div>
-      </a>
+      </div>
+    </nav>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Toggle navigation">
-        <span class="toggler-bar"></span>
-        <span class="toggler-bar"></span>
-        <span class="toggler-bar"></span>
-      </button>
+    <!-- MOBILE OFFCANVAS -->
+    <div class="offcanvas offcanvas-start mobile-nav-offcanvas" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+      <div class="offcanvas-header border-bottom">
+        <div class="d-flex align-items-center gap-2">
+          <img src="images/Logo.png" alt="Bharathiyar Logo" class="logo-img">
+          <div>
+            <div class="brand-name">BHARATHIYAR TOURS AND TRAVELS</div>
+            <div class="brand-sub">Premium Cab & Tour Services</div>
+          </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
 
-      <div class="collapse navbar-collapse desktop-navbar" id="mainNavbar">
-        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+      <div class="offcanvas-body">
+        <ul class="navbar-nav flex-column gap-1">
+
           <li class="nav-item">
             <a class="nav-link" href="index.html">Home</a>
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="tariffs.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Tariffs
-            </a>
-            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
-              <li>
-                <a class="dropdown-item rounded-3 py-2" href="hourlypackages.html">
-                  <i class="bi bi-clock me-2"></i>Local Hourly Packages
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item rounded-3 py-2" href="onewaydroptaxi.html">
-                  <i class="bi bi-sign-turn-right me-2"></i>One Way Drop Taxi
-                </a>
-              </li>
-            </ul>
+          <!-- MOBILE TARIFFS DROPDOWN -->
+          <li class="nav-item">
+            <button
+              class="nav-link mobile-parent-link mobile-menu-trigger"
+              type="button"
+              onclick="toggleTariffMenu()"
+            >
+              <span>Tariffs</span>
+              <i class="bi bi-chevron-down" id="tariffMenuIcon"></i>
+            </button>
+
+            <div class="mobile-submenu" id="mobileTariffsMenu" style="display: none;">
+              <a class="nav-link ps-4" href="hourlypackages.html">
+                <i class="bi bi-clock me-2"></i>Local Hourly Packages
+              </a>
+              <a class="nav-link ps-4" href="onewaydroptaxi.html">
+                <i class="bi bi-sign-turn-right me-2"></i>One Way Drop Taxi
+              </a>
+            </div>
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="tourpackages.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Tour Packages
-            </a>
-            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2">
-              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#isha-marudhamalai">One Day</a></li>
-              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-2d">Two Days</a></li>
-              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-3d">Three Days</a></li>
-              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-4d">Four Days</a></li>
-              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-5d">Five Days</a></li>
-              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-kodaikanal-madurai-6d">Six Days</a></li>
-              <li><a class="dropdown-item rounded-3 py-2" href="tourpackages.html#ooty-kodaikanal-munnar-7d">Seven Days</a></li>
-            </ul>
+          <!-- MOBILE TOUR PACKAGES DROPDOWN -->
+          <li class="nav-item">
+            <button
+              class="nav-link mobile-parent-link mobile-menu-trigger"
+              type="button"
+              onclick="toggleTourMenu()"
+            >
+              <span>Tour Packages</span>
+              <i class="bi bi-chevron-down" id="tourMenuIcon"></i>
+            </button>
+
+            <div class="mobile-submenu" id="mobileTourPackagesMenu" style="display: none;">
+              <a class="nav-link ps-4" href="tourpackages.html#isha-marudhamalai" onclick="closeMobileMenu()">One Day</a>
+              <a class="nav-link ps-4" href="tourpackages.html#ooty-2d" onclick="closeMobileMenu()"> Two Days</a>
+              <a class="nav-link ps-4" href="tourpackages.html#ooty-3d" onclick="closeMobileMenu()"> Three Days</a>
+              <a class="nav-link ps-4" href="tourpackages.html#ooty-4d" onclick="closeMobileMenu()"> Four Days</a>
+              <a class="nav-link ps-4" href="tourpackages.html#ooty-5d" onclick="closeMobileMenu()"> Five Days</a>
+              <a class="nav-link ps-4" href="tourpackages.html#ooty-kodaikanal-madurai-6d" onclick="closeMobileMenu()"> Six Days</a>
+              <a class="nav-link ps-4" href="tourpackages.html#ooty-kodaikanal-munnar-7d" onclick="closeMobileMenu()"> Seven Days</a>
+            </div>
           </li>
 
           <li class="nav-item">
             <a class="nav-link" href="about.html">About</a>
           </li>
 
+
           <li class="nav-item">
             <a class="nav-link" href="contact.html">Contact</a>
           </li>
-
-          <li class="nav-item ms-lg-2 mt-3 mt-lg-0">
-            <a class="btn btn-brand" href="index.html#bookingForm1">
-              <i class="bi bi-whatsapp me-1"></i>Book Now
-            </a>
-          </li>
         </ul>
+
+        <a href="index.html#bookingForm1" class="btn btn-brand w-100 mt-4">
+          <i class="bi bi-whatsapp me-2"></i>Book Now
+        </a>
       </div>
     </div>
-  </nav>
 
-  <div class="offcanvas offcanvas-start mobile-nav-offcanvas" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
-    <div class="offcanvas-header border-bottom">
-      <div class="d-flex align-items-center gap-2">
-        <img src="images/Logo.png" alt="Bharathiyar Logo" class="logo-img">
-        <div>
-          <div class="brand-name">BHARATHIYAR TOURS AND TRAVELS</div>
-          <div class="brand-sub">Premium Cab & Tour Services</div>
-        </div>
-      </div>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-
-    <div class="offcanvas-body">
-      <ul class="navbar-nav flex-column gap-1">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html">Home</a>
-        </li>
-
-        <li class="nav-item">
-          <button class="nav-link mobile-parent-link mobile-menu-trigger" type="button" onclick="toggleTariffMenu()">
-            <span>Tariffs</span>
-            <i class="bi bi-chevron-down" id="tariffMenuIcon"></i>
-          </button>
-
-          <div class="mobile-submenu" id="mobileTariffsMenu" style="display: none;">
-            <a class="nav-link ps-4" href="hourlypackages.html">
-              <i class="bi bi-clock me-2"></i>Local Hourly Packages
-            </a>
-            <a class="nav-link ps-4" href="onewaydroptaxi.html">
-              <i class="bi bi-sign-turn-right me-2"></i>One Way Drop Taxi
-            </a>
-          </div>
-        </li>
-
-        <li class="nav-item">
-          <button class="nav-link mobile-parent-link mobile-menu-trigger" type="button" onclick="toggleTourMenu()">
-            <span>Tour Packages</span>
-            <i class="bi bi-chevron-down" id="tourMenuIcon"></i>
-          </button>
-
-          <div class="mobile-submenu" id="mobileTourPackagesMenu" style="display: none;">
-            <a class="nav-link ps-4" href="tourpackages.html#isha-marudhamalai" onclick="closeMobileMenu()">One Day</a>
-            <a class="nav-link ps-4" href="tourpackages.html#ooty-2d" onclick="closeMobileMenu()">Two Days</a>
-            <a class="nav-link ps-4" href="tourpackages.html#ooty-3d" onclick="closeMobileMenu()">Three Days</a>
-            <a class="nav-link ps-4" href="tourpackages.html#ooty-4d" onclick="closeMobileMenu()">Four Days</a>
-            <a class="nav-link ps-4" href="tourpackages.html#ooty-5d" onclick="closeMobileMenu()">Five Days</a>
-            <a class="nav-link ps-4" href="tourpackages.html#ooty-kodaikanal-madurai-6d" onclick="closeMobileMenu()">Six Days</a>
-            <a class="nav-link ps-4" href="tourpackages.html#ooty-kodaikanal-munnar-7d" onclick="closeMobileMenu()">Seven Days</a>
-          </div>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="about.html">About</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact</a>
-        </li>
-      </ul>
-
-      <a href="index.html#bookingForm1" class="btn btn-brand w-100 mt-4">
-        <i class="bi bi-whatsapp me-2"></i>Book Now
-      </a>
-    </div>
-  </div>
-
-  <section class="drop-hero">
+  <section class="tour-page-hero">
     <div class="container text-center">
-      <div class="section-tag mx-auto mb-2">One Way Drop</div>
-      <h1 class="drop-title">One Way Drop Taxi</h1>
-      <p class="drop-sub">
-        Transparent one-way drop tariffs for popular destinations from Coimbatore.
-        Choose your destination, select your vehicle and continue to booking in seconds.
-      </p>
+      <div class="section-tag mx-auto mb-2">One Way Drop Taxi</div>
+      <h1 class="tour-page-title">One Way Drop Tariffs</h1>
+      <p class="tour-page-sub">Choose your destination and vehicle to continue booking.</p>
     </div>
   </section>
 
-  <section class="drop-layout">
+  <section class="tour-layout" id="oneWayDropSection">
     <div class="container">
-      <div class="drop-shell">
-        <div class="drop-top">
-          <h2>One-Way Drop Taxi Tariff</h2>
-          <p>Fixed destination-wise rates for Sedan, SUV and Premium SUV.</p>
+      <div class="tour-shell">
+        <div class="row g-0">
 
-          <div class="drop-badge-line">
-            <div class="drop-badge"><i class="bi bi-check-circle-fill"></i> Transparent Pricing</div>
-            <div class="drop-badge"><i class="bi bi-geo-alt-fill"></i> Popular Destinations</div>
-            <div class="drop-badge"><i class="bi bi-whatsapp"></i> Quick WhatsApp Booking</div>
-          </div>
-        </div>
-
-        <div class="drop-table-wrap">
-          <div class="table-responsive">
-            <table class="table drop-table align-middle mb-0">
-              <thead>
-                <tr>
-                  <th>Destination</th>
-                  <th>Sedan</th>
-                  <th>SUV</th>
-                  <th>Premium SUV</th>
-                  <th>Book</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><div class="dest-name">Tiruppur</div></td>
-                  <td><div class="price-main">₹ 2,000</div></td>
-                  <td><div class="price-main">₹ 3,500</div></td>
-                  <td><div class="price-main">₹ 4,500</div></td>
-                  <td>
-                    <div class="vehicle-picker">
-                      <button class="btn-book-mini open-booking-modal" data-destination="Tiruppur" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 2,000">Sedan</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Tiruppur" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 3,500">SUV</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Tiruppur" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 4,500">Premium</button>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><div class="dest-name">Ooty</div></td>
-                  <td><div class="price-main">₹ 3,300</div></td>
-                  <td><div class="price-main">₹ 5,500</div></td>
-                  <td><div class="price-main">₹ 6,500</div></td>
-                  <td>
-                    <div class="vehicle-picker">
-                      <button class="btn-book-mini open-booking-modal" data-destination="Ooty" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 3,300">Sedan</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Ooty" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 5,500">SUV</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Ooty" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 6,500">Premium</button>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><div class="dest-name">Salem</div></td>
-                  <td><div class="price-main">₹ 5,000</div></td>
-                  <td><div class="price-main">₹ 6,500</div></td>
-                  <td><div class="price-main">₹ 7,500</div></td>
-                  <td>
-                    <div class="vehicle-picker">
-                      <button class="btn-book-mini open-booking-modal" data-destination="Salem" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 5,000">Sedan</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Salem" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 6,500">SUV</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Salem" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 7,500">Premium</button>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><div class="dest-name">Chennai</div></td>
-                  <td><div class="price-main">₹ 14,500</div></td>
-                  <td><div class="price-main">₹ 19,500</div></td>
-                  <td><div class="price-main">₹ 21,800</div></td>
-                  <td>
-                    <div class="vehicle-picker">
-                      <button class="btn-book-mini open-booking-modal" data-destination="Chennai" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 14,500">Sedan</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Chennai" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 19,500">SUV</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Chennai" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 21,800">Premium</button>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><div class="dest-name">Bangalore City</div></td>
-                  <td><div class="price-main">₹ 9,800</div></td>
-                  <td><div class="price-main">₹ 14,900</div></td>
-                  <td><div class="price-main">₹ 15,500</div></td>
-                  <td>
-                    <div class="vehicle-picker">
-                      <button class="btn-book-mini open-booking-modal" data-destination="Bangalore City" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 9,800">Sedan</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Bangalore City" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 14,900">SUV</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Bangalore City" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 15,500">Premium</button>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><div class="dest-name">Cochin</div></td>
-                  <td><div class="price-main">₹ 5,900</div></td>
-                  <td><div class="price-main">₹ 8,500</div></td>
-                  <td><div class="price-main">₹ 9,500</div></td>
-                  <td>
-                    <div class="vehicle-picker">
-                      <button class="btn-book-mini open-booking-modal" data-destination="Cochin" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 5,900">Sedan</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Cochin" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 8,500">SUV</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Cochin" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 9,500">Premium</button>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><div class="dest-name">Calicut</div></td>
-                  <td><div class="price-main">₹ 5,900</div></td>
-                  <td><div class="price-main">₹ 8,500</div></td>
-                  <td><div class="price-main">₹ 9,500</div></td>
-                  <td>
-                    <div class="vehicle-picker">
-                      <button class="btn-book-mini open-booking-modal" data-destination="Calicut" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 5,900">Sedan</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Calicut" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 8,500">SUV</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Calicut" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 9,500">Premium</button>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td><div class="dest-name">Madurai</div></td>
-                  <td><div class="price-main">₹ 5,900</div></td>
-                  <td><div class="price-main">₹ 8,300</div></td>
-                  <td><div class="price-main">₹ 9,300</div></td>
-                  <td>
-                    <div class="vehicle-picker">
-                      <button class="btn-book-mini open-booking-modal" data-destination="Madurai" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 5,900">Sedan</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Madurai" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 8,300">SUV</button>
-                      <button class="btn-book-mini open-booking-modal" data-destination="Madurai" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 9,300">Premium</button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="mobile-drop-cards">
-
-          <div class="drop-mobile-card">
-            <div class="drop-mobile-head">
-              <h3 class="drop-mobile-destination">Tiruppur</h3>
-              <div class="drop-mobile-tag">One Way</div>
-            </div>
-            <div class="drop-mobile-prices">
-              <div class="drop-mobile-price-row"><span>Sedan</span><strong>₹ 2,000</strong></div>
-              <div class="drop-mobile-price-row"><span>SUV</span><strong>₹ 3,500</strong></div>
-              <div class="drop-mobile-price-row"><span>Premium SUV</span><strong>₹ 4,500</strong></div>
-            </div>
-            <div class="drop-mobile-actions">
-              <button class="btn-book-mini open-booking-modal" data-destination="Tiruppur" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 2,000">Book Sedan</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Tiruppur" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 3,500">Book SUV</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Tiruppur" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 4,500">Book Premium SUV</button>
+          <div class="col-lg-3">
+            <div class="tour-sidebar h-100">
+              <div class="tour-sidebar-title">Destinations</div>
+              <div id="destinationSidebar"></div>
             </div>
           </div>
 
-          <div class="drop-mobile-card">
-            <div class="drop-mobile-head">
-              <h3 class="drop-mobile-destination">Ooty</h3>
-              <div class="drop-mobile-tag">One Way</div>
-            </div>
-            <div class="drop-mobile-prices">
-              <div class="drop-mobile-price-row"><span>Sedan</span><strong>₹ 3,300</strong></div>
-              <div class="drop-mobile-price-row"><span>SUV</span><strong>₹ 5,500</strong></div>
-              <div class="drop-mobile-price-row"><span>Premium SUV</span><strong>₹ 6,500</strong></div>
-            </div>
-            <div class="drop-mobile-actions">
-              <button class="btn-book-mini open-booking-modal" data-destination="Ooty" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 3,300">Book Sedan</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Ooty" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 5,500">Book SUV</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Ooty" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 6,500">Book Premium SUV</button>
+          <div class="col-lg-9" id="tariffSection">
+            <div class="tour-main">
+              <div class="tour-topbar">
+                <div>
+                  <h2 class="tour-current-title" id="packageHeading">One Way Drop Taxi</h2>
+                  <p id="routeLine">Coimbatore - Bangalore City</p>
+                  <p class="tour-current-sub" id="packageSubheading">Select your destination</p>
+                </div>
+              </div>
+
+              <div class="tour-note">
+                Tariff includes toll, parking and permit charges.
+              </div>
+
+              <div class="tariff-wrap">
+                <table class="tariff-table">
+                  <thead class="tariff-head">
+                    <tr>
+                      <th>Vehicle</th>
+                      <th>Tariff</th>
+                      <th>Book</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tariffTableBody">
+                    <tr>
+                      <td colspan="3" class="text-center py-4">Loading tariffs...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="tour-note mt-3">
+                Select a destination from the left side. Tariffs will update automatically.
+              </div>
             </div>
           </div>
 
-          <div class="drop-mobile-card">
-            <div class="drop-mobile-head">
-              <h3 class="drop-mobile-destination">Salem</h3>
-              <div class="drop-mobile-tag">One Way</div>
-            </div>
-            <div class="drop-mobile-prices">
-              <div class="drop-mobile-price-row"><span>Sedan</span><strong>₹ 5,000</strong></div>
-              <div class="drop-mobile-price-row"><span>SUV</span><strong>₹ 6,500</strong></div>
-              <div class="drop-mobile-price-row"><span>Premium SUV</span><strong>₹ 7,500</strong></div>
-            </div>
-            <div class="drop-mobile-actions">
-              <button class="btn-book-mini open-booking-modal" data-destination="Salem" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 5,000">Book Sedan</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Salem" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 6,500">Book SUV</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Salem" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 7,500">Book Premium SUV</button>
-            </div>
-          </div>
-
-          <div class="drop-mobile-card">
-            <div class="drop-mobile-head">
-              <h3 class="drop-mobile-destination">Chennai</h3>
-              <div class="drop-mobile-tag">One Way</div>
-            </div>
-            <div class="drop-mobile-prices">
-              <div class="drop-mobile-price-row"><span>Sedan</span><strong>₹ 14,500</strong></div>
-              <div class="drop-mobile-price-row"><span>SUV</span><strong>₹ 19,500</strong></div>
-              <div class="drop-mobile-price-row"><span>Premium SUV</span><strong>₹ 21,800</strong></div>
-            </div>
-            <div class="drop-mobile-actions">
-              <button class="btn-book-mini open-booking-modal" data-destination="Chennai" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 14,500">Book Sedan</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Chennai" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 19,500">Book SUV</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Chennai" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 21,800">Book Premium SUV</button>
-            </div>
-          </div>
-
-          <div class="drop-mobile-card">
-            <div class="drop-mobile-head">
-              <h3 class="drop-mobile-destination">Bangalore City</h3>
-              <div class="drop-mobile-tag">One Way</div>
-            </div>
-            <div class="drop-mobile-prices">
-              <div class="drop-mobile-price-row"><span>Sedan</span><strong>₹ 9,800</strong></div>
-              <div class="drop-mobile-price-row"><span>SUV</span><strong>₹ 14,900</strong></div>
-              <div class="drop-mobile-price-row"><span>Premium SUV</span><strong>₹ 15,500</strong></div>
-            </div>
-            <div class="drop-mobile-actions">
-              <button class="btn-book-mini open-booking-modal" data-destination="Bangalore City" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 9,800">Book Sedan</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Bangalore City" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 14,900">Book SUV</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Bangalore City" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 15,500">Book Premium SUV</button>
-            </div>
-          </div>
-
-          <div class="drop-mobile-card">
-            <div class="drop-mobile-head">
-              <h3 class="drop-mobile-destination">Cochin</h3>
-              <div class="drop-mobile-tag">One Way</div>
-            </div>
-            <div class="drop-mobile-prices">
-              <div class="drop-mobile-price-row"><span>Sedan</span><strong>₹ 5,900</strong></div>
-              <div class="drop-mobile-price-row"><span>SUV</span><strong>₹ 8,500</strong></div>
-              <div class="drop-mobile-price-row"><span>Premium SUV</span><strong>₹ 9,500</strong></div>
-            </div>
-            <div class="drop-mobile-actions">
-              <button class="btn-book-mini open-booking-modal" data-destination="Cochin" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 5,900">Book Sedan</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Cochin" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 8,500">Book SUV</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Cochin" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 9,500">Book Premium SUV</button>
-            </div>
-          </div>
-
-          <div class="drop-mobile-card">
-            <div class="drop-mobile-head">
-              <h3 class="drop-mobile-destination">Calicut</h3>
-              <div class="drop-mobile-tag">One Way</div>
-            </div>
-            <div class="drop-mobile-prices">
-              <div class="drop-mobile-price-row"><span>Sedan</span><strong>₹ 5,900</strong></div>
-              <div class="drop-mobile-price-row"><span>SUV</span><strong>₹ 8,500</strong></div>
-              <div class="drop-mobile-price-row"><span>Premium SUV</span><strong>₹ 9,500</strong></div>
-            </div>
-            <div class="drop-mobile-actions">
-              <button class="btn-book-mini open-booking-modal" data-destination="Calicut" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 5,900">Book Sedan</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Calicut" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 8,500">Book SUV</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Calicut" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 9,500">Book Premium SUV</button>
-            </div>
-          </div>
-
-          <div class="drop-mobile-card">
-            <div class="drop-mobile-head">
-              <h3 class="drop-mobile-destination">Madurai</h3>
-              <div class="drop-mobile-tag">One Way</div>
-            </div>
-            <div class="drop-mobile-prices">
-              <div class="drop-mobile-price-row"><span>Sedan</span><strong>₹ 5,900</strong></div>
-              <div class="drop-mobile-price-row"><span>SUV</span><strong>₹ 8,300</strong></div>
-              <div class="drop-mobile-price-row"><span>Premium SUV</span><strong>₹ 9,300</strong></div>
-            </div>
-            <div class="drop-mobile-actions">
-              <button class="btn-book-mini open-booking-modal" data-destination="Madurai" data-vehicle="Sedan" data-vehicletype="Etios, Dzire, Xcent" data-price="₹ 5,900">Book Sedan</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Madurai" data-vehicle="SUV" data-vehicletype="Innova, Xylo, Tavera" data-price="₹ 8,300">Book SUV</button>
-              <button class="btn-book-mini open-booking-modal" data-destination="Madurai" data-vehicle="Premium SUV" data-vehicletype="Innova Crysta" data-price="₹ 9,300">Book Premium SUV</button>
-            </div>
-          </div>
-
-        </div>
-        <div class="drop-note">
-          <strong>Notes:</strong><br>
-          One-way drop taxi fares are destination-based and vehicle-based. Rates shown are for the listed destinations only.
-          Toll, parking or special timing charges, if applicable, may be extra depending on trip conditions.
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-wrap pt-0">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-lg-6">
-          <div class="content-card">
-            <div class="section-tag">Why One Way</div>
-            <h3>Fast, simple and cost-effective drop travel</h3>
-            <p>
-              Our one-way drop taxi service is perfect when you need comfortable travel without paying for a full round trip.
-              Whether it is airport movement, city transfer, business travel, family visit or hill-station drop, we make it simple,
-              affordable and reliable.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-lg-6">
-          <div class="content-card">
-            <div class="section-tag">Service Benefits</div>
-            <ul class="feature-mini-list">
-              <li><i class="bi bi-check-circle-fill"></i><span>Popular destination-wise fixed tariffs.</span></li>
-              <li><i class="bi bi-check-circle-fill"></i><span>Multiple vehicle choices for every trip need.</span></li>
-              <li><i class="bi bi-check-circle-fill"></i><span>Clean and well-maintained vehicles.</span></li>
-              <li><i class="bi bi-check-circle-fill"></i><span>Professional and polite chauffeurs.</span></li>
-              <li><i class="bi bi-check-circle-fill"></i><span>Quick WhatsApp booking confirmation.</span></li>
-              <li><i class="bi bi-check-circle-fill"></i><span>Suitable for personal and business travel.</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-wrap pt-0">
-    <div class="container">
-      <div class="section-header text-center">
-        <div class="section-tag">FAQ</div>
-        <h2>Frequently Asked Questions</h2>
-        <p>Quick answers for one-way drop taxi booking and pricing.</p>
-      </div>
-
-      <div class="faq-wrap">
-        <div class="faq-item">
-          <button class="faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">
-            <span>What is a one-way drop taxi?</span>
-            <i class="bi bi-chevron-down"></i>
-          </button>
-          <div id="faq1" class="collapse show">
-            <div class="faq-body">
-              A one-way drop taxi is a single-side trip from pickup location to destination without charging full round-trip fare.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false">
-            <span>Are these fares fixed?</span>
-            <i class="bi bi-chevron-down"></i>
-          </button>
-          <div id="faq2" class="collapse">
-            <div class="faq-body">
-              Yes, these are fixed reference fares for the listed destinations and vehicles. Final confirmation may vary slightly if there are extra route-specific charges.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false">
-            <span>Are toll and parking included?</span>
-            <i class="bi bi-chevron-down"></i>
-          </button>
-          <div id="faq3" class="collapse">
-            <div class="faq-body">
-              Toll, parking and any special charges are generally extra unless clearly mentioned during confirmation.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false">
-            <span>How do I book a one-way drop taxi?</span>
-            <i class="bi bi-chevron-down"></i>
-          </button>
-          <div id="faq4" class="collapse">
-            <div class="faq-body">
-              Select your destination, choose your vehicle type, click Book, fill in your details, and continue directly to WhatsApp.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false">
-            <span>Can I request other destinations not listed here?</span>
-            <i class="bi bi-chevron-down"></i>
-          </button>
-          <div id="faq5" class="collapse">
-            <div class="faq-body">
-              Yes. You can contact us by phone or WhatsApp for custom one-way drop destinations and special travel requirements.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="modal fade modal-drop" id="bookingModal" tabindex="-1" aria-hidden="true">
+  <div class="modal fade modal-tour" id="bookingModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <div>
             <h5 class="modal-title mb-1">Book One Way Drop Taxi</h5>
-            <div style="font-size:.88rem; opacity:.92;">Fill your details and continue to WhatsApp</div>
+            <div style="font-size:.88rem; opacity:.92;">Fill details and continue</div>
           </div>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body p-3 p-md-4">
-          <div class="summary-box">
-            <div><span>Destination</span><span id="summaryDestination">-</span></div>
-            <div><span>Vehicle</span><span id="summaryVehicle">-</span></div>
-            <div><span>Type</span><span id="summaryVehicleType">-</span></div>
-            <div><span>Fare</span><span id="summaryPrice">-</span></div>
-          </div>
+          <div class="summary-box" id="bookingSummary"></div>
 
           <form id="bookingPopupForm" novalidate>
             <div class="mb-3">
@@ -1219,288 +287,173 @@
             </div>
 
             <div class="mb-3">
-              <label class="form-label" for="travelDate">Travel Date</label>
-              <input type="date" class="form-control" id="travelDate" required>
+              <label class="form-label" for="customerDateTime">Pickup Date & Time</label>
+              <input type="datetime-local" class="form-control" id="customerDateTime" required>
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Pickup Time</label>
-              <div class="d-flex gap-2">
-                <select class="form-select" id="pickupHour" required>
-                  <option value="">HH</option>
-                  <option>1</option><option>2</option><option>3</option><option>4</option>
-                  <option>5</option><option>6</option><option>7</option><option>8</option>
-                  <option>9</option><option>10</option><option>11</option><option>12</option>
-                </select>
+        <label class="form-label" for="customerPickup">Pickup Location</label>
+        <input type="text" class="form-control" id="customerPickup" placeholder="Pickup location (within city)" required>
+      </div>
 
-                <select class="form-select" id="pickupMinute" required>
-                  <option value="">MM</option>
-                  <option>00</option>
-                  <option>15</option>
-                  <option>30</option>
-                  <option>45</option>
-                </select>
+      <div class="mb-3">
+        <label class="form-label" for="customerDrop">Drop Location</label>
+        <input type="text" class="form-control" id="customerDrop" placeholder="Drop location (within city)" required>
+      </div>
 
-                <select class="form-select" id="pickupPeriod" required>
-                  <option value="">AM/PM</option>
-                  <option>AM</option>
-                  <option>PM</option>
-                </select>
-              </div>
+            <div class="booking-action-row">
+              <button type="button" class="whatsapp-btn-full" id="enquireWhatsappBtn">
+                <i class="bi bi-whatsapp me-2"></i>Enquire on WhatsApp
+              </button>
+
+              <button type="button" class="whatsapp-btn-full" id="bookNowZeroBtn">
+                Book Now @ ₹0
+              </button>
+
+              <button type="button" class="pay-online-btn-full" id="payOnlineBtn">
+                <i class="bi bi-credit-card me-2"></i>Pay Online
+              </button>
             </div>
-
-            <div class="mb-3">
-              <label class="form-label" for="pickupLocation">Pickup Location</label>
-              <input type="text" class="form-control" id="pickupLocation" placeholder="Enter pickup location" required>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label" for="dropLocation">Drop Location</label>
-              <input type="text" class="form-control" id="dropLocation" placeholder="Enter drop location" required>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label" for="notes">Additional Notes <span style="color:#64748b;font-weight:500;">(Optional)</span></label>
-              <input type="text" class="form-control" id="notes" placeholder="Luggage, pickup landmark, timing note, etc.">
-            </div>
-
-            <button type="submit" class="whatsapp-btn-full">
-              <i class="bi bi-whatsapp me-2"></i>Continue to WhatsApp
-            </button>
           </form>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="row g-5">
-        <div class="col-lg-5">
-          <div class="d-flex align-items-center gap-2 mb-3">
-            <img src="images/Logo.png" alt="Logo" class="footer-logo">
-            <div>
-              <div class="footer-brand">BHARATHIYAR TOURS AND TRAVELS</div>
-              <div class="footer-brand-sub">Premium Cab & Tour Services</div>
-            </div>
+  <div class="modal fade modal-tour" id="paymentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <h5 class="modal-title mb-1">Payment Summary</h5>
+            <div style="font-size:.88rem; opacity:.92;">Review and choose payment option</div>
           </div>
-
-          <p>Reliable and premium travel for local rides, family tours, pilgrim packages and outstation bookings across Tamil Nadu.</p>
-
-          <div class="d-flex gap-3 mt-3">
-    <a href="https://wa.me/919629808833" class="social-btn" target="_blank">
-      <i class="bi bi-whatsapp"></i>
-    </a>
-
-    <a href="tel:+919629808833" class="social-btn">
-      <i class="bi bi-telephone-fill"></i>
-    </a>
-
-    <a href="mailto:bharathiyartravels.cbe@gmail.com" class="social-btn">
-      <i class="bi bi-envelope-fill"></i>
-    </a>
-
-    <a href="https://www.instagram.com/bharathiyartoursandtravels/" class="social-btn" target="_blank">
-      <i class="bi bi-instagram"></i>
-    </a>
-
-    <a href="https://www.facebook.com/p/Bharathiyar-Tours-Travels-100063803235318/" class="social-btn" target="_blank">
-      <i class="bi bi-facebook"></i>
-    </a>
-  </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="footer-heading">Quick Links</div>
-          <div class="d-flex flex-column gap-2">
-            <a href="index.html">Home</a>
-            <a href="hourlypackages.html">Hourly Packages</a>
-            <a href="tourpackages.html">Tour Packages</a>
-            <a href="about.html">About Us</a>
-            <a href="contact.html">Contact</a>
+        <div class="modal-body p-3 p-md-4">
+          <div class="summary-box" id="paymentSummaryBox"></div>
+          <div class="summary-box mb-3" id="paymentOptionNote"></div>
+
+          <div class="booking-action-stack">
+            <button type="button" class="pay-split-btn" id="advancePaymentBtn"></button>
+            <button type="button" class="pay-full-btn" id="fullPaymentBtn"></button>
+            <button type="button" class="pay-back-btn" id="backToBookingBtn">
+              <i class="bi bi-arrow-left me-2"></i>Back
+            </button>
           </div>
         </div>
-
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="footer-heading">Contact</div>
-          <div class="d-flex flex-column gap-2">
-            <a href="mailto:bharathiyartravels.cbe@gmail.com" class="footer-contact-link">
-              <i class="bi bi-envelope flex-shrink-0"></i>
-              <span>bharathiyartravels.cbe@gmail.com</span>
-            </a>
-            <a href="tel:+919629808833" class="footer-contact-link">
-              <i class="bi bi-telephone flex-shrink-0"></i>
-              <span>+91 96298 08833</span>
-            </a>
-            <a href="tel:+919488331952" class="footer-contact-link">
-              <i class="bi bi-telephone flex-shrink-0"></i>
-              <span>+91 94883 31952</span>
-            </a>
-            <div class="footer-contact-link">
-              <i class="bi bi-geo-alt flex-shrink-0"></i>
-              <span>13/1, Divine Nagar, Church Road, Cheran Managar, Coimbatore – 641035.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 mt-5">
-        <span>© 2026 Bharathiyar Tours & Travels. All rights reserved.</span>
-        <p style="font-size: 14px; opacity: 0.7; color: #718096;">
-          Designed & curated by
-          <a href="https://marcinmind.in" target="_blank" style="text-decoration: none; color: #20b2aa;">Marc in Mind Technologies</a>
-        </p>
       </div>
     </div>
-    <br><br>
-  </footer>
+  </div>
 
-  <div class="float-btns" id="floatingContactBtns">
-    <a href="tel:+919629808833" class="float-btn float-call">
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <img src="images/Logo.png" alt="Logo" class="footer-logo">
+              <div>
+                <div class="footer-brand">BHARATHIYAR TOURS AND TRAVELS</div>
+                <div class="footer-brand-sub">Premium Cab & Tour Services</div>
+              </div>
+            </div>
+
+            <p>Reliable and premium travel for local rides, family tours, pilgrim packages and outstation bookings across Tamil Nadu.</p>
+
+            <div class="d-flex gap-3 mt-3">
+      <a href="https://wa.me/919629808833" class="social-btn" target="_blank">
+        <i class="bi bi-whatsapp"></i>
+      </a>
+
+      <a href="tel:+919629808833" class="social-btn">
+        <i class="bi bi-telephone-fill"></i>
+      </a>
+
+      <a href="mailto:bharathiyartravels.cbe@gmail.com" class="social-btn">
+        <i class="bi bi-envelope-fill"></i>
+      </a>
+
+      <a href="https://www.instagram.com/bharathiyartoursandtravels/" class="social-btn" target="_blank">
+        <i class="bi bi-instagram"></i>
+      </a>
+
+      <a href="https://www.facebook.com/p/Bharathiyar-Tours-Travels-100063803235318/" class="social-btn" target="_blank">
+        <i class="bi bi-facebook"></i>
+      </a>
+    </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="footer-heading">Quick Links</div>
+            <div class="d-flex flex-column gap-2">
+              <a href="index.html">Home</a>
+              <a href="hourlypackages.html">Hourly Packages</a>
+              <a href="tourpackages.html">Tour Packages</a>
+              <a href="about.html">About Us</a>
+              <a href="contact.html">Contact</a>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="footer-heading">Contact</div>
+            <div class="d-flex flex-column gap-2">
+              <a href="mailto:bharathiyartravels.cbe@gmail.com" class="footer-contact-link">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <span>bharathiyartravels.cbe@gmail.com</span>
+              </a>
+              <a href="tel:+919629808833" class="footer-contact-link">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <span>+91 96298 08833</span>
+              </a>
+              <a href="tel:+919488331952" class="footer-contact-link">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <span>+91 94883 31952</span>
+              </a>
+              <div class="footer-contact-link">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <span>13/1, Divine Nagar, Church Road, Cheran Managar, Coimbatore – 641035.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 mt-5">
+          <span>© 2026 Bharathiyar Tours & Travels. All rights reserved.</span>
+          <p style="font-size: 14px; opacity: 0.7; color: #718096;">
+            Designed & curated by
+            <a href="https://marcinmind.in" target="_blank" style="text-decoration: none; color: #20b2aa;">Marc in Mind Technologies</a>
+          </p>
+        </div>
+      </div>
+      <br><br>
+    </footer>
+  <div class="float-btns" id="floatingBtns">
+    <a href="tel:+919629808833" class="float-btn float-call" aria-label="Call us">
       <i class="bi bi-telephone-fill"></i>
-      <span>Call</span>
+      <span>Call Us</span>
     </a>
-
-    <a href="https://wa.me/919629808833" class="float-btn float-wa" target="_blank">
+    <a href="https://wa.me/919629808833" target="_blank" class="float-btn float-wa" aria-label="WhatsApp us">
       <i class="bi bi-whatsapp"></i>
       <span>WhatsApp</span>
     </a>
   </div>
 
+  <button id="scrollTopBtn"><i class="bi bi-arrow-up"></i></button>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="oneway.js" charset="utf-8"></script>
   <script>
-    const WHATSAPP_NUMBER = "919629808833";
-
-    let selectedDestination = "";
-    let selectedVehicle = "";
-    let selectedVehicleType = "";
-    let selectedPrice = "";
-
-    window.addEventListener('scroll', function () {
-      const nav = document.getElementById('mainNav');
-      if (window.scrollY > 20) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 300) scrollBtn.style.display = "block";
+      else scrollBtn.style.display = "none";
     });
-
-    function toggleTariffMenu() {
-      const menu = document.getElementById('mobileTariffsMenu');
-      const icon = document.getElementById('tariffMenuIcon');
-      const isOpen = menu.style.display === 'block';
-      menu.style.display = isOpen ? 'none' : 'block';
-      icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-    }
-
-    function toggleTourMenu() {
-      const menu = document.getElementById('mobileTourPackagesMenu');
-      const icon = document.getElementById('tourMenuIcon');
-      const isOpen = menu.style.display === 'block';
-      menu.style.display = isOpen ? 'none' : 'block';
-      icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-    }
-
-    function closeMobileMenu() {
-      const mobileMenu = document.getElementById('mobileMenu');
-      const bsOffcanvas = bootstrap.Offcanvas.getInstance(mobileMenu);
-      if (bsOffcanvas) {
-        bsOffcanvas.hide();
-      }
-    }
-
-    const bookingModalEl = document.getElementById('bookingModal');
-    const bookingModal = new bootstrap.Modal(bookingModalEl);
-    const floatingBtns = document.getElementById('floatingContactBtns');
-
-    bookingModalEl.addEventListener('show.bs.modal', function () {
-      if (floatingBtns) floatingBtns.classList.add('hide');
+    scrollBtn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
-
-    bookingModalEl.addEventListener('hidden.bs.modal', function () {
-      if (floatingBtns) floatingBtns.classList.remove('hide');
-    });
-
-    document.querySelectorAll('.open-booking-modal').forEach(button => {
-      button.addEventListener('click', function () {
-        selectedDestination = this.dataset.destination || '';
-        selectedVehicle = this.dataset.vehicle || '';
-        selectedVehicleType = this.dataset.vehicletype || '';
-        selectedPrice = this.dataset.price || '';
-
-        document.getElementById('summaryDestination').textContent = selectedDestination;
-        document.getElementById('summaryVehicle').textContent = selectedVehicle;
-        document.getElementById('summaryVehicleType').textContent = selectedVehicleType;
-        document.getElementById('summaryPrice').textContent = selectedPrice;
-
-        document.getElementById('dropLocation').value = selectedDestination;
-        bookingModal.show();
-      });
-    });
-
-    document.getElementById('customerPhone').addEventListener('input', function () {
-      this.value = this.value.replace(/\D/g, '').slice(0, 10);
-    });
-
-    document.getElementById('bookingPopupForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const name = document.getElementById('customerName').value.trim();
-      const phone = document.getElementById('customerPhone').value.trim();
-      const travelDate = document.getElementById('travelDate').value;
-      const hour = document.getElementById('pickupHour').value;
-      const minute = document.getElementById('pickupMinute').value;
-      const period = document.getElementById('pickupPeriod').value;
-      const pickupLocation = document.getElementById('pickupLocation').value.trim();
-      const dropLocation = document.getElementById('dropLocation').value.trim();
-      const notes = document.getElementById('notes').value.trim();
-
-      if (!hour || !minute || !period) {
-        alert('Please select pickup time properly.');
-        return;
-      }
-
-      const pickupTime = `${hour}:${minute} ${period}`;
-
-      if (!name || !phone || phone.length !== 10 || !travelDate || !pickupLocation || !dropLocation) {
-        alert('Please fill all required fields correctly.');
-        return;
-      }
-
-      const message =
-`Hello Bharathiyar Tours and Travels,
-
-I would like to book a One Way Drop Taxi.
-
-Destination: ${selectedDestination}
-Vehicle: ${selectedVehicle}
-Vehicle Type: ${selectedVehicleType}
-Fare: ${selectedPrice}
-
-Name: ${name}
-Phone: ${phone}
-Travel Date: ${travelDate}
-Pickup Time: ${pickupTime}
-Pickup Location: ${pickupLocation}
-Drop Location: ${dropLocation}
-Additional Notes: ${notes || 'Nil'}
-
-Please share confirmation details.`;
-
-      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
-    });
-
-    (function setMinDate() {
-      const dateInput = document.getElementById('travelDate');
-      const today = new Date();
-      const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, '0');
-      const dd = String(today.getDate()).padStart(2, '0');
-      dateInput.min = `${yyyy}-${mm}-${dd}`;
-    })();
   </script>
 </body>
 </html>

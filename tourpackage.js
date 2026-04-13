@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const CALL_NUMBER = "919629808833";
   const SUPPORT_PHONE = "9629808833";
   const SUPPORT_EMAIL = "bharathiyartravels.cbe@gmail.com";
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwqFsRq6r8oUOTsJLjaevWR8Eo3lPEJiCtDIVv6IysOdkJrbmC1S91cfM3fYf5jcXVppQ/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxZcAKgXwH5v0i2atZ4XTbqK0PPofoSzKLZG0TpkciJf0IQkT-vw-Hs01xD_msIMNHR/exec";
 
   const VEHICLES = {
     sedan: { name: "SEDAN", type: "Etios, Dzire - 4 Seater" },
@@ -1575,26 +1575,36 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href.split("#")[0] +
       (getCurrentDestinationConfig()?.hash ? `#${getCurrentDestinationConfig().hash}` : "");
 
-    return `Hello Bharathiyar Tours and Travels,
+    return `✨ *BHARATHIYAR TOURS & TRAVELS*
+  ━━━━━━━━━━━━━━━━━
+  📦 *PACKAGE DETAILS*
+  ━━━━━━━━━━━━━━━━━
+  📍 Destination: ${selectedBooking?.destination || ""}
+  🗺️ Package: ${selectedBooking?.packageTitle || ""}
+  🚘 Vehicle: ${selectedBooking?.vehicle || ""}
+  💰 Tariff: ${formatCurrency(selectedBooking?.tariff || 0)}
+  📏 KM Limit: ${selectedBooking?.kmLimit || ""} KM
 
-I would like to enquire about this tour package.
+  🏨 *Accommodation:*
+  ${
+    selectedBooking?.withHotel
+      ? `✔ ${selectedBooking.roomType}
+  ✔ ${selectedBooking.occupancy}
+  ✔ ${selectedBooking.roomCount} Room${selectedBooking.roomCount > 1 ? "s" : ""}`
+      : "❌ Without Hotel"
+  }
 
-Package: ${selectedBooking?.packageTitle || ""}
-Destination: ${selectedBooking?.destination || ""}
-Vehicle: ${selectedBooking?.vehicle || ""}
-Tariff: ${formatCurrency(selectedBooking?.tariff || 0)}
-KM Limit: ${selectedBooking?.kmLimit || ""} KM
-Accommodation: ${
-      selectedBooking?.withHotel
-        ? `${selectedBooking.roomType}, ${selectedBooking.occupancy}, ${selectedBooking.roomCount} Room${selectedBooking.roomCount > 1 ? "s" : ""}`
-        : "Without Hotel"
-    }
-Package Link: ${url}
+  ━━━━━━━━━━━━━━━━━
+  👤 *CUSTOMER DETAILS*
+  ━━━━━━━━━━━━━━━━━
+  🧑 Name: ${data?.name || ""}
+  📞 Phone: ${data?.phone || ""}
+  🗓️ Pickup: ${data?.dateTime ? formatDateTimeAMPM(data.dateTime) : ""}
+  📍 Location: ${data?.pickup || ""}
 
-Customer Name: ${data?.name || ""}
-Phone: ${data?.phone || ""}
-Pickup Date & Time: ${data?.dateTime ? formatDateTimeAMPM(data.dateTime) : ""}
-Pickup Location: ${data?.pickup || ""}`;
+  ━━━━━━━━━━━━━━━━━
+  🙏 Kindly confirm availability & pricing.
+  Thank you! 😊`;
   }
 
   function buildReceiptPayload(paymentInfo) {

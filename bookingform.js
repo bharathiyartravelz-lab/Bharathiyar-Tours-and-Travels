@@ -212,19 +212,24 @@ Children: ${children}
 Children Ages: ${childrenAgesText}`;
   }
 
-  const message = `*New Enquiry – Bharathiyar Tours & Travels*
+  const message = `✨ *BHARATHIYAR TOURS & TRAVELS*
+  ━━━━━━━━━━━━━━━━━
+  📩 *NEW ENQUIRY*
 
-*Name:* ${name}
-*Phone:* ${phone}
-*Pickup:* ${pickupLocation}
-*Intermediate:* ${intermediateLocation || "Not Mentioned"}
-*Drop:* ${dropLocation}
-*Pickup Date & Time:* ${formatDateTime(pickup)}
-*Drop Date & Time:* ${formatDateTime(drop)}
-*Vehicle:* ${vehicle}
-*Accommodation:* ${accommodationText}
+  📍 *Route:* ${pickupLocation} ➝ ${dropLocation}
+  🔁 *Via:* ${intermediateLocation || "Direct"}
+  🚘 *Vehicle:* ${vehicle}
+  🏨 *Accommodation:* ${accommodationText}
 
-Kindly share fare and availability.`;
+  ━━━━━━━━━━━━━━━━━
+  👤 *CUSTOMER DETAILS*
+  🧑 *Name:* ${name}
+  📞 *Phone:* ${phone}
+  🗓️ *Pickup:* ${formatDateTime(pickup)}
+  🗓️ *Drop:* ${formatDateTime(drop)}
+
+  ━━━━━━━━━━━━━━━━━
+  🙏 Kindly share fare & availability.`;
 
   window.open(`https://wa.me/919629808833?text=${encodeURIComponent(message)}`, "_blank");
 });
