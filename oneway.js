@@ -97,7 +97,38 @@ document.addEventListener("DOMContentLoaded", function () {
       ]
     }
   };
+  window.toggleTariffMenu = function () {
+    const menu = document.getElementById("mobileTariffsMenu");
+    const icon = document.getElementById("tariffMenuIcon");
+    if (!menu || !icon) return;
 
+    const isOpen = menu.style.display === "block";
+    menu.style.display = isOpen ? "none" : "block";
+    icon.classList.toggle("bi-chevron-down", isOpen);
+    icon.classList.toggle("bi-chevron-up", !isOpen);
+  };
+
+  window.toggleTourMenu = function () {
+    const menu = document.getElementById("mobileTourPackagesMenu");
+    const icon = document.getElementById("tourMenuIcon");
+    if (!menu || !icon) return;
+
+    const isOpen = menu.style.display === "block";
+    menu.style.display = isOpen ? "none" : "block";
+    icon.classList.toggle("bi-chevron-down", isOpen);
+    icon.classList.toggle("bi-chevron-up", !isOpen);
+  };
+
+  window.closeMobileMenu = function () {
+    const offcanvasEl = document.getElementById("mobileMenu");
+    if (!offcanvasEl) return;
+
+    const offcanvas =
+      bootstrap.Offcanvas.getInstance(offcanvasEl) ||
+      new bootstrap.Offcanvas(offcanvasEl);
+
+    offcanvas.hide();
+  };
   const destinationSidebar = document.getElementById("destinationSidebar");
   const tariffTableBody = document.getElementById("tariffTableBody");
   const packageHeading = document.getElementById("packageHeading");

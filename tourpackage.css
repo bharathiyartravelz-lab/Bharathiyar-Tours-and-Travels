@@ -1055,3 +1055,73 @@
   border-color: #696969;
   color: #696969;
 }
+
+
+
+/* MOBILE NAV FIX */
+.mobile-nav-offcanvas .navbar-nav {
+  align-items: flex-start !important;
+  text-align: left !important;
+  width: 100%;
+}
+
+.mobile-nav-offcanvas .nav-item {
+  width: 100%;
+}
+
+.mobile-nav-offcanvas .nav-link {
+  width: 100% !important;
+  text-align: left !important;
+}
+
+/* Only parent buttons should space title and arrow */
+.mobile-parent-link {
+  width: 100% !important;
+  text-align: left !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Submenu container */
+.mobile-submenu {
+  width: 100% !important;
+  padding-left: 10px;
+}
+
+/* Submenu links should NOT use space-between */
+.mobile-submenu .nav-link {
+  width: 100% !important;
+  text-align: left !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start !important;
+  gap: 6px;
+  padding-left: 20px !important;
+}
+
+/* Reduce icon spacing inside submenu */
+.mobile-submenu .nav-link i {
+  margin-right: 0 !important;
+  min-width: auto;
+}
+
+/* Offcanvas body alignment */
+.offcanvas-body {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
+.offcanvas .navbar-nav {
+  align-items: flex-start !important;
+}
+
+.navbar-toggler {
+  z-index: 1100;
+  position: relative;
+}
+
+.offcanvas {
+  z-index: 1099 !important;
+}
