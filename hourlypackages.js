@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
       slug: "5 Hours",
       kmLimit: 50,
       extraHour: {
-        sedan: 150,
-        ertiga: 180,
-        innova: 200,
-        crysta: 300
+        sedan: 250,
+        ertiga: 300,
+        innova: 400,
+        crysta: 450
       },
       extraKm: {
         sedan: 12,
@@ -35,10 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
       slug: "8 Hours",
       kmLimit: 80,
       extraHour: {
-        sedan: 150,
-        ertiga: 180,
-        innova: 200,
-        crysta: 300
+        sedan: 250,
+        ertiga: 300,
+        innova: 400,
+        crysta: 450
       },
       extraKm: {
         sedan: 12,
@@ -59,10 +59,10 @@ document.addEventListener("DOMContentLoaded", function () {
       slug: "10 Hours",
       kmLimit: 100,
       extraHour: {
-        sedan: 150,
-        ertiga: 180,
-        innova: 200,
-        crysta: 300
+        sedan: 250,
+        ertiga: 300,
+        innova: 400,
+        crysta: 450
       },
       extraKm: {
         sedan: 12,
@@ -83,10 +83,10 @@ document.addEventListener("DOMContentLoaded", function () {
       slug: "12 Hours",
       kmLimit: 120,
       extraHour: {
-        sedan: 150,
-        ertiga: 180,
-        innova: 200,
-        crysta: 300
+        sedan: 250,
+        ertiga: 300,
+        innova: 400,
+        crysta: 450
       },
       extraKm: {
         sedan: 12,
