@@ -1899,6 +1899,8 @@ document.addEventListener("DOMContentLoaded", function () {
     activePackage = found.pkgKey;
     selectedDestinationName = found.destinationName;
 
+    updateAccommodationVisibility();
+    updateHotelFields();
     populateDestinations(selectedDestinationName);
     renderTariffTable();
     renderItinerary();
