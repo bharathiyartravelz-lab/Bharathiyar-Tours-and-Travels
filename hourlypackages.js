@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         crysta: 20
       },
       vehicles: [
-        { key: "sedan", name: "SEDAN", type: "Etios, Dzire, Xcent", tariff: 1800 },
+        { key: "sedan", name: "SEDAN", type: "Etios, Dzire, Xcent", tariff: 1500 },
         { key: "ertiga", name: "ERTIGA", type: "6 - 7 Seater", tariff: 2000 },
         { key: "innova", name: "INNOVA", type: "7 Seater", tariff: 2500 },
         { key: "crysta", name: "CRYSTA", type: "Innova Crysta", tariff: 3000 }
@@ -47,10 +47,10 @@ document.addEventListener("DOMContentLoaded", function () {
         crysta: 20
       },
       vehicles: [
-        { key: "sedan", name: "SEDAN", type: "Etios, Dzire, Xcent", tariff: 2300 },
-        { key: "ertiga", name: "ERTIGA", type: "6 - 7 Seater", tariff: 3500 },
-        { key: "innova", name: "INNOVA", type: "7 Seater", tariff: 3300 },
-        { key: "crysta", name: "CRYSTA", type: "Innova Crysta", tariff: 4000 }
+        { key: "sedan", name: "SEDAN", type: "Etios, Dzire, Xcent", tariff: 2500 },
+        { key: "ertiga", name: "ERTIGA", type: "6 - 7 Seater", tariff: 3350 },
+        { key: "innova", name: "INNOVA", type: "7 Seater", tariff: 3500 },
+        { key: "crysta", name: "CRYSTA", type: "Innova Crysta", tariff: 4300 }
       ]
     },
 
@@ -71,10 +71,10 @@ document.addEventListener("DOMContentLoaded", function () {
         crysta: 20
       },
       vehicles: [
-        { key: "sedan", name: "SEDAN", type: "Etios, Dzire, Xcent", tariff: 2600 },
+        { key: "sedan", name: "SEDAN", type: "Etios, Dzire, Xcent", tariff: 3000 },
         { key: "ertiga", name: "ERTIGA", type: "6 - 7 Seater", tariff: 3800 },
-        { key: "innova", name: "INNOVA", type: "7 Seater", tariff: 3800 },
-        { key: "crysta", name: "CRYSTA", type: "Innova Crysta", tariff: 4600 }
+        { key: "innova", name: "INNOVA", type: "7 Seater", tariff: 4000 },
+        { key: "crysta", name: "CRYSTA", type: "Innova Crysta", tariff: 4700 }
       ]
     },
 
@@ -95,10 +95,10 @@ document.addEventListener("DOMContentLoaded", function () {
         crysta: 20
       },
       vehicles: [
-        { key: "sedan", name: "SEDAN", type: "Etios, Dzire, Xcent", tariff: 3000 },
+        { key: "sedan", name: "SEDAN", type: "Etios, Dzire, Xcent", tariff: 3500 },
         { key: "ertiga", name: "ERTIGA", type: "6 - 7 Seater", tariff: 4300 },
         { key: "innova", name: "INNOVA", type: "7 Seater", tariff: 4500 },
-        { key: "crysta", name: "CRYSTA", type: "Innova Crysta", tariff: 5500 }
+        { key: "crysta", name: "CRYSTA", type: "Innova Crysta", tariff: 5300 }
       ]
     }
   };
