@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const CALL_NUMBER = "919629808833";
   const SUPPORT_PHONE = "9629808833";
   const SUPPORT_EMAIL = "bharathiyartravels.cbe@gmail.com";
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzGY4tXqrWWLHCnxRHkBYhd8uVQXZ3EzGLkQcChnDliZvhHBxDpCi_wt7fQZPCyw2OIgA/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwqFsRq6r8oUOTsJLjaevWR8Eo3lPEJiCtDIVv6IysOdkJrbmC1S91cfM3fYf5jcXVppQ/exec";
 
   const VEHICLES = {
     sedan: { name: "SEDAN", type: "Etios, Dzire - 4 Seater" },
@@ -1171,10 +1171,34 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateAccommodationVisibility() {
+    const accommodationFields = document.getElementById("accommodationFields");
+    if (!accommodationFields) return;
+
+    // Hide only for 1 Day
+    if (activePackage === "1D") {
+      accommodationFields.style.display = "none";
+
+      if (accommodationSelect) accommodationSelect.value = "none";
+      if (roomTypeSelect) roomTypeSelect.value = "2star";
+      if (occupancySelect) occupancySelect.value = "double";
+      if (roomCountSelect) roomCountSelect.value = "1";
+
+      [roomTypeField, occupancyField, roomCountField].forEach(field => {
+        if (!field) return;
+        field.classList.remove("show-hotel-field");
+      });
+
+      return;
+    }
+
+    // Show again for 2D and above
+    accommodationFields.style.display = "";
+
     const showHotel = isHotelSelected();
 
     [roomTypeField, occupancyField, roomCountField].forEach(field => {
       if (!field) return;
+
       if (showHotel) {
         field.classList.add("show-hotel-field");
       } else {
@@ -1889,6 +1913,8 @@ Pickup Location: ${data?.pickup || ""}`;
       activePackage = pkg;
       selectedDestinationName = "";
 
+      updateAccommodationVisibility();
+      updateHotelFields();
       populateDestinations();
       renderTariffTable();
       renderItinerary();
