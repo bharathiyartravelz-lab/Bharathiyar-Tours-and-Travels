@@ -320,12 +320,99 @@
                     <div class="row g-3">
 
                       <div class="col-12 col-md-3">
-                        <label class="form-label fw-semibold" for="accommodationSelect">Accommodation</label>
-                        <select class="form-select" id="accommodationSelect">
-                          <option value="none">Without Hotel</option>
-                          <option value="hotel">With Hotel</option>
-                        </select>
-                      </div>
+              <label class="form-label fw-semibold d-block">Accommodation</label>
+
+              <div
+                id="hotelSwitch"
+                onclick="
+                  window.withHotel = !window.withHotel;
+                  this.classList.toggle('active', window.withHotel);
+
+                  if (typeof updateAccommodationVisibility === 'function') updateAccommodationVisibility();
+                  if (typeof updateHotelFields === 'function') updateHotelFields();
+                  if (typeof renderTariffTable === 'function') renderTariffTable();
+                "
+              >
+
+                <!-- NO -->
+                <span id="switchNo">No</span>
+
+                <!-- YES -->
+                <span id="switchYes">Yes</span>
+
+                <!-- KNOB -->
+                <span id="hotelKnob"></span>
+
+              </div>
+            </div>
+
+      <style>
+      /* SWITCH */
+    #hotelSwitch {
+      width: 80px !important;   /* slightly bigger */
+      height: 32px !important;
+      border-radius: 999px !important;
+      background: #dc3545;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      overflow: hidden !important;
+    }
+
+    /* TEXT */
+    #switchNo,
+    #switchYes {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;   /* slightly bigger */
+      font-weight: 600;
+      color: #fff;
+      transition: opacity 0.3s ease;
+    }
+
+    #switchNo {
+      left: 10px;
+    }
+
+    #switchYes {
+      right: 10px;
+      opacity: 0.6;
+    }
+
+    /* KNOB */
+    #hotelKnob {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 27px;     /* bigger knob */
+      height: 27px;
+      border-radius: 50% !important;
+      background: #fff;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.25); /* smoother shadow */
+    }
+
+    /* ACTIVE STATE */
+    #hotelSwitch.active {
+      background: #25D366 !important;
+      box-shadow: 0 3px 10px rgba(37, 211, 102, 0.35);
+    }
+
+    /* MOVE KNOB */
+    #hotelSwitch.active #hotelKnob {
+      left: 50px !important; /* recalculated */
+    }
+
+    /* TEXT VISIBILITY */
+    #hotelSwitch.active #switchYes {
+      opacity: 1 !important;
+    }
+
+    #hotelSwitch.active #switchNo {
+      opacity: 0.4 !important;
+    }
+      </style>
 
                       <div class="col-12 col-md-3 hotel-field" id="roomTypeField">
                         <label class="form-label fw-semibold" for="roomTypeSelect">Room Type</label>

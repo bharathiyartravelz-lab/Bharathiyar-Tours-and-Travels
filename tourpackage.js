@@ -1028,6 +1028,13 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   };
+
+
+  window.updateAccommodationVisibility = updateAccommodationVisibility;
+window.updateHotelFields = updateHotelFields;
+window.renderTariffTable = renderTariffTable;
+
+
   const destinationSidebar = document.getElementById("destinationSidebar");
   const packageTabs = document.querySelectorAll(".package-tab");
   const accommodationSelect = document.getElementById("accommodationSelect");
@@ -1072,6 +1079,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let selectedBooking = null;
   let customerFormData = null;
   let savedBookingId = "";
+  let withHotel = false;
+  window.withHotel = false;
 
   function sanitizeText(value) {
     return String(value ?? "")
@@ -1128,7 +1137,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function isHotelSelected() {
-    return accommodationSelect && accommodationSelect.value === "hotel";
+    return window.withHotel === true;
   }
 
   function getPackageNights() {
@@ -1178,7 +1187,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (activePackage === "1D") {
       accommodationFields.style.display = "none";
 
-      if (accommodationSelect) accommodationSelect.value = "none";
+      withHotel = false;
+const btnNoHotel = document.getElementById("btnNoHotel");
+const btnYesHotel = document.getElementById("btnYesHotel");
+if (btnNoHotel) btnNoHotel.classList.add("active");
+if (btnYesHotel) btnYesHotel.classList.remove("active");
       if (roomTypeSelect) roomTypeSelect.value = "2star";
       if (occupancySelect) occupancySelect.value = "double";
       if (roomCountSelect) roomCountSelect.value = "1";
