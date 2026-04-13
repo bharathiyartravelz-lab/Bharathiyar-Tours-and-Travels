@@ -982,12 +982,6 @@
 }
 
 
-.tour-destination-btn.active {
-  background: #111 !important;
-  color: #fff !important;
-  border-color: #111 !important;
-}
-
 
 @media (max-width: 768px) {
 

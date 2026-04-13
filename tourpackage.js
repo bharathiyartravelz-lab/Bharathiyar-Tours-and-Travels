@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const CALL_NUMBER = "919629808833";
   const SUPPORT_PHONE = "9629808833";
   const SUPPORT_EMAIL = "bharathiyartravels.cbe@gmail.com";
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwDzDCmDitbmRSjW7RyE6nw0deGoaf6PZmIRE0YJYD6H9O3bmHA1xfsw3WNKNLraaMJiA/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzGY4tXqrWWLHCnxRHkBYhd8uVQXZ3EzGLkQcChnDliZvhHBxDpCi_wt7fQZPCyw2OIgA/exec";
 
   const VEHICLES = {
     sedan: { name: "SEDAN", type: "Etios, Dzire - 4 Seater" },
@@ -1028,9 +1028,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   };
-
-
-
   const destinationSidebar = document.getElementById("destinationSidebar");
   const packageTabs = document.querySelectorAll(".package-tab");
   const accommodationSelect = document.getElementById("accommodationSelect");
@@ -1054,6 +1051,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const paymentModal = paymentModalEl ? new bootstrap.Modal(paymentModalEl) : null;
   const paymentSummaryBox = document.getElementById("paymentSummaryBox");
   const paymentOptionNote = document.getElementById("paymentOptionNote");
+
+  const enquireWhatsappBtn = document.getElementById("enquireWhatsappBtn");
+  const bookNowZeroBtn = document.getElementById("bookNowZeroBtn");
   const payOnlineBtn = document.getElementById("payOnlineBtn");
   const advancePaymentBtn = document.getElementById("advancePaymentBtn");
   const fullPaymentBtn = document.getElementById("fullPaymentBtn");
@@ -1073,22 +1073,24 @@ document.addEventListener("DOMContentLoaded", function () {
   let customerFormData = null;
   let savedBookingId = "";
 
-  function formatCurrency(value) {
-    if (value === null || value === undefined || value === "") return "Call for price";
-    return "₹ " + Number(value).toLocaleString("en-IN");
+  function sanitizeText(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
   }
 
-  function formatCurrencyCompact(value) {
-    return new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: "INR",
-      maximumFractionDigits: 0
-    }).format(Number(value || 0));
+  function formatCurrency(value) {
+    if (value === null || value === undefined || value === "") return "On Request";
+    return "₹ " + Number(value).toLocaleString("en-IN");
   }
 
   function setMinDateTime() {
     const dateInput = document.getElementById("customerDateTime");
     if (!dateInput) return;
+
     const now = new Date();
     now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
     dateInput.min = now.toISOString().slice(0, 16);
@@ -1108,69 +1110,43 @@ document.addEventListener("DOMContentLoaded", function () {
     hours = hours % 12;
     hours = hours ? hours : 12;
 
-    return `${day}-${month}-${year} ${hours}:${minutes} ${ampm}`;
+    return `${day} ${month} ${year}, ${hours}:${minutes} ${ampm}`;
   }
 
-  function formatDateOnly(inputValue) {
-    const d = new Date(inputValue);
-    if (isNaN(d)) return inputValue;
-
-    const day = String(d.getDate()).padStart(2, "0");
-    const month = d.toLocaleString("en-GB", { month: "short" });
-    const year = d.getFullYear();
-
-    return `${day}-${month}-${year}`;
-  }
-
-  function sanitizeText(value) {
-    return String(value ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+  function showThankYouPopup() {
+    alert("Thanks for contacting Bharathiyar Tours and Travels. Our concern team will contact you.");
   }
 
   function getCurrentPackageConfig() {
-    return packageData?.[activePackage] || null;
+    return packageData[activePackage] || null;
   }
 
-  function getCurrentDestinationData() {
+  function getCurrentDestinationConfig() {
     const pkg = getCurrentPackageConfig();
-    if (!pkg || !pkg.destinations || !selectedDestinationName) return null;
+    if (!pkg || !pkg.destinations) return null;
     return pkg.destinations[selectedDestinationName] || null;
   }
 
-  function getCurrentAccommodationMode() {
-    return accommodationSelect ? accommodationSelect.value : "none";
-  }
-
   function isHotelSelected() {
-    return getCurrentAccommodationMode() === "hotel";
+    return accommodationSelect && accommodationSelect.value === "hotel";
   }
 
-  function getNightCount(pkgKey) {
-    const map = {
-      "1D": 0,
-      "2D": 1,
-      "3D": 2,
-      "4D": 3,
-      "5D": 4,
-      "6D": 5,
-      "7D": 6
-    };
-    return map[pkgKey] || 0;
+  function getPackageNights() {
+    const match = String(activePackage || "").match(/^(\d+)D$/i);
+    if (!match) return 0;
+    const days = Number(match[1]);
+    return days > 1 ? days - 1 : 0;
   }
 
-  function getHotelCharge(pkgKey) {
+  function getHotelCharge() {
     if (!isHotelSelected()) return 0;
 
     const roomType = roomTypeSelect?.value || "2star";
     const occupancy = occupancySelect?.value || "double";
     const roomCount = Number(roomCountSelect?.value || 1);
-    const nights = getNightCount(pkgKey);
-
+    const nights = getPackageNights();
     const roomRate = HOTEL_RATES?.[roomType]?.[occupancy] || 0;
+
     return roomRate * roomCount * nights;
   }
 
@@ -1181,17 +1157,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function findByHash(hash) {
     const cleanHash = String(hash || "").replace(/^#/, "").trim().toLowerCase();
-    if (!cleanHash || !packageData) return null;
+    if (!cleanHash) return null;
 
     for (const [pkgKey, pkgValue] of Object.entries(packageData)) {
       const destinations = pkgValue?.destinations || {};
       for (const [destinationName, destinationData] of Object.entries(destinations)) {
         if ((destinationData?.hash || "").toLowerCase() === cleanHash) {
-          return {
-            pkgKey,
-            destinationName,
-            destinationData
-          };
+          return { pkgKey, destinationName, destinationData };
         }
       }
     }
@@ -1212,9 +1184,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateHotelFields() {
-    const showHotel = isHotelSelected();
-
-    if (!showHotel) {
+    if (!isHotelSelected()) {
       if (roomTypeSelect) roomTypeSelect.value = "2star";
       if (occupancySelect) occupancySelect.value = "double";
       if (roomCountSelect) roomCountSelect.value = "1";
@@ -1225,6 +1195,34 @@ document.addEventListener("DOMContentLoaded", function () {
     packageTabs.forEach(tab => {
       tab.classList.toggle("active", tab.dataset.package === activePackage);
     });
+  }
+
+  function updatePageHeading() {
+    const pkg = getCurrentPackageConfig();
+    const destination = getCurrentDestinationConfig();
+
+    if (packageHeading) {
+      packageHeading.textContent = pkg?.title || "Tour Packages";
+    }
+
+    if (packageSubheading) {
+      packageSubheading.textContent = pkg?.subtitle || "Select your destination";
+    }
+
+    if (routeLine) {
+      routeLine.textContent = getRouteLineText(selectedDestinationName);
+    }
+
+    if (itineraryTitle) {
+      itineraryTitle.textContent = destination ? `${selectedDestinationName} Itinerary` : "Itinerary";
+    }
+  }
+
+  function updateHash(hash) {
+    if (!hash) return;
+    const current = window.location.hash.replace(/^#/, "");
+    if (current === hash) return;
+    history.replaceState(null, "", `#${hash}`);
   }
 
   function populateDestinations(preferredDestinationName = "") {
@@ -1239,8 +1237,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const validPreferred = preferredDestinationName && pkg.destinations[preferredDestinationName];
-    if (validPreferred) {
+    if (preferredDestinationName && pkg.destinations[preferredDestinationName]) {
       selectedDestinationName = preferredDestinationName;
     } else if (!pkg.destinations[selectedDestinationName]) {
       selectedDestinationName = destinationNames[0];
@@ -1257,130 +1254,88 @@ document.addEventListener("DOMContentLoaded", function () {
 
     destinationSidebar.querySelectorAll(".tour-destination-btn").forEach(btn => {
       btn.addEventListener("click", function () {
-      selectedDestinationName = this.dataset.destination;
-      populateDestinations(selectedDestinationName);
-      renderTariffTable();
-      renderItinerary();
-      updatePageHeading();
+        selectedDestinationName = this.dataset.destination;
+        populateDestinations(selectedDestinationName);
+        renderTariffTable();
+        renderItinerary();
+        updatePageHeading();
 
-      // ✅ AUTO SCROLL FIX
-      setTimeout(() => {
-        const tariffSection = document.getElementById("tariffSection");
-        if (tariffSection) {
-          const y = tariffSection.getBoundingClientRect().top + window.scrollY - 90;
-          window.scrollTo({ top: y, behavior: "smooth" });
-        }
-      }, 100);
-    });
+        setTimeout(() => {
+          const section = document.getElementById("tariffSection");
+          if (section) {
+            const y = section.getBoundingClientRect().top + window.scrollY - 90;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          }
+        }, 50);
+      });
     });
 
     updatePageHeading();
-    renderTariffTable();
-    renderItinerary();
-  }
 
-  function updatePageHeading() {
-    const pkg = getCurrentPackageConfig();
-    const destinationData = getCurrentDestinationData();
-
-    if (packageHeading) packageHeading.textContent = pkg?.title || "Tour Packages";
-    if (packageSubheading) packageSubheading.textContent = pkg?.subtitle || "Select your destination";
-    if (routeLine) routeLine.textContent = getRouteLineText(selectedDestinationName);
-
-    if (selectedDestinationName && destinationData?.hash) {
-      history.replaceState(null, "", `#${destinationData.hash}`);
+    const destination = getCurrentDestinationConfig();
+    if (destination?.hash) {
+      updateHash(destination.hash);
     }
-  }
-
-  function renderItinerary() {
-    const destinationData = getCurrentDestinationData();
-    const itinerary = destinationData?.itinerary || [];
-
-    if (!itineraryContent) return;
-    if (itineraryTitle) {
-      itineraryTitle.textContent = selectedDestinationName
-        ? `${selectedDestinationName} Itinerary`
-        : "Itinerary";
-    }
-
-    if (!itinerary.length) {
-      itineraryContent.innerHTML = `<tr><td colspan="2">Itinerary not available.</td></tr>`;
-      return;
-    }
-
-    itineraryContent.innerHTML = itinerary.map(item => `
-      <tr>
-        <td>${sanitizeText(item.day || "-")}</td>
-        <td>${sanitizeText(item.text || "-")}</td>
-      </tr>
-    `).join("");
-  }
-
-  function getVehicleDisplayName(vehicleObj) {
-    if (!vehicleObj) return "";
-    if (vehicleObj.type) return `${vehicleObj.name} (${vehicleObj.type})`;
-    return vehicleObj.name || "";
   }
 
   function renderTariffTable() {
     const pkg = getCurrentPackageConfig();
-    const destinationData = getCurrentDestinationData();
+    const destination = getCurrentDestinationConfig();
 
-    if (!pkg || !destinationData || !tariffTableBody) {
-      if (tariffTableBody) {
-        tariffTableBody.innerHTML = `<tr><td colspan="3" class="text-center py-4">No tariff available.</td></tr>`;
-      }
+    if (!pkg || !destination || !tariffTableBody) {
+      tariffTableBody.innerHTML = `
+        <tr>
+          <td colspan="3" class="text-center py-4">No tariffs available.</td>
+        </tr>
+      `;
       return;
     }
 
-    const vehicles = destinationData.vehicles || [];
-    const hotelCharge = getHotelCharge(activePackage);
+    const hotelSelected = isHotelSelected();
+    const hotelCharge = getHotelCharge();
 
-    tariffTableBody.innerHTML = vehicles.map(vehicle => {
-      if (vehicle.price === null || vehicle.price === undefined) {
-        return `
-          <tr>
-            <td>
-              <div class="fw-semibold">${sanitizeText(vehicle.name || "")}</div>
-              <div class="small text-muted">${sanitizeText(vehicle.type || "")}</div>
-            </td>
-            <td>Call for price</td>
-            <td>
-  <a href="tel:+919629808833" class="btn-call">Call Us</a>
-  </td>
-          </tr>
-        `;
-      }
+    tariffTableBody.innerHTML = destination.vehicles.map(vehicle => {
+      const baseFare = vehicle.price;
+      const totalFare = baseFare === null ? null : Number(baseFare) + hotelCharge;
 
-      const baseTariff = Number(vehicle.price || 0);
-      const totalTariff = baseTariff + hotelCharge;
+      const bookingData = {
+        packageTitle: pkg.title || "",
+        packageCode: activePackage,
+        destination: selectedDestinationName,
+        destinationHash: destination.hash || "",
+        vehicle: `${vehicle.name} - ${vehicle.type}`,
+        vehicleName: vehicle.name,
+        vehicleType: vehicle.type,
+        tariff: totalFare,
+        kmLimit: destination.kmLimit || pkg.kmLimit || "",
+        withHotel: hotelSelected,
+        roomType: hotelSelected ? (roomTypeSelect?.selectedOptions?.[0]?.text || roomTypeSelect?.value || "") : "",
+        occupancy: hotelSelected ? (occupancySelect?.selectedOptions?.[0]?.text || occupancySelect?.value || "") : "",
+        roomCount: hotelSelected ? Number(roomCountSelect?.value || 1) : 0,
+        hotelCharge: hotelCharge
+      };
+
+      const encodedPayload = encodeURIComponent(JSON.stringify(bookingData));
 
       return `
         <tr>
           <td>
-            <div class="fw-semibold">${sanitizeText(vehicle.name || "")}</div>
-            <div class="small text-muted">${sanitizeText(vehicle.type || "")}</div>
+            <div class="vehicle-name">${sanitizeText(vehicle.name)}</div>
+            <div class="vehicle-type">${sanitizeText(vehicle.type)}</div>
           </td>
           <td>
-    <div class="fw-bold">${formatCurrency(totalTariff)}</div>
-  </td>
+            ${
+              totalFare === null
+                ? `<div class="dynamic-tariff base-rate">On Request</div>`
+                : `<div class="dynamic-tariff base-rate">${formatCurrency(totalFare)}</div>`
+            }
+          </td>
           <td>
-          <button
-    type="button"
-              class="btn btn-sm btn-book-table book-now-btn"
-              data-destination="${sanitizeText(selectedDestinationName)}"
-              data-vehicle-name="${sanitizeText(vehicle.name || "")}"
-              data-vehicle-type="${sanitizeText(vehicle.type || "")}"
-              data-vehicle-display="${sanitizeText(getVehicleDisplayName(vehicle))}"
-              data-base-tariff="${baseTariff}"
-              data-total-tariff="${totalTariff}"
-              data-km-limit="${sanitizeText(destinationData.kmLimit || pkg.kmLimit || "")}"
-              data-package-title="${sanitizeText(pkg.title || "")}"
-              data-package-code="${sanitizeText(activePackage)}"
-              data-hotel-charge="${hotelCharge}"
-            >
-              Book Now
-            </button>
+            ${
+              totalFare === null
+                ? `<button type="button" class="btn btn-sm btn-dark" onclick="window.location.href='tel:+${CALL_NUMBER}'">Call Us</button>`
+                : `<button type="button" class="btn-book-table" data-booking="${encodedPayload}">BOOK NOW</button>`
+            }
           </td>
         </tr>
       `;
@@ -1388,52 +1343,70 @@ document.addEventListener("DOMContentLoaded", function () {
 
     tariffTableBody.querySelectorAll(".btn-book-table").forEach(btn => {
       btn.addEventListener("click", function () {
-        openBookingModal({
-          packageTitle: this.dataset.packageTitle,
-          packageCode: this.dataset.packageCode,
-          destination: this.dataset.destination,
-          vehicleName: this.dataset.vehicleName,
-          vehicleType: this.dataset.vehicleType,
-          vehicle: this.dataset.vehicleDisplay,
-          tariff: Number(this.dataset.totalTariff || 0),
-          baseTariff: Number(this.dataset.baseTariff || 0),
-          hotelCharge: Number(this.dataset.hotelCharge || 0),
-          kmLimit: this.dataset.kmLimit,
-          withHotel: isHotelSelected(),
-          roomType: isHotelSelected() ? (roomTypeSelect?.value || "") : "",
-          occupancy: isHotelSelected() ? (occupancySelect?.value || "") : "",
-          roomCount: isHotelSelected() ? Number(roomCountSelect?.value || 1) : 0
-        });
+        try {
+          const payload = JSON.parse(decodeURIComponent(this.dataset.booking || ""));
+          openBookingModal(payload);
+        } catch (err) {
+          alert("Unable to open booking modal.");
+        }
       });
     });
   }
 
+  function renderItinerary() {
+    const destination = getCurrentDestinationConfig();
+
+    if (!destination || !itineraryContent) {
+      itineraryContent.innerHTML = `
+        <tr>
+          <td colspan="2">No itinerary available.</td>
+        </tr>
+      `;
+      return;
+    }
+
+    const itinerary = destination.itinerary || [];
+    if (!itinerary.length) {
+      itineraryContent.innerHTML = `
+        <tr>
+          <td colspan="2">No itinerary available.</td>
+        </tr>
+      `;
+      return;
+    }
+
+    itineraryContent.innerHTML = itinerary.map(item => `
+      <tr>
+        <td>${sanitizeText(item.day || "")}</td>
+        <td>${sanitizeText(item.text || "")}</td>
+      </tr>
+    `).join("");
+  }
+
   function openBookingModal(bookingData) {
     selectedBooking = bookingData;
-    savedBookingId = "";
     customerFormData = null;
+    savedBookingId = "";
 
     if (!bookingSummary || !bookingPopupForm) return;
 
     bookingSummary.innerHTML = `
-      <div><strong>Package:</strong> ${sanitizeText(selectedBooking.packageTitle)}</div>
-      <div><strong>Destination:</strong> ${sanitizeText(selectedBooking.destination)}</div>
-      <div><strong>Vehicle:</strong> ${sanitizeText(selectedBooking.vehicle)}</div>
-      <div><strong>KM Limit:</strong> ${sanitizeText(selectedBooking.kmLimit)} KM</div>
-      <div><strong>Total Tariff:</strong> ${formatCurrency(selectedBooking.tariff)}</div>
+      <div><span>Package</span><span>${sanitizeText(selectedBooking.packageTitle)}</span></div>
+      <div><span>Destination</span><span>${sanitizeText(selectedBooking.destination)}</span></div>
+      <div><span>Vehicle</span><span>${sanitizeText(selectedBooking.vehicle)}</span></div>
+      <div><span>KM Limit</span><span>${sanitizeText(selectedBooking.kmLimit)} KM</span></div>
+      <div><span>Total Tariff</span><span>${formatCurrency(selectedBooking.tariff)}</span></div>
       ${
         selectedBooking.withHotel
-          ? `<div><strong>Accommodation:</strong> ${sanitizeText(selectedBooking.roomType)}, ${sanitizeText(selectedBooking.occupancy)}, ${selectedBooking.roomCount} Room${selectedBooking.roomCount > 1 ? "s" : ""}</div>`
-          : `<div><strong>Accommodation:</strong> Without Hotel</div>`
+          ? `<div><span>Accommodation</span><span>${sanitizeText(selectedBooking.roomType)}, ${sanitizeText(selectedBooking.occupancy)}, ${selectedBooking.roomCount} Room${selectedBooking.roomCount > 1 ? "s" : ""}</span></div>`
+          : `<div><span>Accommodation</span><span>Without Hotel</span></div>`
       }
     `;
 
     bookingPopupForm.reset();
     setMinDateTime();
 
-    if (bookingModal) {
-      bookingModal.show();
-    }
+    if (bookingModal) bookingModal.show();
   }
 
   function validateCustomerForm() {
@@ -1466,26 +1439,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return { name, phone, dateTime, pickup };
   }
 
-  function getAdvanceConfig() {
-    const withHotel = !!selectedBooking?.withHotel;
-
-    if (withHotel) {
-      return {
-        type: "ADVANCE_50",
-        label: "Pay Advance 50%",
-        percentage: 50,
-        amount: Math.round(Number(selectedBooking.tariff || 0) * 0.50)
-      };
-    }
-
-    return {
-      type: "ADVANCE_10",
-      label: "Pay Advance 10%",
-      percentage: 10,
-      amount: Math.round(Number(selectedBooking.tariff || 0) * 0.10)
-    };
-  }
-
   async function postToAppsScript(action, payload) {
     const response = await fetch(APPS_SCRIPT_URL, {
       method: "POST",
@@ -1511,6 +1464,54 @@ document.addEventListener("DOMContentLoaded", function () {
     return data;
   }
 
+  async function saveBookingToSheet(paymentTypeValue = "") {
+    if (!selectedBooking || !customerFormData) {
+      throw new Error("Booking data missing");
+    }
+
+    const payload = {
+      packageTitle: selectedBooking.packageTitle,
+      destination: selectedBooking.destination,
+      vehicle: selectedBooking.vehicle,
+      tariff: selectedBooking.tariff,
+      withHotel: selectedBooking.withHotel,
+      roomType: selectedBooking.roomType,
+      occupancy: selectedBooking.occupancy,
+      roomCount: selectedBooking.roomCount,
+      hotelCharge: selectedBooking.hotelCharge || 0,
+      kmLimit: selectedBooking.kmLimit || "",
+      packageCode: selectedBooking.packageCode || "",
+      customerName: customerFormData.name,
+      customerPhone: customerFormData.phone,
+      travelDate: formatDateTimeAMPM(customerFormData.dateTime),
+      pickup: customerFormData.pickup,
+      paymentType: paymentTypeValue,
+      sourcePage: window.location.href
+    };
+
+    const result = await postToAppsScript("saveBooking", payload);
+    savedBookingId = result.bookingId || "";
+    return result;
+  }
+
+  function getAdvanceConfig() {
+    const withHotel = !!selectedBooking?.withHotel;
+
+    if (withHotel) {
+      return {
+        type: "ADVANCE_50",
+        label: "Pay Advance 50%",
+        amount: Math.round(Number(selectedBooking.tariff || 0) * 0.50)
+      };
+    }
+
+    return {
+      type: "ADVANCE_10",
+      label: "Pay Advance 10%",
+      amount: Math.round(Number(selectedBooking.tariff || 0) * 0.10)
+    };
+  }
+
   function fillPaymentSummary() {
     if (!paymentSummaryBox || !selectedBooking) return;
 
@@ -1521,7 +1522,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <div><span>Booking ID</span><span>${sanitizeText(savedBookingId || "-")}</span></div>
       <div><span>Package</span><span>${sanitizeText(selectedBooking.packageTitle)}</span></div>
       <div><span>Destination</span><span>${sanitizeText(selectedBooking.destination)}</span></div>
-      <div><span>Vehicle</span><span>${sanitizeText(selectedBooking.vehicleName)}</span></div>
+      <div><span>Vehicle</span><span>${sanitizeText(selectedBooking.vehicleName || selectedBooking.vehicle)}</span></div>
       <div><span>Total Tariff</span><span>${formatCurrency(total)}</span></div>
       <div><span>KM Limit</span><span>${sanitizeText(selectedBooking.kmLimit)} KM</span></div>
       ${
@@ -1545,194 +1546,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  async function savePendingBooking() {
-    if (!selectedBooking || !customerFormData) {
-      throw new Error("Booking data missing");
-    }
-
-    const payload = {
-      packageTitle: selectedBooking.packageTitle,
-      destination: selectedBooking.destination,
-      vehicle: selectedBooking.vehicle,
-      tariff: selectedBooking.tariff,
-      withHotel: selectedBooking.withHotel,
-      roomType: selectedBooking.roomType,
-      occupancy: selectedBooking.occupancy,
-      roomCount: selectedBooking.roomCount,
-      hotelCharge: selectedBooking.hotelCharge || 0,
-      kmLimit: selectedBooking.kmLimit,
-      packageCode: selectedBooking.packageCode,
-      customerName: customerFormData.name,
-      customerPhone: customerFormData.phone,
-      travelDate: formatDateTimeAMPM(customerFormData.dateTime),
-      pickup: customerFormData.pickup,
-      sourcePage: window.location.href
-    };
-
-    const result = await postToAppsScript("saveBooking", payload);
-    savedBookingId = result.bookingId;
-  }
-
-  function setPaymentButtonsLoading(isLoading, clickedType = "") {
-    if (!advancePaymentBtn || !fullPaymentBtn) return;
-
-    if (isLoading) {
-      advancePaymentBtn.disabled = true;
-      fullPaymentBtn.disabled = true;
-
-      if (clickedType === "ADVANCE") {
-        advancePaymentBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Please wait...`;
-      }
-
-      if (clickedType === "FULL") {
-        fullPaymentBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Please wait...`;
-      }
-    } else {
-      advancePaymentBtn.disabled = false;
-      fullPaymentBtn.disabled = false;
-
-      const advance = getAdvanceConfig();
-      const total = Number(selectedBooking?.tariff || 0);
-
-      advancePaymentBtn.textContent = `${advance.label} - ${formatCurrency(advance.amount)}`;
-      fullPaymentBtn.textContent = `Pay Full - ${formatCurrency(total)}`;
-    }
-  }
-
-  function getReceiptTerms() {
-    return [
-      "Driver details will be assigned 24 hours prior to journey commencement.",
-      "Payment Policy: After pickup, 50% must be paid for driver allowance and fuel.",
-      "Avoid late payments.",
-      "Cancellation charges apply as per company policy.",
-      "Any itinerary changes may increase KM or costing.",
-      "Extra km / additional day will be charged as quoted."
-    ];
-  }
-
-  function buildReceiptPayload(paymentInfo) {
-    const total = Number(selectedBooking?.tariff || 0);
-    const paid = Number(paymentInfo?.paidAmount || 0);
-    const pending = Math.max(total - paid, 0);
-
-    return {
-      companyName: "BHARATHIYAR TOURS AND TRAVELS",
-      companyTagline: "Premium Cab & Tour Services",
-      companyPhonePrimary: "+91 96298 08833",
-      companyPhoneSecondary: "+91 94883 31952",
-      companyEmail: "bharathiyartravels.cbe@gmail.com",
-      companyAddress: "13/1, Divine Nagar, Church Road, Cheran Managar, Coimbatore – 641035.",
-      receiptTitle: paymentInfo.paymentType === "FULL" ? "FULL PAYMENT RECEIPT" : "ADVANCE PAYMENT RECEIPT",
-      paymentStatus: paymentInfo.paymentType === "FULL" ? "FULL PAYMENT RECEIVED" : "ADVANCE RECEIVED",
-      quoteNo: savedBookingId || `BTT-${Date.now()}`,
-      date: formatDateOnly(new Date()),
-      bookingId: savedBookingId || "",
-      customerName: customerFormData?.name || "",
-      customerPhone: customerFormData?.phone || "",
-      pickup: customerFormData?.pickup || "",
-      drop: selectedBooking?.destination || "",
-      vehicle: selectedBooking?.vehicle || "",
-      packageTitle: selectedBooking?.packageTitle || "",
-      packageCode: selectedBooking?.packageCode || "",
-      kmLimit: selectedBooking?.kmLimit || "",
-      travelDate: formatDateTimeAMPM(customerFormData?.dateTime),
-      totalTariff: total,
-      paidAmount: paid,
-      pendingAmount: pending,
-      paymentType: paymentInfo.paymentType,
-      paymentId: paymentInfo.paymentId || "",
-      withHotel: !!selectedBooking?.withHotel,
-      roomType: selectedBooking?.roomType || "",
-      occupancy: selectedBooking?.occupancy || "",
-      roomCount: selectedBooking?.roomCount || "",
-      hotelCharge: Number(selectedBooking?.hotelCharge || 0),
-      supportPhone: SUPPORT_PHONE,
-      supportEmail: SUPPORT_EMAIL,
-      terms: getReceiptTerms()
-    };
-  }
-
-  function goToReceiptPage(paymentInfo) {
-    const receiptData = buildReceiptPayload(paymentInfo);
-    sessionStorage.setItem("btt_receipt_data", JSON.stringify(receiptData));
-    window.location.href = "receipt-success.html";
-  }
-
-  async function startPayment(paymentType) {
-    if (!selectedBooking || !savedBookingId) {
-      throw new Error("Booking not saved properly");
-    }
-
-    const createOrderResult = await postToAppsScript("createOrder", {
-      bookingId: savedBookingId,
-      tariff: selectedBooking.tariff,
-      withHotel: selectedBooking.withHotel,
-      paymentType: paymentType
-    });
-
-    const options = {
-      key: createOrderResult.key,
-      amount: createOrderResult.amount * 100,
-      currency: createOrderResult.currency,
-      name: "Bharathiyar Tours and Travels",
-      description: `${selectedBooking.packageTitle} - ${selectedBooking.destination}`,
-      order_id: createOrderResult.orderId,
-      handler: async function (response) {
-        try {
-          await postToAppsScript("verifyPayment", {
-            bookingId: savedBookingId,
-            razorpay_order_id: response.razorpay_order_id,
-            razorpay_payment_id: response.razorpay_payment_id,
-            razorpay_signature: response.razorpay_signature,
-            paymentType: paymentType,
-            amount: createOrderResult.amount
-          });
-
-          if (paymentModal) paymentModal.hide();
-          if (bookingModal) bookingModal.hide();
-          setPaymentButtonsLoading(false);
-
-          goToReceiptPage({
-            paymentType: paymentType,
-            paymentId: response.razorpay_payment_id,
-            paidAmount: createOrderResult.amount
-          });
-        } catch (err) {
-          console.error(err);
-          setPaymentButtonsLoading(false);
-          alert(err.message || "Payment verified, but redirect failed.");
-        }
-      },
-      modal: {
-        ondismiss: function () {
-          setPaymentButtonsLoading(false);
-        }
-      },
-      prefill: {
-        name: customerFormData?.name || "",
-        contact: customerFormData?.phone || ""
-      },
-      theme: {
-        color: "#111111"
-      }
-    };
-
-    const rzp = new Razorpay(options);
-
-    rzp.on("payment.failed", function (resp) {
-      setPaymentButtonsLoading(false);
-      alert(resp?.error?.description || "Payment failed");
-    });
-
-    rzp.open();
-  }
-
   function buildWhatsAppBookingMessage(data) {
-    const url = window.location.href.split("#")[0] + (getCurrentDestinationData()?.hash ? `#${getCurrentDestinationData().hash}` : "");
-    const name = data?.name || "";
-    const phone = data?.phone || "";
-    const formattedDateTime = data?.dateTime ? formatDateTimeAMPM(data.dateTime) : "";
-    const pickup = data?.pickup || "";
+    const url =
+      window.location.href.split("#")[0] +
+      (getCurrentDestinationConfig()?.hash ? `#${getCurrentDestinationConfig().hash}` : "");
 
     return `Hello Bharathiyar Tours and Travels,
 
@@ -1750,22 +1567,199 @@ Accommodation: ${
     }
 Package Link: ${url}
 
-Customer Name: ${name}
-Phone: ${phone}
-Pickup Date & Time: ${formattedDateTime}
-Pickup Location: ${pickup}`;
+Customer Name: ${data?.name || ""}
+Phone: ${data?.phone || ""}
+Pickup Date & Time: ${data?.dateTime ? formatDateTimeAMPM(data.dateTime) : ""}
+Pickup Location: ${data?.pickup || ""}`;
+  }
+
+  function buildReceiptPayload(paymentInfo) {
+    const total = Number(selectedBooking?.tariff || 0);
+    const paid = Number(paymentInfo?.paidAmount || 0);
+
+    return {
+      receiptTitle: paymentInfo.paymentType === "FULL" ? "FULL PAYMENT RECEIPT" : "ADVANCE PAYMENT RECEIPT",
+      paymentStatus: paymentInfo.paymentType === "FULL" ? "FULL PAYMENT RECEIVED" : "ADVANCE RECEIVED",
+      quoteNo: savedBookingId,
+      date: new Date().toLocaleDateString("en-GB"),
+      customerName: customerFormData?.name,
+      customerPhone: customerFormData?.phone,
+      pickup: customerFormData?.pickup,
+      drop: selectedBooking?.destination,
+      vehicle: selectedBooking?.vehicle,
+      packageTitle: selectedBooking?.packageTitle,
+      packageCode: selectedBooking?.packageCode,
+      kmLimit: selectedBooking?.kmLimit,
+      travelDate: formatDateTimeAMPM(customerFormData?.dateTime),
+      totalTariff: total,
+      paidAmount: paid,
+      pendingAmount: total - paid,
+      paymentId: paymentInfo.paymentId,
+      paymentType: paymentInfo.paymentType,
+      terms: [
+        "Driver details will be assigned before journey.",
+        "Balance to be paid during trip.",
+        "Extra km will be charged.",
+        "Cancellation charges apply."
+      ]
+    };
+  }
+
+  function goToReceiptPage(paymentInfo) {
+    const data = buildReceiptPayload(paymentInfo);
+    sessionStorage.setItem("btt_receipt_data", JSON.stringify(data));
+    window.location.href = "receipt-success.html";
+  }
+
+  async function startPayment(paymentType) {
+    if (!selectedBooking || !customerFormData || !savedBookingId) {
+      throw new Error("Booking is incomplete");
+    }
+
+    const createOrderResult = await postToAppsScript("createOrder", {
+      bookingId: savedBookingId,
+      tariff: Number(selectedBooking.tariff || 0),
+      withHotel: !!selectedBooking.withHotel,
+      paymentType: paymentType
+    });
+
+    if (!createOrderResult.orderId) {
+      throw new Error("Failed to create order");
+    }
+
+    const options = {
+      key: createOrderResult.key,
+      amount: Number(createOrderResult.amount || 0) * 100,
+      currency: createOrderResult.currency || "INR",
+      name: "BHARATHIYAR TOURS AND TRAVELS",
+      description: `${paymentType === "FULL" ? "Full Payment" : "Advance Payment"} - ${selectedBooking.packageTitle}`,
+      order_id: createOrderResult.orderId,
+      handler: async function (response) {
+        try {
+          await postToAppsScript("verifyPayment", {
+            bookingId: savedBookingId,
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature: response.razorpay_signature,
+            paymentType: paymentType,
+            amount: Number(createOrderResult.amount || 0)
+          });
+
+          if (paymentModal) paymentModal.hide();
+          if (bookingModal) bookingModal.hide();
+
+          goToReceiptPage({
+    paymentType: paymentType,
+    paymentId: response.razorpay_payment_id,
+    paidAmount: Number(createOrderResult.amount || 0)
+  });
+        } catch (err) {
+          alert(err.message || "Payment verified, but final step failed.");
+        } finally {
+          resetPaymentButtons();
+        }
+      },
+      modal: {
+        ondismiss: function () {
+          resetPaymentButtons();
+        }
+      },
+      prefill: {
+        name: customerFormData?.name || "",
+        contact: customerFormData?.phone || ""
+      },
+      theme: {
+        color: "#111111"
+      }
+    };
+
+    const rzp = new Razorpay(options);
+
+    rzp.on("payment.failed", function (resp) {
+      resetPaymentButtons();
+      alert(resp?.error?.description || "Payment failed");
+    });
+
+    rzp.open();
+  }
+
+  function resetMainButtons() {
+    if (enquireWhatsappBtn) {
+      enquireWhatsappBtn.disabled = false;
+      enquireWhatsappBtn.innerHTML = `<i class="bi bi-whatsapp me-2"></i>Enquire on WhatsApp`;
+    }
+
+    if (bookNowZeroBtn) {
+      bookNowZeroBtn.disabled = false;
+      bookNowZeroBtn.textContent = "Book Now @ ₹0";
+    }
+
+    if (payOnlineBtn) {
+      payOnlineBtn.disabled = false;
+      payOnlineBtn.innerHTML = `<i class="bi bi-credit-card me-2"></i>Pay Online`;
+    }
+  }
+
+  function resetPaymentButtons() {
+    if (!advancePaymentBtn || !fullPaymentBtn) return;
+
+    advancePaymentBtn.disabled = false;
+    fullPaymentBtn.disabled = false;
+
+    const advance = getAdvanceConfig();
+    const total = Number(selectedBooking?.tariff || 0);
+
+    advancePaymentBtn.textContent = `${advance.label} - ${formatCurrency(advance.amount)}`;
+    fullPaymentBtn.textContent = `Pay Full - ${formatCurrency(total)}`;
   }
 
   if (bookingPopupForm) {
     bookingPopupForm.addEventListener("submit", function (e) {
       e.preventDefault();
+    });
+  }
 
-      customerFormData = validateCustomerForm();
-      if (!customerFormData) return;
+  if (enquireWhatsappBtn) {
+    enquireWhatsappBtn.addEventListener("click", async function () {
+      try {
+        customerFormData = validateCustomerForm();
+        if (!customerFormData) return;
 
-      const message = buildWhatsAppBookingMessage(customerFormData);
-      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, "_blank");
+        enquireWhatsappBtn.disabled = true;
+        enquireWhatsappBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Please wait...`;
+
+        const message = buildWhatsAppBookingMessage(customerFormData);
+        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+        window.open(whatsappUrl, "_blank");
+        showThankYouPopup();
+      } catch (err) {
+        alert(err.message || "Failed to continue to WhatsApp");
+      } finally {
+        resetMainButtons();
+      }
+    });
+  }
+
+  if (bookNowZeroBtn) {
+    bookNowZeroBtn.addEventListener("click", async function () {
+      try {
+        customerFormData = validateCustomerForm();
+        if (!customerFormData) return;
+
+        bookNowZeroBtn.disabled = true;
+        bookNowZeroBtn.textContent = "Please wait...";
+
+        await saveBookingToSheet("BOOK_NOW_ZERO");
+        showThankYouPopup();
+
+        if (bookingModal) bookingModal.hide();
+        if (bookingPopupForm) bookingPopupForm.reset();
+      } catch (err) {
+        alert(err.message || "Failed to save booking");
+      } finally {
+        resetMainButtons();
+      }
     });
   }
 
@@ -1775,10 +1769,10 @@ Pickup Location: ${pickup}`;
         customerFormData = validateCustomerForm();
         if (!customerFormData) return;
 
-        this.disabled = true;
-        this.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Please wait...`;
+        payOnlineBtn.disabled = true;
+        payOnlineBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>Please wait...`;
 
-        await savePendingBooking();
+        await saveBookingToSheet("PAY_ONLINE");
         fillPaymentSummary();
 
         if (bookingModal) bookingModal.hide();
@@ -1786,8 +1780,7 @@ Pickup Location: ${pickup}`;
       } catch (err) {
         alert(err.message || "Failed to continue to payment");
       } finally {
-        this.disabled = false;
-        this.innerHTML = `<i class="bi bi-credit-card me-2"></i>Pay Online`;
+        resetMainButtons();
       }
     });
   }
@@ -1802,11 +1795,13 @@ Pickup Location: ${pickup}`;
   if (advancePaymentBtn) {
     advancePaymentBtn.addEventListener("click", async function () {
       try {
-        setPaymentButtonsLoading(true, "ADVANCE");
+        advancePaymentBtn.disabled = true;
+        fullPaymentBtn.disabled = true;
+        advancePaymentBtn.textContent = "Please wait...";
         await startPayment(getAdvanceConfig().type);
       } catch (err) {
         alert(err.message || "Unable to start payment");
-        setPaymentButtonsLoading(false);
+        resetPaymentButtons();
       }
     });
   }
@@ -1814,11 +1809,13 @@ Pickup Location: ${pickup}`;
   if (fullPaymentBtn) {
     fullPaymentBtn.addEventListener("click", async function () {
       try {
-        setPaymentButtonsLoading(true, "FULL");
+        advancePaymentBtn.disabled = true;
+        fullPaymentBtn.disabled = true;
+        fullPaymentBtn.textContent = "Please wait...";
         await startPayment("FULL");
       } catch (err) {
         alert(err.message || "Unable to start payment");
-        setPaymentButtonsLoading(false);
+        resetPaymentButtons();
       }
     });
   }
@@ -1861,6 +1858,29 @@ Pickup Location: ${pickup}`;
     });
   }
 
+  function applyHashSelection() {
+    const found = findByHash(window.location.hash);
+    if (!found) return false;
+
+    activePackage = found.pkgKey;
+    selectedDestinationName = found.destinationName;
+
+    populateDestinations(selectedDestinationName);
+    renderTariffTable();
+    renderItinerary();
+    updatePageHeading();
+
+    setTimeout(() => {
+      const section = document.getElementById("tariffSection");
+      if (section) {
+        const y = section.getBoundingClientRect().top + window.scrollY - 90;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }, 80);
+
+    return true;
+  }
+
   packageTabs.forEach(tab => {
     tab.addEventListener("click", function () {
       const pkg = this.dataset.package;
@@ -1868,7 +1888,11 @@ Pickup Location: ${pickup}`;
 
       activePackage = pkg;
       selectedDestinationName = "";
+
       populateDestinations();
+      renderTariffTable();
+      renderItinerary();
+      updatePageHeading();
 
       if (packageTabsRow) {
         this.scrollIntoView({
@@ -1906,43 +1930,29 @@ Pickup Location: ${pickup}`;
     });
   }
 
-  if (scrollLeftBtn && scrollRightBtn && packageTabsRow) {
+  if (scrollLeftBtn && packageTabsRow) {
     scrollLeftBtn.addEventListener("click", function () {
-      packageTabsRow.scrollBy({
-        left: -220,
-        behavior: "smooth"
-      });
-    });
-
-    scrollRightBtn.addEventListener("click", function () {
-      packageTabsRow.scrollBy({
-        left: 220,
-        behavior: "smooth"
-      });
+      packageTabsRow.scrollBy({ left: -220, behavior: "smooth" });
     });
   }
 
-  window.addEventListener("hashchange", function () {
-    const found = findByHash(window.location.hash);
-    if (!found) return;
-
-    activePackage = found.pkgKey;
-    populateDestinations(found.destinationName);
-  });
+  if (scrollRightBtn && packageTabsRow) {
+    scrollRightBtn.addEventListener("click", function () {
+      packageTabsRow.scrollBy({ left: 220, behavior: "smooth" });
+    });
+  }
 
   updateAccommodationVisibility();
   updateHotelFields();
-  setMinDateTime();
 
-  const foundFromHash = findByHash(window.location.hash);
-
-  if (foundFromHash) {
-    activePackage = foundFromHash.pkgKey;
-    populateDestinations(foundFromHash.destinationName);
-  } else {
-    activePackage = "1D";
+  if (!applyHashSelection()) {
     populateDestinations();
+    renderTariffTable();
+    renderItinerary();
+    updatePageHeading();
   }
 
-  syncFloatingButtons(true);
+  window.addEventListener("hashchange", function () {
+    applyHashSelection();
+  });
 });
